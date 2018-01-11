@@ -75,7 +75,7 @@ class Navbar extends Component {
           <FlatButton title='cart' style={style} >
             <img src={logo} alt="shopping cart" />
           </FlatButton>
-<Link to='/api/users/verification/:id"'><button >lol</button></Link>
+
         </AppBar>
         <SearchBar
           onChange={() => console.log('onChange')}
