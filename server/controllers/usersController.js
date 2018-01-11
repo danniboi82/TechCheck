@@ -1,8 +1,11 @@
-const db = require("../models");
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const sgMail = require('@sendgrid/mail');
-const sengrido =process.env.sendgrid ||'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'
+import sendGridkey from '../../sendgrid.txt'
+import db from "../models"
+import bcrypt from'bcrypt'
+
+import sgMail from '@sendgrid/mail'
+const saltRounds =10;
+
+const sengrido =process.env.sendgrid ||sendGridkey
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
   findAll: (req, res) => {
