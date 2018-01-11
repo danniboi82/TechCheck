@@ -6,6 +6,7 @@ import sgMail from '@sendgrid/mail'
 const saltRounds =10;
 console.log(sendGridkey)
 const sengrido =process.env.sendgrid ||sendGridkey
+sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
   findAll: (req, res) => {
@@ -70,20 +71,12 @@ else{
      dateOfBirth: req.body.dateOfBirth,
    })
       .then(dbModel => {
-        const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(sengrido);
-
-      // href = "<a href='localhost:8000.com/email/verification/"
-        // email = req.body.email + "'" + "> Click Here To Register <a/>"
-       // let fullEmail = href.concat(email);
-
-          // console.log(fullEmail)
-
+    
         const msg = {
           to: req.body.email,
           from: 'techtricks@donotreply.com',
           subject: 'Reqister Your Email With TechChecks ',
-          text: name + ' ' + "Please Click The Link to Register Your Email" + " " + "https://localhost:3000/email/verification/" + req.body.email
+          text: name + ' ' + "Please Click The Link to Register Your Email" + " " + "http://localhost:3000/api/users/verification/" + req.body.email
           // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
 
@@ -105,6 +98,21 @@ else{
         }
       })
       .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+ verification: function (req, res) {
+console.log(req.params.email)
+    db.Users.update({
+      verified:true
+    }, {
+        where: {
+          email: req.params.email,
+          active: true
+        }
+      })
+      .then(dbModel => {
+res.send('user verified ')
+      })
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {

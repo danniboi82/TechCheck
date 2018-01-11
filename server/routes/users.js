@@ -8,6 +8,7 @@ router.get("/", users.findAll);
 router.get("/:id", users.findById);
 router.post("/", users.create);
 router.put("/:email", users.update);
+router.put("/verification/:email?",users.verification)
 router.delete("/:id", users.remove);
 
 // Export routes for server.js to use.

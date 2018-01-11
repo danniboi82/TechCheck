@@ -12,6 +12,7 @@ import MainPage from './Components/MainPage/MainPage'
 import Footer from './Components/Footer/Footer'
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
+import verification from './Components/verification/verification'
 
 class App extends Component {
   render() {
@@ -20,8 +21,11 @@ class App extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <div className="App">
             <Navbar />
-            <MainPage />
+           
             <br />
+            <Route exact path="/" component={MainPage}/>
+            <Route exact path="/api/users/verification/:email" component={verification}/>
+   
             <Footer />
             <SearchedPage />
             <ProductDetailPage />
