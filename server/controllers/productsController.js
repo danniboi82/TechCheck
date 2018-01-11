@@ -1,4 +1,7 @@
-const db = require("../models");
+
+import db from"../models"
+
+
 
 // Defining methods for the booksController
 const controller = {
