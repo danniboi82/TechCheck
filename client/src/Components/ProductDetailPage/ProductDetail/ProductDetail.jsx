@@ -4,7 +4,7 @@ import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
 import { GridList, GridTile } from 'material-ui/GridList';
 import { List, ListItem } from 'material-ui/List';
-
+import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
 
 const productDetailStyles = {
     h1: {
@@ -113,7 +113,7 @@ const productDetail = () => {
             </div>
 
              <div style={{ paddingBottom: '60px' }}>
-                <FlatButton style={productDetailStyles.purchaseButton} label='Purchase' primary={true} />
+                <Link to='/done'><FlatButton style={productDetailStyles.purchaseButton} label='Purchase' primary={true} /></Link>
             </div>
 
         </div>
