@@ -1,0 +1,9 @@
+.cart {
+    height: 80px;
+    padding-bottom: 15px;
+}
+
+.cart-p {
+    font-size: 12px;
+    font-style: bold;
+}
