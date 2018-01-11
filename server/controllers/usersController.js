@@ -1,10 +1,10 @@
-import sendGridkey from '../../sendgrid.txt'
+import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
 
 import sgMail from '@sendgrid/mail'
 const saltRounds =10;
-
+console.log(sendGridkey)
 const sengrido =process.env.sendgrid ||sendGridkey
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
