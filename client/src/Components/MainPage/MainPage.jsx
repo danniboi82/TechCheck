@@ -3,6 +3,7 @@ import Header from './Header/Header';
 import Cart from './Cart/Cart';
 import MissionStatement from './MissionStatement/MissionStatement';
 import ProductGridList from './ProductGridList/ProductGridList';
+// import MyForm from './Register/RegisterUser';
 import { Route } from 'react-router-dom';
 
 class mainPage extends Component { 
@@ -46,8 +47,10 @@ render(){
             <Header onClick={this.handleClick}/>
 
             <MissionStatement />
+
             <ProductGridList onClick={this.handleClick} dummyData={this.dummyData}
 />
+
         </div>
     );
 }}

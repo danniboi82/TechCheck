@@ -1,10 +1,11 @@
 import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-
+import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
+import jwt, { verify } from 'jsonwebtoken'
+const secret = process.env.jwt_secret || jwtSecret
 const saltRounds =10;
-console.log(sendGridkey)
 const sengrido =process.env.sendgrid ||sendGridkey
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
@@ -38,9 +39,65 @@ const controller = {
       })
       .catch(err => res.status(422).json(err));
   },
+  signIn: function (req, res) {
+    
+    db.Users.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then(function (userSign) {
+         //if the database enycrpted password and non enypyted email from the database 
+       //match create a JWT token and send it to the front end for storage
+      bcrypt.compare(req.body.password, userSign.password).then(function (pass) {
+        if (pass === true && req.body.email === userSign.email) {
+
+         const splitAddy = userSign.dataValues.address.split(' ');
+         const homeAdress = splitAddy[0] + ' ' + splitAddy[1];
+         const homeCity = splitAddy[2];
+         const homeState = splitAddy[3];
+        const  homeZipCode = splitAddy[4]
+         const fullName = userSign.dataValues.firstName + ' ' + userSign.dataValues.lastName;
+          const currentUser = {
+            userId: userSign.dataValues.id,
+            email: userSign.dataValues.email,
+            firstName: userSign.dataValues.firstName,
+            lastName: userSign.dataValues.lastName,
+            fullName: fullName,
+            profilePic: userSign.dataValues.profilePic,
+            phoneNumber: userSign.dataValues.phoneNumber,
+            address: homeAdress,
+            city: homeCity,
+            state: homeState,
+            zipCode: homeZipCode,
+            verified:userSign.verified,
+            dateOfBirth:userSign.dateOfBirth
+          }
+        
+          const token = jwt.sign({
+            auth: currentUser.userId,
+            agent: req.headers['user-agent'],
+            currentUser:{ currentUser },
+            exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
+          }, secret);
+          res.send(token)
+         
+         //if the database enycrpted password and non enypyted email from the database don't match
+         //send the front end a string of noMatch telling the front end to prompt the user to retry 
+        } else {
+          res.status(404).send("noMatch");
+          console.log('you got it wrong')
+        }
+      });
+
+    })
+  },
+  signOut: function (req, res) {
+    
+ res.send('User signed out')
+  },
   create: function (req, res) {
     console.log(req.body)
-    let name = req.body.firstName + ' ' + req.body.lastName
+  
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
       if (err) {
 
@@ -60,7 +117,7 @@ console.log(data)
 
         }
 else{
-   db.Users.create({
+ db.Users.create({
      email: req.body.email,
      password: hash,
      firstName: req.body.firstName,
@@ -69,21 +126,30 @@ else{
      phoneNumber: req.body.phoneNumber,
      address: req.body.address,
      dateOfBirth: req.body.dateOfBirth,
-   })
-      .then(dbModel => {
-    
-        const msg = {
-          to: req.body.email,
-          from: 'techtricks@donotreply.com',
-          subject: 'Reqister Your Email With TechChecks ',
-          text: name + ' ' + "Please Click The Link to Register Your Email" + " " + "http://localhost:3000/api/users/verification/" + req.body.email
-          // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
-        };
+  })
+    .then(dbModel => {
+ 
+      db.Users.findOne({
+        where: {
+          email: req.body.email
+        }
+        }).then(newUser=>{
+          console.log(newUser.dataValues.id)
+          const name = newUser.dataValues.firstName + ' ' + newUser.dataValues.lastName
+          const msg = {
+            to: req.body.email,
+            from: 'TechCheck@donotreply.com',
+            subject: 'Reqister Your Email With TechChecks ',
+            text: 'click me ',
+             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +newUser.dataValues.id +'><strong> Please Click This Link to Register Your Email</a></strong>',
+          };
+  
+          sgMail.send(msg);
+          res.send('user Created')
+        })
 
-        sgMail.send(msg);
-        res.send('user Created')
-      })
-      .catch(err => res.status(422).json(err));
+   })
+     .catch(err => res.status(422).json(err));
     }
   })
     })
@@ -106,12 +172,21 @@ console.log(req.params.email)
       verified:true
     }, {
         where: {
-          email: req.params.email,
+          id: req.params.id,
           active: true
         }
       })
       .then(dbModel => {
-res.send('user verified ')
+        db.Users.findOne({
+          where:{
+            id:req.params.id
+          }
+        }).then(verify=>{
+       const name =verify.dataValues.firstName+ ' '+verify.dataValues.lastName
+  
+          res.send(name)
+        })
+
       })
       .catch(err => res.status(422).json(err));
   },

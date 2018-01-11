@@ -1,5 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var Users = sequelize.define("Users", {
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+     
+    },
     email: {
       type: DataTypes.STRING,
       // AllowNull is a flag that restricts a todo from being entered if it doesn't
