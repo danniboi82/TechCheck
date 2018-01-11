@@ -13,8 +13,10 @@ import Footer from './Components/Footer/Footer'
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
 import verification from './Components/verification/verification'
-{/* <SearchedPage />
-            <ProductDetailPage /> */}
+
+import register from './Components/Register/RegisterUser'
+
+
 class App extends Component {
   render() {
     return (
@@ -25,9 +27,10 @@ class App extends Component {
            
             <br />
             <Route exact path="/" component={MainPage}/>
+
             <Route exact path="/api/users/verification/:id" component={verification}/>
   <Route exact path='/products' component={ProductDetailPage}/>
-  
+
             <Footer />
             
           </div>
