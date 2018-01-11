@@ -5,7 +5,6 @@ import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const addProductStyles = {
     h1: {
@@ -25,7 +24,6 @@ const addProductStyles = {
 
 const addProduct = () => {
     return (
-        <MuiThemeProvider>
         <div style={addProductStyles.wrapper}>
             <h1 style={addProductStyles.h1}> Add Your Product </h1>
             <Subheader> Name :</Subheader>
@@ -83,6 +81,5 @@ const addProduct = () => {
                 <FlatButton style={addProductStyles.buttonDiv} label='Submit' primary={true} />
             </div>
         </div>
-        </MuiThemeProvider>
     );
 }
