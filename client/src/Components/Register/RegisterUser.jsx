@@ -43,7 +43,7 @@ return (
             <TextField
                 name="email"
                 value={this.state.person.email}
-                floatingLabelText="First Name"
+                floatingLabelText="Email Address"
                 onChange={this.handleChange}/>
             <TextField
                 name="firstname"

@@ -17,10 +17,6 @@
 .env.test.local
 .env.production.local
 sendgrid.js
-awskey.js
-awssecret.js
-jwtSecret.js
-info.txt
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

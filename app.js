@@ -1,10 +1,9 @@
+var PORT = process.env.PORT || 3001; // Sets an initial port. We'll use this later in our listener
 // ensure environment variables are loaded
 import App from './server';
 
 // Requiring our models for syncing
 import db from './server/models';
-
-var PORT = process.env.PORT || 3001; // Sets an initial port. We'll use this later in our listener
 
 const app = App(__dirname);
 
