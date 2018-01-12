@@ -10,7 +10,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import SearchBar from 'material-ui-search-bar';
 import logo from '../../ic_shopping_cart_black_24px.svg';
 import Avatar from 'material-ui/Avatar';
-import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -80,6 +80,13 @@ class Navbar extends Component {
           </FlatButton>
 
         </AppBar>
+
+        <div className='routeDiv'>
+          <FlatButton> <Link to='/'>Home</Link> </FlatButton>
+          <FlatButton> <Link to='/search_results'>Search Results</Link> </FlatButton>
+          <FlatButton style={{paddingLeft: '10px'}}> <Link to='/product_detail'> Product Details</Link> </FlatButton>
+        </div>
+
         <SearchBar
           onChange={() => console.log('onChange')}
           onRequestSearch={() => console.log('onRequestSearch')}

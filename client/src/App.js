@@ -20,11 +20,12 @@ class App extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <div className="App">
             <Navbar />
-            <MainPage />
-            <br />
+            <Switch>
+              <Route exact path='/' component={MainPage} />
+              <Route path='/product_detail' component={ProductDetailPage} />
+              <Route path='/search_results' component={SearchedPage} />
+            </Switch>
             <Footer />
-            <SearchedPage />
-            <ProductDetailPage />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
