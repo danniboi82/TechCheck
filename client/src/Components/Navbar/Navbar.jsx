@@ -63,9 +63,6 @@ class Navbar extends Component {
     this.setState({ logged: logged });
   };
 
-  signOutButton = (event) => {
-    this.setState({ logged: true})
-  }
 
   render() {
     return (
@@ -73,7 +70,7 @@ class Navbar extends Component {
         <AppBar
           title="TechTronicX"
           onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <Login /> : <Logged onClick={this.signOutButton}/>}
+          iconElementRight={this.state.logged ? <Logged /> : <Login />}
         >
           <FlatButton title='cart' style={style} >
             <img src={logo} alt="shopping cart" />

@@ -12,6 +12,11 @@ import MainPage from './Components/MainPage/MainPage'
 import Footer from './Components/Footer/Footer'
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
+import verification from './Components/verification/verification'
+
+import register from './Components/Register/RegisterUser'
+import sell from './Components/Sell/SellProduct'
+
 
 class App extends Component {
   render() {
@@ -26,6 +31,7 @@ class App extends Component {
               <Route path='/search_results' component={SearchedPage} />
             </Switch>
             <Footer />
+
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
