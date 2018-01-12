@@ -27,6 +27,7 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path='/' component={MainPage} />
+              <Route exact path="/api/users/verification/:id" component={verification}/>
               <Route path='/product_detail' component={ProductDetailPage} />
               <Route path='/search_results' component={SearchedPage} />
             </Switch>

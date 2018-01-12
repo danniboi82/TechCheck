@@ -167,7 +167,7 @@ else{
       .catch(err => res.status(422).json(err));
   },
  verification: function (req, res) {
-console.log(req.params.email)
+console.log(req.params.id)
     db.Users.update({
       verified:true
     }, {
@@ -177,11 +177,13 @@ console.log(req.params.email)
         }
       })
       .then(dbModel => {
+        
         db.Users.findOne({
           where:{
             id:req.params.id
           }
         }).then(verify=>{
+          console.log(verify)
        const name =verify.dataValues.firstName+ ' '+verify.dataValues.lastName
   
           res.send(name)
