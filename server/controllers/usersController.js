@@ -31,7 +31,7 @@ const controller = {
       }
     })
       .then(dbModel => {
-        let fullDate
+        
       function getDbDate () {
         const split=JSON.stringify(dbModel.dataValues.createdAt);
    const dbDate = split.split(':')
@@ -39,10 +39,10 @@ const controller = {
   const dayCreated =splitDate[2].split('T')
   const removed=splitDate[0].split('"')
  
- fullDate=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
-return fullDate
+ const dates=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
+return dates
        }
-       getDbDate()
+      const fullDate= getDbDate()
     const userProfilePage={
 id:dbModel.dataValues.id,
 email:dbModel.dataValues.email,
