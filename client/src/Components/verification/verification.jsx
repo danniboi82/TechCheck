@@ -9,8 +9,8 @@ state = {
 
   
   componentDidMount = () => {
-    users.verification(this.props.match.params.email).then(dataPoints => {
-        console.log(dataPoints.data)
+    users.verification(this.props.match.params.id).then(dataPoints => {
+        console.log(dataPoints)
      this.setState({
       name:dataPoints.data
      })
