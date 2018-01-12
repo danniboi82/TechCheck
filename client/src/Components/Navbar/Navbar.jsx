@@ -44,7 +44,7 @@ class Navbar extends Component {
           <FlatButton style={{paddingLeft: '10px'}}> <Link to='/product_detail'> Product Details</Link> </FlatButton>
           <FlatButton style={{paddingLeft: '10px'}}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
           <FlatButton style={{paddingLeft: '10px'}}> <Link to='/registration'> Registration </Link> </FlatButton>
-       <FlatButton ><Link to='/api/users/profile/a3e7f6c0-51b4-45c0-b618-23b18b082743'>user Profile</Link></FlatButton>
+       <FlatButton ><Link to='/api/users/profile/'>user Profile</Link></FlatButton>
         </div>
 
         <SearchBar
