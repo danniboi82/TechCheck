@@ -204,12 +204,12 @@ console.log(req.params.id)
           })
           .then(forgottenUser => {
           console.log(forgottenUser)
-            const token = jwt.sign({
-              auth: forgottenUser.userId,
-              agent: req.headers['user-agent'],
-              currentUser:{ forgottenUser },
-              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
-            }, secret);
+            // const token = jwt.sign({
+            //   auth: forgottenUser.userId,
+            //   agent: req.headers['user-agent'],
+            //   currentUser:{ forgottenUser },
+            //   exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+            // }, secret);
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
@@ -217,7 +217,7 @@ console.log(req.params.id)
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
-               html: name +' <br>'+hit+' <a href='+'http://localhost:3000/api/users/recover/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+               html: name +' <br> <a href='+'http://localhost:3000/api/users/recover/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
             
             };
     
