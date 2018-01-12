@@ -22,7 +22,7 @@ aws.config.update({
   
       }
   
-      //$2a$10$OHZiVSdsdS3zuYROtY68qeJ7rysNzfgSSXn10fTqtRmP8A/pgKn0m
+     
     })
   });
   router.post('/upload', upload.array('upl', 1), function (req, res, next) {
