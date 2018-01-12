@@ -96,8 +96,8 @@ const controller = {
  res.send('User signed out')
   },
   create: function (req, res) {
-    console.log(req.body)
   
+  console.log(saltRounds)
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
       if (err) {
 
@@ -141,7 +141,7 @@ else{
             from: 'TechCheck@donotreply.com',
             subject: 'Reqister Your Email With TechChecks ',
             text: 'click me ',
-             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +newUser.dataValues.id +'><strong> Please Click This Link to Register Your Email</a></strong>',
+             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +newUser.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
           };
   
           sgMail.send(msg);
@@ -192,6 +192,64 @@ console.log(req.params.id)
       })
       .catch(err => res.status(422).json(err));
   },
+  forgot: function (req, res) {
+   
+        db.Users.findOne({
+           
+            where: {
+              email: req.params.email
+              
+            }
+        
+          })
+          .then(forgottenUser => {
+          console.log(forgottenUser)
+            const token = jwt.sign({
+              auth: forgottenUser.userId,
+              agent: req.headers['user-agent'],
+              currentUser:{ forgottenUser },
+              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+            }, secret);
+         
+            const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
+            const msg = {
+              to: req.params.email,
+              from: 'TechCheck@donotreply.com',
+              subject: 'TechCheck Account Recovery',
+              text: 'click me ',
+               html: name +' <br>'+hit+' <a href='+'http://localhost:3000/api/users/recover/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+            
+            };
+    
+            sgMail.send(msg);
+            res.send('sent')
+            
+          })
+          .catch(err => res.status(422).json(err));
+      },
+      recovery: function (req, res) {
+        console.log('hi')
+        console.log(req.params)
+        
+        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+        db.Users.update({
+         password:hash
+        }, {
+            where: {
+              id: req.params,
+              active: true
+            }
+          })
+          .then(forgottenUser => {
+         
+            res.send('Sucsessfully changed password')
+        
+          })
+        
+          .catch(err => res.status(422).json(err));
+        })
+        
+      },
   remove: function (req, res) {
     db.Users.update({
       inactive: true
