@@ -3,6 +3,7 @@ import Header from './Header/Header';
 import Cart from './Cart/Cart';
 import MissionStatement from './MissionStatement/MissionStatement';
 import ProductGridList from './ProductGridList/ProductGridList';
+// import MyForm from './Register/RegisterUser';
 import { Route } from 'react-router-dom';
 
 class mainPage extends Component { 
@@ -27,7 +28,7 @@ class mainPage extends Component {
       };
 
       handleDelete = (k) => {  
-        alert ('Item is deleted from cart');
+     
       let newcartarray=this.state.cartarray.slice();
       let cartitemindex = newcartarray.indexOf(k);
       newcartarray.splice(cartitemindex, 1);
@@ -46,8 +47,10 @@ render(){
             <Header onClick={this.handleClick}/>
 
             <MissionStatement />
+
             <ProductGridList onClick={this.handleClick} dummyData={this.dummyData}
 />
+
         </div>
     );
 }}

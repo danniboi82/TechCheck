@@ -9,8 +9,11 @@ export default path => {
 
   // Run Morgan for Logging
   app.use(logger("dev"));
+  app.use(bodyParser.urlencoded({ extended: true}));
   app.use(bodyParser.json());
-
+ 
+  //parses text 
+  app.use(bodyParser.text());
   app.use(express.static(`${path}/client`));
 
   app.use("/api/users", routers.users);
