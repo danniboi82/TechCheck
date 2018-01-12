@@ -38,73 +38,96 @@ const userRegistrationStyles = {
 }
 
 
+
 class addUser extends React.Component {
-    state= {
-        error: null, 
-    person: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phoneNumber: "",
-        address: "",
-        dateOfBirth: "",
-        profilePic: ""
-    }}
+    constructor() {
+        super();
+        this.state = {
+            
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            address: "",
+            dateOfBirth: "",
+            profilePic: "",
+            password: ""
+        
+    }
+    onChange = (e) => {
+      
+        const state = this.state
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+      }
+
+      onSubmit = (e) => {
+        e.preventDefault();
+  
+        const { firstName, lastName, email, phoneNumber, address, dateOfBirth, profilePic, password } = this.state;
+
+        axios.post('/api/users', { firstName, lastName, email, phoneNumber, address, dateOfBirth, profilePic, password })
+          .then((result) => {
+            
+          });
+      }
+    }
+
     render() {
-return (
+    return (
     <MuiThemeProvider>
     <div style={{padding: '30px 0'}}>
-        <div>{this.state.error}</div>
+        
         <div>
             <TextField
                 name="email"
                 value={this.state.person.email}
                 floatingLabelText="Email Address"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="firstname"
                 value={this.state.person.firstName}
                 floatingLabelText="First Name"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="lastname"
                 value={this.state.person.lastName}
                 floatingLabelText="Last Name"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="address"
                 value={this.state.person.address}
                 floatingLabelText="Address"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="phonenumber"
                 value={this.state.person.phoneNumber}
                 floatingLabelText="Phone Number"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="dob"
                 value={this.state.person.dateOfBirth}
                 floatingLabelText="Last Name"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="password"
                 type="password"
                 value={this.state.person.password}
                 floatingLabelText="Password"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <TextField
                 name="passwordconfirm"
                 type="password"
                 value={this.state.person.password}
                 floatingLabelText="Confirm Password"
-                onChange={this.handleChange}/>
+                onChange={this.onChange}/>
                 <br />
             <RaisedButton
                 label="Upload Avatar"
@@ -117,7 +140,7 @@ return (
         </div>
         <div>
             <br />
-            <RaisedButton onClick={this.onClick} label="Submit!" />
+            <RaisedButton onClick={this.onSubmit} label="Submit!" />
         </div>
     </div>
     </MuiThemeProvider>
