@@ -16,7 +16,7 @@ import verification from './Components/verification/verification';
 
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
-
+import userProfile from './Components/userProfile/userProfile'
 
 class App extends Component {
   render() {
@@ -32,6 +32,7 @@ class App extends Component {
               <Route path='/search_results' component={SearchedPage} />
               <Route path='/registration' component={RegisterUser} />
               <Route path='/sell_product' component={SellProduct} />
+              <Route exact path='/api/users/profile/:id' component={userProfile}/>
             </Switch>
             <Footer />
 
