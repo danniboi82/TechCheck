@@ -22,7 +22,7 @@ aws.config.update({
   
       }
   
-  
+     
     })
   });
   router.post('/upload', upload.array('upl', 1), function (req, res, next) {
@@ -30,6 +30,8 @@ aws.config.update({
   });
 router.get("/", users.findAll);
 router.get("/:id", users.findById);
+router.post("/reset/:email?", users.forgot);
+router.put("/recover/:id",users.recovery)
 router.post("/", users.create);
 router.post("/signIn", users.signIn);
 router.put("/:email", users.update);

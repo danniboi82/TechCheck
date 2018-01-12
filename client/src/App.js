@@ -8,15 +8,15 @@ import Navbar from './Components/Navbar/Navbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MainPage from './Components/MainPage/MainPage'
-import Footer from './Components/Footer/Footer'
+import MainPage from './Components/MainPage/MainPage';
+import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
-import verification from './Components/verification/verification'
+import verification from './Components/verification/verification';
 
-import register from './Components/Register/RegisterUser'
-import sell from './Components/Sell/SellProduct'
-
+import RegisterUser from './Components/Register/RegisterUser';
+import SellProduct from './Components/Sell/SellProduct';
+import userProfile from './Components/userProfile/userProfile'
 
 class App extends Component {
   render() {
@@ -25,16 +25,17 @@ class App extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
           <div className="App">
             <Navbar />
-           
-            <br />
-            <Route exact path="/" component={MainPage}/>
-
-            <Route exact path="/api/users/verification/:id" component={verification}/>
-            <Route exact path='/products' component={ProductDetailPage}/>
-            <Route exact path='/register' component={register}/>
-            <Route exact path='/sell' component={sell}/>
+            <Switch>
+              <Route exact path='/' component={MainPage} />
+              <Route exact path="/api/users/verification/:id" component={verification}/>
+              <Route path='/product_detail' component={ProductDetailPage} />
+              <Route path='/search_results' component={SearchedPage} />
+              <Route path='/registration' component={RegisterUser} />
+              <Route path='/sell_product' component={SellProduct} />
+              <Route exact path='/api/users/profile/:id' component={userProfile}/>
+            </Switch>
             <Footer />
-            
+
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

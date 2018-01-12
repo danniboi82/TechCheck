@@ -28,7 +28,7 @@ class mainPage extends Component {
       };
 
       handleDelete = (k) => {  
-        alert ('Item is deleted from cart');
+     
       let newcartarray=this.state.cartarray.slice();
       let cartitemindex = newcartarray.indexOf(k);
       newcartarray.splice(cartitemindex, 1);
