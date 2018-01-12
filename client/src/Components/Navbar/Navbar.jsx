@@ -1,52 +1,13 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import SearchBar from 'material-ui-search-bar';
 import logo from '../../ic_shopping_cart_black_24px.svg';
-import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
-
-
-
-class Login extends Component {
-
-  static muiName = 'FlatButton';
-
-  render() {
-    return (
-      <FlatButton {...this.props} label="Login" />
-    );
-  }
-}
-
-const Logged = (props) => (
-  <IconMenu
-    {...props}
-    iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
-    }
-    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >
-    <MenuItem>
-      <Avatar
-        src="images/uxceo-128.jpg"
-        size={30}
-        style={{display: 'in-line', margin: 'auto'}}
-      /> Username
-    </MenuItem>
-    <MenuItem primaryText="My Products" />
-    <MenuItem primaryText="Sign out" />
-  </IconMenu>
-);
-
-Logged.muiName = 'IconMenu';
+import LoggedInButton from './LoggedInButton/LoggedInButton';
+import LoginButton from './LoginButton/LoginButton';
 
 
 const style = {
@@ -63,14 +24,13 @@ class Navbar extends Component {
     this.setState({ logged: logged });
   };
 
-
   render() {
     return (
       <div>
         <AppBar
           title="TechTronicX"
           onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />}
         >
           <FlatButton title='cart' style={style} >
             <img src={logo} alt="shopping cart" />

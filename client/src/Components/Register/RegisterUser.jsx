@@ -53,7 +53,7 @@ class addUser extends React.Component {
     render() {
 return (
     <MuiThemeProvider>
-    <div>
+    <div style={{padding: '30px 0'}}>
         <div>{this.state.error}</div>
         <div>
             <TextField
