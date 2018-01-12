@@ -15,6 +15,7 @@ import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage'
 import verification from './Components/verification/verification'
 
 import register from './Components/Register/RegisterUser'
+import sell from './Components/Sell/SellProduct'
 
 
 class App extends Component {
@@ -29,8 +30,9 @@ class App extends Component {
             <Route exact path="/" component={MainPage}/>
 
             <Route exact path="/api/users/verification/:id" component={verification}/>
-  <Route exact path='/products' component={ProductDetailPage}/>
-
+            <Route exact path='/products' component={ProductDetailPage}/>
+            <Route exact path='/register' component={register}/>
+            <Route exact path='/sell' component={sell}/>
             <Footer />
             
           </div>

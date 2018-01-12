@@ -5,6 +5,22 @@ import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+const styles = {
+    button: {
+      margin: 12,
+    },
+    exampleImageInput: {
+      cursor: 'pointer',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0,
+      width: '100%',
+      opacity: 0,
+    },
+  };
+
 const userRegistrationStyles = {
     h1: {
         color: 'white',
@@ -43,43 +59,64 @@ return (
             <TextField
                 name="email"
                 value={this.state.person.email}
-                floatingLabelText="First Name"
+                floatingLabelText="Email Address"
                 onChange={this.handleChange}/>
+                <br />
             <TextField
                 name="firstname"
                 value={this.state.person.firstName}
                 floatingLabelText="First Name"
                 onChange={this.handleChange}/>
+                <br />
             <TextField
                 name="lastname"
                 value={this.state.person.lastName}
                 floatingLabelText="Last Name"
                 onChange={this.handleChange}/>
+                <br />
             <TextField
                 name="address"
                 value={this.state.person.address}
                 floatingLabelText="Address"
                 onChange={this.handleChange}/>
+                <br />
             <TextField
                 name="phonenumber"
                 value={this.state.person.phoneNumber}
                 floatingLabelText="Phone Number"
                 onChange={this.handleChange}/>
+                <br />
             <TextField
                 name="dob"
                 value={this.state.person.dateOfBirth}
                 floatingLabelText="Last Name"
                 onChange={this.handleChange}/>
+                <br />
+            <TextField
+                name="password"
+                type="password"
+                value={this.state.person.password}
+                floatingLabelText="Password"
+                onChange={this.handleChange}/>
+                <br />
+            <TextField
+                name="passwordconfirm"
+                type="password"
+                value={this.state.person.password}
+                floatingLabelText="Confirm Password"
+                onChange={this.handleChange}/>
+                <br />
             <RaisedButton
                 label="Upload Avatar"
                 labelPosition="before"
-                style={this.userRegistrationStyles}
+                style={styles.button}
                 containerElement="label"
                 >
-                <input type="file" style={this.userRegistrationStyles} />
+                <input type="file" style={styles.exampleImageInput}  />
             </RaisedButton>
         </div>
         <div>
+            <br />
             <RaisedButton onClick={this.onClick} label="Submit!" />
         </div>
     </div>
