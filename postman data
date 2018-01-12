@@ -1,4 +1,4 @@
-{ "userId":"9",
+{ "userId":"a3e7f6c0-51b4-45c0-b618-23b18b082743",
 "category":"video-Cards",
 "tags":"videocard,navida,fast",
 "computerInfo":"null",
@@ -24,3 +24,6 @@
 "address": "212 gone ave 9871",
 "dateOfBirth":"11-09-1982"
 }
+localhost:3000/api/users/
+localhost:3000/api/users/reset/david.horn689@gmail.com
+localhost:3000/api/products

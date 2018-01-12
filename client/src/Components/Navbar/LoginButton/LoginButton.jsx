@@ -57,7 +57,7 @@ class Login extends Component {
                         onRequestClose={this.handleClose}
                     >
                         <TextField
-                            hintText="Username"
+                            hintText="Email"
                             onChange=''
                         /><br />
                         <TextField
