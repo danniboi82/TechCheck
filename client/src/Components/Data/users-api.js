@@ -8,8 +8,8 @@ const usersApi = {
   verification: id => axios.put(`/api/users/verification/${id}`),
   signIn:email=>axios.post(`/api/users/signIn`),
   delete: id => axios.delete(`/api/users/${id}`),
-  userProfile:id => axios.get(`/api/users/profile/${id}`).then(data=>{console.log(data)})
-  
+  userProfile:id => axios.get(`/api/users/profile/${id}`)
+
 //register:profile=>axios.post(`/api/users/add`)
 };
 export {
