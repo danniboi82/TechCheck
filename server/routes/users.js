@@ -29,7 +29,7 @@ aws.config.update({
     res.send("Uploaded!");
   });
 router.get("/", users.findAll);
-router.get("/:id", users.findById);
+router.get("/profile/:id", users.findById);
 router.post("/reset/:email?", users.forgot);
 router.put("/recover/:id",users.recovery)
 router.post("/", users.create);
