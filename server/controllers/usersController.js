@@ -22,6 +22,8 @@ const controller = {
       .catch(err => res.status(422).json(err));
   },
   findById: function (req, res) {
+    console.log('look here')
+    console.log(req.params.id)
     db.Users.findOne({
       where: {
         id: req.params.id,
@@ -29,13 +31,39 @@ const controller = {
       }
     })
       .then(dbModel => {
-        if (dbModel) {
-          res.json(dbModel);
-        } else {
-          res.status(404).json({
-            message: 'Id not found.'
-          });
+        
+      function getDbDate () {
+        const split=JSON.stringify(dbModel.dataValues.createdAt);
+   const dbDate = split.split(':')
+   const splitDate=dbDate[0].split('-')
+  const dayCreated =splitDate[2].split('T')
+  const removed=splitDate[0].split('"')
+ 
+ const dates=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
+return dates
+       }
+      const fullDate= getDbDate()
+    const userProfilePage={
+id:dbModel.dataValues.id,
+email:dbModel.dataValues.email,
+firstName:dbModel.dataValues.firstName,
+lastName:dbModel.dataValues.lastName,
+profilePic:dbModel.dataValues.profilePic,
+phoneNumber:dbModel.dataValues.phoneNumber,
+verified:dbModel.dataValues.verified,
+active:dbModel.dataValues.active,
+createdAt:fullDate
+
         }
+        res.send(userProfilePage)
+       // console.log(dbModel)
+        // if (dbModel) {
+      
+        // } else {
+        //   res.status(404).json({
+        //     message: 'Id not found.'
+        //   });
+      //  }
       })
       .catch(err => res.status(422).json(err));
   },

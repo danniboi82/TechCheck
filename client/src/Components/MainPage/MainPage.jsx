@@ -19,21 +19,24 @@ class mainPage extends Component {
       }
       
       handleClick = (i, j) => {  
-          alert ('Item '+j+' added to shopping cart!')
+        
         let cartitem = this.state.cartItem+1;
         let cartamount = this.state.cartAmount+i;
         let newcartarray=this.state.cartarray.concat(j);
         this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
-        
+        alert ('Item '+j.title+' added to shopping cart!')
       };
 
       handleDelete = (k) => {  
      
       let newcartarray=this.state.cartarray.slice();
       let cartitemindex = newcartarray.indexOf(k);
+      let cartamount = this.state.cartAmount-k.author;
+    
       newcartarray.splice(cartitemindex, 1);
       let cartitem = this.state.cartItem-1;
-      this.setState({cartarray: newcartarray,cartItem: cartitem});
+   
+      this.setState({cartarray: newcartarray,cartItem: cartitem, cartAmount: cartamount});
     };
 
 
