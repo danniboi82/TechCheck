@@ -38,7 +38,7 @@ const userRegistrationStyles = {
 }
 
 
-
+const formData = new FormData();
 class addUser extends React.Component {
     constructor(props) {
         super(props);
@@ -57,12 +57,28 @@ class addUser extends React.Component {
         }
        
     }
+
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
+    uploadPic =(e) => {
+        this.setState({file:e.target.files[0]})
+    }
+    
+picUpload=(e)=>{
+    e.preventDefault();
+   
+  
+    
+      formData.append('upl', this.state.file,this.state.file.name);
+     
+   
 
+  
+
+}
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -70,8 +86,23 @@ class addUser extends React.Component {
 
         axios.post('/api/users', { firstName, lastName, email, phoneNumber, address, dateOfBirth, profilePic, password })
             .then((result) => {
+if(result =='already'){
+    alert('There is already an account with that email addres,please try a diffrent one')
+}else{
 
-            });
+}
+            }).then(function(){
+                axios.post("/api/users/upload", {
+                    
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+            
+                    }
+            
+                  })
+            })
     }
     render() {
         return (
@@ -134,8 +165,9 @@ class addUser extends React.Component {
                             labelPosition="before"
                             style={styles.button}
                             containerElement="label"
+                            
                         >
-                            <input type="file" style={styles.exampleImageInput} />
+                            <input name='profilePic'type="file" onChange={this.uploadPic} style={styles.exampleImageInput} />
                         </RaisedButton>
                     </div>
                     <div>
