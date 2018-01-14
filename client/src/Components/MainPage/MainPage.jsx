@@ -16,34 +16,47 @@ class mainPage extends Component {
             cartAmount: 0,
             cartarray: []
           };
+
       }
       
+      
       handleClick = (i, j) => {  
-          alert ('Item '+j+' added to shopping cart!')
+        
         let cartitem = this.state.cartItem+1;
         let cartamount = this.state.cartAmount+i;
         let newcartarray=this.state.cartarray.concat(j);
         this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
-        
+        alert ('Item '+j.title+' added to shopping cart!')
       };
+      
+ 
+      
 
       handleDelete = (k) => {  
-        alert ('Item is deleted from cart');
+     
       let newcartarray=this.state.cartarray.slice();
       let cartitemindex = newcartarray.indexOf(k);
+      let cartamount = this.state.cartAmount-k.author;
+    
       newcartarray.splice(cartitemindex, 1);
       let cartitem = this.state.cartItem-1;
-      this.setState({cartarray: newcartarray,cartItem: cartitem});
+   
+      this.setState({cartarray: newcartarray,cartItem: cartitem, cartAmount: cartamount});
     };
 
 
 render(){
+   // const handleClick = (i, j) => { this.props.onClick();}
+   //alert(this.props.cartitem);
+   //alert(this.props.onClick);
+   //const mainCartClick = () =>this.props.onClick();
    
     return (
         <div>
         
-            <Cart cartItem={this.state.cartItem} cartAmount={this.state.cartAmount} cartarray={this.state.cartarray}
-            onClick={this.handleDelete}/>
+           <Cart cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} onClick={this.handleDelete} > </Cart>
+
             <Header onClick={this.handleClick}/>
 
             <MissionStatement />
