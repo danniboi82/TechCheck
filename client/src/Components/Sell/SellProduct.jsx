@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
+import axios from "axios";
 
 const sellProductStyles = {
     button: {
@@ -48,21 +49,91 @@ const sellProductStyles = {
     }
 };
 
-
+const formData = new FormData();
 class addProduct extends React.Component {
-    state = {
-        error: null,
-        product: {
+    constructor(props) {
+        super(props);
+    
+    this.state = {
+       
             name: "",
             category: "",
             price: "",
             condition: "",
+            warranty: "",
             packaging: "",
             description: "",
-            pic1: "",
-            pic2: ""
+            userUploadImage1: "",
+            userUploadImage2: ""
         }
+    
+}
+onChange = (e) => {
+    this.setState({
+        [e.target.name]: e.target.value
+    });
+}
+imageChange =(e) => {
+    this.setState({
+        [e.target.name]: e.target.value.split('\\').pop()
+    });
+    const file = e.target.files[0]
+   
+    
+
+    const dataPic = new FormData();
+    dataPic.append('upl', file , file.name);
+    console.log(dataPic)
+    const config = {
+        headers: { 'content-type': 'multipart/form-data'}
     }
+    axios.post("/api/products/upload", dataPic, config)
+
+      
+
+    
+}
+onSubmit = (e) => {
+    e.preventDefault();
+
+    const {
+       
+        name,
+        category,
+        price,
+        condition,
+        warranty,
+        packaging,
+        description,
+        userUploadImage1,
+        userUploadImage2
+    } = this.state;
+
+    axios.post('/api/products', { name, category, price, condition, warranty, packaging, description, userUploadImage1, userUploadImage2 })
+        .then((result) => {
+if(result =='already'){
+alert('There is already an account with that email addres,please try a diffrent one')
+}else{
+
+}
+        // }).then(function(){
+        //     axios.post("/api/users/upload", {
+                
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //         success: function (data) {
+        
+        //         }
+        
+        //       })
+        })
+}
+
+    handleChange = (event, index, category) => this.setState({category});
+    handleChangeCondition = (event, index, condition) => this.setState({condition});
+    handleChangeWarranty = (event, index, warranty) => this.setState({warranty});
+    handleChangePackaging = (event, index, packaging) => this.setState({packaging});
     render() {
 
         return (
@@ -72,29 +143,38 @@ class addProduct extends React.Component {
                     <div>
                         <TextField
                             hintText="Full Name of Product"
+                            name="name"
+                            value={this.state.name}
+                            floatingLabelText="Product Name"
+                            onChange={this.onChange}
                         />
                     </div>
                     <div>
                         <SelectField
+                            name="category"
                             style={sellProductStyles.categorySelectField}
-                            value={this.state.value}
+                            value={this.state.category}
                             onChange={this.handleChange}
                             floatingLabelText="Category"
                         >
-                            <MenuItem value="Graphic Card" primaryText="Graphic Card" />
-                            <MenuItem value="Motherboard" primaryText="Motherboard" />
-                            <MenuItem value="Processor" primaryText="Processor" />
-                            <MenuItem value="Hard Drive" primaryText="Hard Drive" />
-                            <MenuItem value="RAM" primaryText="RAM" />
-                            <MenuItem value="Power Supply" primaryText="Power Supply" />
-                            <MenuItem value="Tower" primaryText="Tower" />
-                            <MenuItem value="PC" primaryText="PC" />
-                            <MenuItem value="Laptop" primaryText="Laptop" />
-                            <MenuItem value="Gaming Peripheral" primaryText="Gaming Peripheral" />
+                            <MenuItem value={"Graphic Card"} primaryText="Graphic Card" />
+                            <MenuItem value={"Motherboard"} primaryText="Motherboard" />
+                            <MenuItem value={"Processor"} primaryText="Processor" />
+                            <MenuItem value={"Hard Drive"} primaryText="Hard Drive" />
+                            <MenuItem value={"RAM"} primaryText="RAM" />
+                            <MenuItem value={"Power Supply"} primaryText="Power Supply" />
+                            <MenuItem value={"Tower"} primaryText="Tower" />
+                            <MenuItem value={"PC"} primaryText="PC" />
+                            <MenuItem value={"Laptop"} primaryText="Laptop" />
+                            <MenuItem value={"Gaming Peripheral"} primaryText="Gaming Peripheral" />
                         </SelectField>
                     </div>
                     <div>
                         <TextField
+                            name="price"
+                            value={this.state.price}
+                            floatingLabelText="Price"
+                            onChange={this.onChange}
                             hintText="Price"
                         />
                     </div>
@@ -102,59 +182,76 @@ class addProduct extends React.Component {
                     style={sellProductStyles.otherDetailsField}
                     >
                         <TextField
+                            name="description"
                             hintText="Other Details or PC/Laptop Specifications"
                             multiLine={true}
                             underLineShow={true}
                             rows={1}
                             rowsMax={4}
+                            onChange={this.onChange}
+                            value={this.state.description}
                         />
                     </div>
-
-                    <div style={{ textAlign: 'center', maxWidth: 200, marginLeft: 'auto', marginRight: 'auto' }}>
-                        <Subheader> Product Condition :</Subheader>
-                        <RadioButtonGroup name="condition" defaultSelected="not_light">
-                            <RadioButton
-                                value="new"
-                                label="New"
-                                style={sellProductStyles.radioButton}
-                            /><RadioButton
-                                value="used"
-                                label="Used"
-                                style={sellProductStyles.radioButton}
-                            />
-                        </RadioButtonGroup>
+                    <div>
+                    <SelectField
+                    name="condition"
+                    style={sellProductStyles.categorySelectField}
+                    value={this.state.condition}
+                    onChange={this.handleChangeCondition}
+                    floatingLabelText="Product Condition"
+                    >
+                        <MenuItem value={"New"} primaryText="New" />
+                        <MenuItem value={"Used"} primaryText="Used" />
+                    </SelectField>
+                    </div>
+                    <div>
+                    <SelectField
+                    name="warranty"
+                    style={sellProductStyles.categorySelectField}
+                    value={this.state.warranty}
+                    onChange={this.handleChangeWarranty}
+                    floatingLabelText="Product Warranty"
+                    >
+                        <MenuItem value={"Yes"} primaryText="Yes" />
+                        <MenuItem value={"No"} primaryText="No" />
+                    </SelectField>
                     </div>
 
-                    <div style={{ textAlign: 'center', maxWidth: 200, marginLeft: 'auto', marginRight: 'auto' }}>
-                        <Checkbox
-                            label="Original Packaging"
-                            style={sellProductStyles.checkbox}
-                        />
+                    <div>
+                    <SelectField
+                    name="packaging"
+                    style={sellProductStyles.categorySelectField}
+                    value={this.state.packaging}
+                    onChange={this.handleChangePackaging}
+                    floatingLabelText="Original Packaging"
+                    >
+                        <MenuItem value={"Yes"} primaryText="Yes" />
+                        <MenuItem value={"No"} primaryText="No" />
+                    </SelectField>
                     </div>
                     <br />
 
-
                     <div>
                         <RaisedButton
-                            label="Upload Product Image"
+                            label="Upload Product Image #1"
                             labelPosition="before"
                             style={sellProductStyles.button}
                             containerElement="label"
                         >
-                            <input type="file" style={sellProductStyles.exampleImageInput} />
+                            <input name="userUploadImage1" type="file" onChange={this.imageChange} style={sellProductStyles.exampleImageInput} />
                         </RaisedButton>
                         <RaisedButton
-                            label="Upload Product Image 2"
+                            label="Upload Product Image #2"
                             labelPosition="before"
                             style={sellProductStyles.button}
                             containerElement="label"
                         >
-                            <input type="file" style={sellProductStyles.exampleImageInput} />
+                            <input name="userUploadImage2" type="file" onChange={this.imageChange} style={sellProductStyles.exampleImageInput} />
                         </RaisedButton>
                     </div>
 
                     <div>
-                        <RaisedButton onClick={this.onClick} label="Submit!" />
+                        <RaisedButton onClick={this.onSubmit} label="Submit!" />
                     </div>
                 </div>
             </MuiThemeProvider>
