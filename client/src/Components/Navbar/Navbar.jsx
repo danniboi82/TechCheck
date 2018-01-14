@@ -8,7 +8,9 @@ import logo from '../../ic_shopping_cart_black_24px.svg';
 import { Link } from 'react-router-dom';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
-
+import CartModal from './CartButton/CartModal';
+//import Cart from './Cart/Cart';
+//import props from './../../Views/app';
 
 const style = {
   textAlign: 'center',
@@ -16,26 +18,54 @@ const style = {
 }
 
 class Navbar extends Component {
+
   state = {
-    logged: false,
+    logged: false
   };
+
+  
 
   handleChange = (event, logged) => {
     this.setState({ logged: logged });
   };
 
+
+  handleClick = (i, j) => {  
+        
+    let cartitem = this.state.cartItem+1;
+    let cartamount = this.state.cartAmount+i;
+    let newcartarray=this.state.cartarray.concat(j);
+    this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
+    alert ('Item '+j.title+' added to shopping cart!')
+  };
+
+  handleDelete = (k) => {  
+ 
+  let newcartarray=this.state.cartarray.slice();
+  let cartitemindex = newcartarray.indexOf(k);
+  let cartamount = this.state.cartAmount-k.author;
+
+  newcartarray.splice(cartitemindex, 1);
+  let cartitem = this.state.cartItem-1;
+ 
+  
+  this.setState({cartarray: newcartarray,cartItem: cartitem, cartAmount: cartamount});
+};
+
+
+
   render() {
+    
     return (
       <div>
         <AppBar
           title="TechCheck"
           onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />}
-        >
-          <FlatButton title='cart' style={style} >
-            <img src={logo} alt="shopping cart" />
-          </FlatButton>
-
+          iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />  }
+       >
+        <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
+      />
+         
         </AppBar>
 
         <div className='routeDiv'>
