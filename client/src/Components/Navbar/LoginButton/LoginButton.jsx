@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import LoggedInButton from '../LoggedInButton/LoggedInButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
+import { Link } from 'react-router-dom';
 
 
+const loginButtonStyles = {
+        maxWidth: '30%',
+        position: 'fixed',
+        top: '30%',
+        right: '10%',
+        margin: 'auto'
+}
 class Login extends Component {
     state = {
         showSignInDialogue: false,
         open: false,
-        userName:'',
-        password:'',
+        userName: '',
+        password: '',
     }
-
-    // buttonClickedhandler = () => {
-    //     this.setState({
-    //         showSignInDialogue: true,
-    //     });
-    // };
 
     handleOpen = () => {
         this.setState({ open: true });
@@ -45,12 +46,13 @@ class Login extends Component {
         ];
         return (
             <div>
-                <div>
+                <div className='LogInSection'>
                     <FlatButton {...this.props} label="Login" onClick={this.handleOpen} />
                 </div>
                 <div>
                     <Dialog
-                        title="Sign-in"
+                        actionsContainerStyle={{textAlign: 'left'}}
+                        title="Login"
                         actions={actions}
                         modal={false}
                         open={this.state.open}
@@ -63,11 +65,23 @@ class Login extends Component {
                         <TextField
                             hintText="Password Field"
                             floatingLabelText="Password"
-                            type="password"
+                            type="Password"
                             onChange=''
                         /><br />
+
+                        <div className='RegistrationDiv'>
+                            <Link to='/registration'> <FlatButton
+                                label="Registration"
+                                primary={true}
+                                keyboardFocused={true}
+                                onClick={this.handleClose}
+                                style={loginButtonStyles}
+                            /></Link>
+                        </div>
+
                     </Dialog>
                 </div>
+
             </div>
 
         );

@@ -13,6 +13,7 @@ import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
 import verification from './Components/verification/verification';
+import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
@@ -31,6 +32,7 @@ class App extends Component {
               <Route path='/search_results' component={SearchedPage} />
               <Route path='/registration' component={RegisterUser} />
               <Route path='/sell_product' component={SellProduct} />
+              <Route path='/check_out' component={CheckOutPage} />
             </Switch>
             <Footer />
 

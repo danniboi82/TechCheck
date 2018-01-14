@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import './Cart.css';
-import props from './../../Organization/Row/organization-row';
 
 class Cart extends Component {
     render() {

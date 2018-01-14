@@ -17,20 +17,29 @@ const style = {
 
 class Navbar extends Component {
   state = {
-    logged: false,
+    logged: true,
+    userInput: '',
   };
 
   handleChange = (event, logged) => {
     this.setState({ logged: logged });
   };
 
+  logOutHandler = () => {
+    this.setState({logged: false});
+  }
+
+  userInputHandler = (event) => {
+    this.setState({userInput: event.target.value })
+  }
+
   render() {
     return (
       <div>
         <AppBar
           title="TechTronicX"
-          onClick={this.handleChange}
           iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />}
+          logOut={this.logOutHandler}
         >
           <FlatButton title='cart' style={style} >
             <img src={logo} alt="shopping cart" />
@@ -41,14 +50,15 @@ class Navbar extends Component {
         <div className='routeDiv'>
           <FlatButton> <Link to='/'>Home</Link> </FlatButton>
           <FlatButton> <Link to='/search_results'>Search Results</Link> </FlatButton>
-          <FlatButton style={{paddingLeft: '10px'}}> <Link to='/product_detail'> Product Details</Link> </FlatButton>
-          <FlatButton style={{paddingLeft: '10px'}}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
-          <FlatButton style={{paddingLeft: '10px'}}> <Link to='/registration'> Registration </Link> </FlatButton>
+          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/product_detail'> Product Details</Link> </FlatButton>
+          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
+          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/registration'> Registration </Link> </FlatButton>
         </div>
 
         <SearchBar
-          onChange={() => console.log('onChange')}
-          onRequestSearch={() => console.log('onRequestSearch')}
+          dataSource={this.state.dataSource}
+          onChange={this.userInputHandler}
+          // (value) => this.setState({ dataSource: [value, value + value, value + value + value] })
           style={{
             margin: '0 auto',
             maxWidth: '100%',
