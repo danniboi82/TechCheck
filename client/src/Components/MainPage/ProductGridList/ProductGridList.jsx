@@ -67,9 +67,13 @@ const dummyData = [
   },
 ];
 
+//   <img src={tile.img} onClick={() => props.onClick(tile.author, tile)} />
 /**
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
  */
+
+ 
+   
 const productGridList  = (props) => (
   <div style={styles.root}>
     <GridList
@@ -85,7 +89,7 @@ const productGridList  = (props) => (
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>
           }
           > 
-          <img src={tile.img} onClick={() => props.onClick(tile.author, tile)} />
+        <img src={tile.img} onClick={() => props.onClick(tile.author, tile)} />
         </GridTile>
       ))}
     </GridList>
