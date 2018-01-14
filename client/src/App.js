@@ -34,52 +34,44 @@ class App extends Component {
       };
 
     render() {
-        return ( <
-            BrowserRouter >
-            <
-            MuiThemeProvider muiTheme = { getMuiTheme(darkBaseTheme) } >
-            <
-            div className = "App" >
-            <
-            Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} / >
-            <
-            MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} / >
+
+/*  below is taken out of route for now,,instead just put MainPage comp directly
+        <Route exact path = '/'
+        component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+        cartarray={this.state.cartarray} onClick={this.handleClick} /> 
+*/
+        return ( 
+        <BrowserRouter>
+            < MuiThemeProvider muiTheme = { getMuiTheme(darkBaseTheme) } >
+            <div className = "App" >
+            < Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} />
+
+            < MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} />
             
-            <
-            Switch >
-            /*<
-            Route exact path = '/'
-            component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} onClick={this.handleClick} 
-            /> */
-            <
-            Route exact path = "/api/users/verification/:id"
-            component = { verification }
-            />  <
-            Route path = '/product_detail'
-            component = { ProductDetailPage }
-            /> <
-            Route path = '/search_results'
-            component = { SearchedPage }
-            /> <
-            Route path = '/registration'
-            component = { RegisterUser }
-            /> <
-            Route path = '/sell_product'
-            component = { SellProduct }
-            /> <
-            Route exact path = '/api/users/profile/:id'
-            component = { userProfile }
-            /> 
+            < Switch >
+           
+            <Route exact path = "/api/users/verification/:id"component = { verification } />  
+            
+            < Route path = '/product_detail'
+            component = { ProductDetailPage }/> 
+            
+            <Route path = '/search_results'component = { SearchedPage } />
+            
+            <Route path = '/registration' component = { RegisterUser } /> 
+            
+            < Route path = '/sell_product' component = { SellProduct } /> 
+            
+            < Route exact path = '/api/users/profile/:id' component = { userProfile } /> 
             
             </Switch> 
-            < Footer / >
+            < Footer />
 
-            </div> <
-            /MuiThemeProvider>
-             < /BrowserRouter>
+            </div> 
+            </MuiThemeProvider> 
+
+             </BrowserRouter>
         );
     }
 }
