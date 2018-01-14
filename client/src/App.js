@@ -14,7 +14,7 @@ import verification from './Components/verification/verification';
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
-import userProfile from './Components/userProfile/userProfile'
+import userProfile from './Components/userProfile/userProfile';
 
 class App extends Component {
     state = {
