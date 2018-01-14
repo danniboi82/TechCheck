@@ -49,6 +49,7 @@ class App extends Component {
                         <MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
                         <Switch>
+                            <Route exact path="/" component={MainPage} />
                             <Route exact path="/api/users/verification/:id" component={verification} />
                             <Route path='/check_out' component={CheckOutPage} />
                             <Route path='/product_detail' component={ProductDetailPage} />
