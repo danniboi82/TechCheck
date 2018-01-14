@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 // Import routing components
-import { Router, Route } from 'react-router';
-import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -46,11 +44,9 @@ class App extends Component {
                     <div className="App">
                         <Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
-                        <MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-                            cartarray={this.state.cartarray} />
                         <Switch>
-                            <Route exact path="/" component={MainPage} />
-                            <Route exact path="/api/users/verification/:id" component={verification} />
+                            <Route exact path='/' component={MainPage} />
+                            <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' component={CheckOutPage} />
                             <Route path='/product_detail' component={ProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
