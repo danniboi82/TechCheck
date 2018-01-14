@@ -4,6 +4,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Avatar from 'material-ui/Avatar';
+import Link from 'react-router-dom';
 
 const loggedIn = (props) => (
     <IconMenu
@@ -22,7 +23,8 @@ const loggedIn = (props) => (
         /> Username
       </MenuItem>
       <MenuItem primaryText="My Products" />
-      <MenuItem primaryText="Sign out" />
+      {/* User props from NavBar logOut={this.logOutHandler} */}
+      <MenuItem primaryText="Sign out" onClick={props.logOut}/>
     </IconMenu>
   );
 
