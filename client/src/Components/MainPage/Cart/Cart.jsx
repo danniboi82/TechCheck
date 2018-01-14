@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import './Cart.css';
-import props from './../../Organization/Row/organization-row';
+//import props from './../../Organization/Row/organization-row';
 
 class Cart extends Component {
     render() {
+
+
+       // alert(this.props.cartitem);
 
         const items = this.props.cartarray.map((step) => { 
             return (
@@ -18,7 +21,7 @@ class Cart extends Component {
        
         <div className='cart'>
             <p className='cart-p'></p>
-            <h4> Cart Item Count: {this.props.cartItem}......Cart Amount : {this.props.cartAmount}.... Below are Cart Items</h4>
+            <h4> Cart Item Count: {this.props.cartitem}......Cart Amount : {this.props.cartamount}.... Below are Cart Items</h4>
             {items}
         </div>
        

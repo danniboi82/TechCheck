@@ -19,28 +19,69 @@ import SellProduct from './Components/Sell/SellProduct';
 import userProfile from './Components/userProfile/userProfile'
 
 class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-          <div className="App">
-            <Navbar />
-            <Switch>
-              <Route exact path='/' component={MainPage} />
-              <Route exact path="/api/users/verification/:id" component={verification}/>
-              <Route path='/product_detail' component={ProductDetailPage} />
-              <Route path='/search_results' component={SearchedPage} />
-              <Route path='/registration' component={RegisterUser} />
-              <Route path='/sell_product' component={SellProduct} />
-              <Route exact path='/api/users/profile/:id' component={userProfile}/>
-            </Switch>
-            <Footer />
+    state = {
+        cartItem: 1,
+        cartAmount: 1,
+        cartarray: []
+      };
 
-          </div>
-        </MuiThemeProvider>
-      </BrowserRouter>
-    );
-  }
+      handleClick = (i, j) => {  
+        let cartitem = this.state.cartItem+1;
+        let cartamount = this.state.cartAmount+i;
+        let newcartarray=this.state.cartarray.concat(j);
+        this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
+        alert ('Item '+j.title+' added to shopping cart!')
+      };
+
+    render() {
+        return ( <
+            BrowserRouter >
+            <
+            MuiThemeProvider muiTheme = { getMuiTheme(darkBaseTheme) } >
+            <
+            div className = "App" >
+            <
+            Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} / >
+            <
+            MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} / >
+            
+            <
+            Switch >
+            /*<
+            Route exact path = '/'
+            component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} onClick={this.handleClick} 
+            /> */
+            <
+            Route exact path = "/api/users/verification/:id"
+            component = { verification }
+            />  <
+            Route path = '/product_detail'
+            component = { ProductDetailPage }
+            /> <
+            Route path = '/search_results'
+            component = { SearchedPage }
+            /> <
+            Route path = '/registration'
+            component = { RegisterUser }
+            /> <
+            Route path = '/sell_product'
+            component = { SellProduct }
+            /> <
+            Route exact path = '/api/users/profile/:id'
+            component = { userProfile }
+            /> 
+            
+            </Switch> 
+            < Footer / >
+
+            </div> <
+            /MuiThemeProvider>
+             < /BrowserRouter>
+        );
+    }
 }
 
 

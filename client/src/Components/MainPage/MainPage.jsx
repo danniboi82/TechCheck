@@ -16,7 +16,9 @@ class mainPage extends Component {
             cartAmount: 0,
             cartarray: []
           };
+
       }
+      
       
       handleClick = (i, j) => {  
         
@@ -26,6 +28,9 @@ class mainPage extends Component {
         this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
         alert ('Item '+j.title+' added to shopping cart!')
       };
+      
+ 
+      
 
       handleDelete = (k) => {  
      
@@ -41,12 +46,17 @@ class mainPage extends Component {
 
 
 render(){
+   // const handleClick = (i, j) => { this.props.onClick();}
+   //alert(this.props.cartitem);
+   //alert(this.props.onClick);
+   //const mainCartClick = () =>this.props.onClick();
    
     return (
         <div>
         
-            <Cart cartItem={this.state.cartItem} cartAmount={this.state.cartAmount} cartarray={this.state.cartarray}
-            onClick={this.handleDelete}/>
+           <Cart cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} onClick={this.handleDelete} > </Cart>
+
             <Header onClick={this.handleClick}/>
 
             <MissionStatement />
