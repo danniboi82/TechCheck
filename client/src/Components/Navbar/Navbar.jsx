@@ -4,18 +4,12 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import SearchBar from 'material-ui-search-bar';
-import logo from '../../ic_shopping_cart_black_24px.svg';
 import { Link } from 'react-router-dom';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
 //import Cart from './Cart/Cart';
 //import props from './../../Views/app';
-
-const style = {
-  textAlign: 'center',
-  marginTop: '20px',
-}
 
 class Navbar extends Component {
 
@@ -71,11 +65,12 @@ class Navbar extends Component {
           title="TechCheck"
           onClick={this.handleChange}
           iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />  }
+          logOut={this.logOutHandler}
        >
         <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
       />
          
-          logOut={this.logOutHandler}
+
         </AppBar>
 
         <div className='routeDiv'>
