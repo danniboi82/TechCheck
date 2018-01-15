@@ -7,7 +7,7 @@ import ProductGridList from './ProductGridList/ProductGridList';
 import { Route } from 'react-router-dom';
 
 class mainPage extends Component { 
-
+/*
       constructor(props) {
         super(props);
 
@@ -18,50 +18,20 @@ class mainPage extends Component {
           };
 
       }
-      
-      
-      handleClick = (i, j) => {  
-        
-        let cartitem = this.state.cartItem+1;
-        let cartamount = this.state.cartAmount+i;
-        let newcartarray=this.state.cartarray.concat(j);
-        this.setState({cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray});
-        alert ('Item '+j.title+' added to shopping cart!')
-      };
-      
- 
-      
-
-      handleDelete = (k) => {  
+      */
      
-      let newcartarray=this.state.cartarray.slice();
-      let cartitemindex = newcartarray.indexOf(k);
-      let cartamount = this.state.cartAmount-k.author;
-    
-      newcartarray.splice(cartitemindex, 1);
-      let cartitem = this.state.cartItem-1;
-   
-      this.setState({cartarray: newcartarray,cartItem: cartitem, cartAmount: cartamount});
-    };
 
 
 render(){
-   // const handleClick = (i, j) => { this.props.onClick();}
-   //alert(this.props.cartitem);
-   //alert(this.props.onClick);
-   //const mainCartClick = () =>this.props.onClick();
    
     return (
         <div>
-        
-           <Cart cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} onClick={this.handleDelete} > </Cart>
-
-            <Header onClick={this.handleClick}/>
+ 
+            <Header  />
 
             <MissionStatement />
 
-            <ProductGridList onClick={this.handleClick} dummyData={this.dummyData}
+            <ProductGridList onClick={this.props.onClick} dummyData={this.dummyData}
 />
 
         </div>

@@ -20,8 +20,8 @@ import userProfile from './Components/userProfile/userProfile'
 
 class App extends Component {
     state = {
-        cartItem: 1,
-        cartAmount: 1,
+        cartItem: 0,
+        cartAmount: 0,
         cartarray: []
       };
 
@@ -33,31 +33,74 @@ class App extends Component {
         alert ('Item '+j.title+' added to shopping cart!')
       };
 
+
+
+    handleDelete = (k) => {  
+     
+        let newcartarray=this.state.cartarray.slice();
+        let cartitemindex = newcartarray.indexOf(k);
+        let cartamount = this.state.cartAmount-k.author;
+      
+        newcartarray.splice(cartitemindex, 1);
+        let cartitem = this.state.cartItem-1;
+     
+        this.setState({cartarray: newcartarray,cartItem: cartitem, cartAmount: cartamount});
+      };
+
     render() {
 
 /*  below is taken out of route for now,,instead just put MainPage comp directly
         <Route exact path = '/'
         component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
         cartarray={this.state.cartarray} onClick={this.handleClick} /> 
-*/
-        return ( 
-        <BrowserRouter>
-            < MuiThemeProvider muiTheme = { getMuiTheme(darkBaseTheme) } >
-            <div className = "App" >
-            < Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} />
+
+ <Route  exact path = '/' component = { MainPage}/> 
+
 
             < MainPage cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-            cartarray={this.state.cartarray} />
-            
+            cartarray={this.state.cartarray} onClick={this.handleClick}/>
+*/
+
+const RoutedMainPage = (props) => {
+    return (
+      <MainPage component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+      cartarray={this.state.cartarray} onClick={this.handleClick} 
+        {...props}
+      />
+    );
+  }
+
+
+  const RoutedProductDetailPage = (props) => {
+    return (
+      <ProductDetailPage  component = { ProductDetailPage  } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+      cartarray={this.state.cartarray} onClick={this.handleClick} 
+        {...props}
+      />
+    );
+  }
+
+
+
+        return ( 
+
+        <BrowserRouter>
+
+            < MuiThemeProvider muiTheme = { getMuiTheme(darkBaseTheme) } >
+            <div className = "App" >
+
+            < Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
+            cartarray={this.state.cartarray} onClick={this.handleDelete}/>
+             
             < Switch >
+
+            <Route exact path = '/' render = { RoutedMainPage }  />           
            
             <Route exact path = "/api/users/verification/:id"component = { verification } />  
             
-            < Route path = '/product_detail'
-            component = { ProductDetailPage }/> 
+            <Route path = '/product_detail' render = { RoutedProductDetailPage } /> 
             
-            <Route path = '/search_results'component = { SearchedPage } />
+             <Route path = '/search_results'component = { SearchedPage } />
             
             <Route path = '/registration' component = { RegisterUser } /> 
             
