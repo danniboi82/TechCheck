@@ -15,6 +15,8 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import userProfile from './Components/userProfile/userProfile';
+import {reset, resetPassword, emailSent}from './Components/recover/index'
+
 
 class App extends Component {
     state = {
@@ -32,7 +34,7 @@ class App extends Component {
     };
 
     render() {
-
+      
         /*  below is taken out of route for now,,instead just put MainPage comp directly
                 <Route exact path = '/'
                 component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
@@ -53,6 +55,9 @@ class App extends Component {
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product' component={SellProduct} />
                             <Route exact path='/api/users/profile/:id' component={userProfile} />
+                            <Route path='/acount/recovery' component={reset}/>
+                            <Route path ='/sent' component={emailSent}/>
+                            <Route path='/reset/:id' component={resetPassword}/>
                         </Switch>
                         <Footer />
                     </div>

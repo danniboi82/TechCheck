@@ -221,11 +221,12 @@ console.log(req.params.id)
       .catch(err => res.status(422).json(err));
   },
   forgot: function (req, res) {
-   
+    console.log('here')
+   console.log(req.body)
         db.Users.findOne({
            
             where: {
-              email: req.params.email
+              email: req.body.email
               
             }
         
@@ -241,7 +242,7 @@ console.log(req.params.id)
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
-              to: req.params.email,
+              to: req.body.email,
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
