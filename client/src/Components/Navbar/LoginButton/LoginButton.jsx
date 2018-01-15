@@ -43,6 +43,15 @@ class Login extends Component {
                 keyboardFocused={true}
                 onClick={this.handleClose}
             />,
+            <Link to='/acount/recovery'> <FlatButton
+                                label="Forgot Password"
+                                primary={true}
+                                onRequestClose={this.handleClose}
+                            /></Link>,
+                            <Link to='/registration'> <FlatButton
+                                label="Registration"
+                                primary={true}
+                            /></Link>
         ];
         return (
             <div>
@@ -68,15 +77,9 @@ class Login extends Component {
                             type="Password"
                             onChange=''
                         /><br />
-
+                       
                         <div className='RegistrationDiv'>
-                            <Link to='/registration'> <FlatButton
-                                label="Registration"
-                                primary={true}
-                                keyboardFocused={true}
-                                onClick={this.handleClose}
-                                style={loginButtonStyles}
-                            /></Link>
+                            
                         </div>
 
                     </Dialog>

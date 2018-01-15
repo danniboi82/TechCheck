@@ -221,11 +221,12 @@ console.log(req.params.id)
       .catch(err => res.status(422).json(err));
   },
   forgot: function (req, res) {
-   
+    console.log('here')
+   console.log(req.body)
         db.Users.findOne({
            
             where: {
-              email: req.params.email
+              email: req.body.email
               
             }
         
@@ -241,11 +242,11 @@ console.log(req.params.id)
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
-              to: req.params.email,
+              to: req.body.email,
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
-               html: name +' <br> <a href='+'http://localhost:3000/api/users/recover/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
             
             };
     
@@ -257,20 +258,38 @@ console.log(req.params.id)
       },
       recovery: function (req, res) {
         console.log('hi')
-        console.log(req.params)
+        console.log(req.body)
         
         bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         db.Users.update({
          password:hash
         }, {
             where: {
-              id: req.params,
-              active: true
+              id: req.body.id,
+            
             }
           })
-          .then(forgottenUser => {
-         
+          .then(() => {
+db.Users.findOne({
+  where:{
+    id:req.body.id
+  }
+}).then(forgottenUser=>{
+  console.log(forgottenUser)
+  const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
+            const msg = {
+              to: forgottenUser.dataValues.email,
+              from: 'TechCheck@donotreply.com',
+              subject: 'TechCheck Account Recovery',
+              text: 'click me ',
+               html: name +' Your password has been changed sucsessfully,if you did not change your password,please contact support! '
+            
+            };
+    
+            sgMail.send(msg);
             res.send('Sucsessfully changed password')
+          })
+          
         
           })
         
