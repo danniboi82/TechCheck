@@ -3,7 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 import './CheckOutPage.css';
 import Paper from 'material-ui/Paper'
 import PayPalButton from './PayPalButton/PayPalButton';
-import Link from './react-router-dom';
+
 
 const dummyData = [
     {

@@ -78,7 +78,7 @@ class Navbar extends Component {
         <SearchBar
           dataSource={this.state.dataSource}
           onChange={this.userInputHandler}
-          onRequestSearch= {(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
+          onRequestSearch={(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
           style={{
             margin: '0 auto',
             maxWidth: '100%',

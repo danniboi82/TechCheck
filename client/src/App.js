@@ -80,7 +80,6 @@ class App extends Component {
                         <Switch>
                             <Route exact path='/' render={ RoutedMainPage } />
                             <Route path='/product_detail' render={ RoutedProductDetailPage } />
-
                             <Route exact path='/api/users/verification/:id' component={ verification } />
                             <Route path='/check_out' component={ CheckOutPage } />
                             <Route path='/search_results' component={ SearchedPage } />

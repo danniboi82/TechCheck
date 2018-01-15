@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PaypalExpressBtn from 'react-paypal-express-checkout';
-import Link from './react-router-dom';
+import Link from 'react-router-dom';
 
  
 export default class PayPalButton extends Component {
