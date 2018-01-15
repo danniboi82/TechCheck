@@ -18,8 +18,8 @@ import userProfile from './Components/userProfile/userProfile';
 
 class App extends Component {
     state = {
-        cartItem: 1,
-        cartAmount: 1,
+        cartItem: 0,
+        cartAmount: 0,
         cartarray: []
     };
 
@@ -31,33 +31,70 @@ class App extends Component {
         alert('Item ' + j.title + ' added to shopping cart!')
     };
 
-    render() {
+    handleDelete = (k) => {
+        let newcartarray = this.state.cartarray.slice();
+        let cartitemindex = newcartarray.indexOf(k);
+        let cartamount = this.state.cartAmount - k.author;
 
-        /*  below is taken out of route for now,,instead just put MainPage comp directly
-                <Route exact path = '/'
-                component = { MainPage } cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-                cartarray={this.state.cartarray} onClick={this.handleClick} /> 
-        */
+        newcartarray.splice(cartitemindex, 1);
+        let cartitem = this.state.cartItem - 1;
+
+        this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
+    };
+
+
+    render() {
+        /* below Routed.... components are created to pass down props to routed component */
+        const RoutedMainPage = (props) => {
+            return (<
+                MainPage component={ MainPage }
+                cartitem={ this.state.cartItem }
+                cartamount={ this.state.cartAmount }
+                cartarray={ this.state.cartarray }
+                onClick={ this.handleClick } {...props }
+            />
+            );
+        }
+
+        const RoutedProductDetailPage = (props) => {
+            return (<
+                ProductDetailPage component={ ProductDetailPage }
+                cartitem={ this.state.cartItem }
+                cartamount={ this.state.cartAmount }
+                cartarray={ this.state.cartarray }
+                onClick={ this.handleClick } {...props }
+            />
+            );
+        }
+
         return (
-            <BrowserRouter>
-                <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
-                    <div className="App">
-                        <Navbar cartitem={this.state.cartItem} cartamount={this.state.cartAmount}
-                            cartarray={this.state.cartarray} />
+
+            < BrowserRouter >
+                <MuiThemeProvider muiTheme={ getMuiTheme(darkBaseTheme) } >
+                    <div className="App" >
+
+                        <Navbar cartitem={ this.state.cartItem }
+                            cartamount={ this.state.cartAmount }
+                            cartarray={ this.state.cartarray } />
+
                         <Switch>
-                            <Route exact path='/' component={MainPage} />
-                            <Route exact path='/api/users/verification/:id' component={verification} />
-                            <Route path='/check_out' component={CheckOutPage} />
-                            <Route path='/product_detail' component={ProductDetailPage} />
-                            <Route path='/search_results' component={SearchedPage} />
-                            <Route path='/registration' component={RegisterUser} />
-                            <Route path='/sell_product' component={SellProduct} />
-                            <Route exact path='/api/users/profile/:id' component={userProfile} />
+                            <Route exact path='/' render={ RoutedMainPage } />
+                            <Route path='/product_detail' render={ RoutedProductDetailPage } />
+
+                            <Route exact path='/api/users/verification/:id' component={ verification } />
+                            <Route path='/check_out' component={ CheckOutPage } />
+                            <Route path='/search_results' component={ SearchedPage } />
+                            <Route path='/registration' component={ RegisterUser } />
+                            <Route path='/sell_product' component={ SellProduct } />
+                            <Route exact path='/api/users/profile/:id' component={ userProfile } />
                         </Switch>
+
                         <Footer />
                     </div>
+
                 </MuiThemeProvider>
             </BrowserRouter>
+
         );
     }
 }
