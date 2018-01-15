@@ -43,9 +43,10 @@ class Login extends Component {
                 keyboardFocused={true}
                 onClick={this.handleClose}
             />,
-            <Link to='/forgot'> <FlatButton
+            <Link to='/acount/recovery'> <FlatButton
                                 label="Forgot Password"
                                 primary={true}
+                                onRequestClose={this.handleClose}
                             /></Link>,
                             <Link to='/registration'> <FlatButton
                                 label="Registration"

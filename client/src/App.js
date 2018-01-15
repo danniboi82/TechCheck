@@ -15,7 +15,7 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import userProfile from './Components/userProfile/userProfile';
-import {reset, resetPassword, emailSent}from './Components/recover/index'
+import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index'
 
 
 class App extends Component {
@@ -58,6 +58,7 @@ class App extends Component {
                             <Route path='/acount/recovery' component={reset}/>
                             <Route path ='/sent' component={emailSent}/>
                             <Route path='/reset/:id' component={resetPassword}/>
+                            <Route path='/confirmation/reset' component={confirmation}/>
                         </Switch>
                         <Footer />
                     </div>

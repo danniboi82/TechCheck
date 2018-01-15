@@ -1,18 +1,21 @@
 import React, {Component } from 'react';
 import users from '../Data/users-api'
-import { Route,Redirect  } from 'react-router-dom';
+import { Route,Redirect, Link } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from "axios";  
+import './recover.scss'
 class recover extends Component{
     state={
         pass:"",
         passswordConfirm:"",
-        id:"" 
+        id:"" ,
+        noMatch:false
     }
+  
     componentDidMount = () => {
         this.setState({
             id:this.props.match.params.id
@@ -28,44 +31,59 @@ class recover extends Component{
    
     onSubmit =()=>{
         
-      
+      if(this.state.pass == this.state.passswordConfirm){
+        axios({
+        
+            method: 'put',
+            url: '/api/users/change',
+            data: {
+                id:this.state.id,
+                newpass:this.state.pass,
+                passswordConfirm:this.state.passswordConfirm
+            },
+          }).then(function (h){
+             window.location='/confrimation/reset'
+          }).catch(function (error) {
+             console.log(error);
+           });
+      }else{
+        const currentState = this.state.noMatch;
+        this.setState({ noMatch: !currentState });
+      }
         
 
-     axios({
-        
-       method: 'put',
-       url: '/api/users/change',
-       data: {
-           id:this.state.id,
-           newpass:this.state.pass,
-           passswordConfirm:this.state.passswordConfirm
-       },baseURL: 'localhost:3000/',crossDomain: true
-     }).catch(function (error) {
-        console.log(error);
-      });
-    
+     
+      //crossDomain: true
         
     }
 
   render() {
     return (   
         <MuiThemeProvider> 
-        <div>
+        <div>{this.state.noMatch &&
+            <h1 className={this.state.noMatch ? 'noMatch': null} >Your passwords do not match</h1>
+            }
         <TextField
     type='password'
         name="pass"
         value={this.state.pass}
         floatingLabelText="password"
-        onChange={this.onChange} /><br/>
+        onChange={this.onChange} 
+         
+        className={this.state.noMatch ? 'noMatch': null} 
+        /><br/>
         <TextField
         type='password'
         name="passswordConfirm"
         value={this.state.passswordConfirm}
         floatingLabelText="passsword confirm"
-        onChange={this.onChange} />
+        onChange={this.onChange} 
+         
+        className={this.state.noMatch ? 'noMatch': null} 
+        />
     <br />
-     <RaisedButton  onClick={this.onSubmit}>
-    Main Page
+    <RaisedButton  onClick={this.onSubmit}>
+   Reset Password
                         </RaisedButton>
         </div>
         </MuiThemeProvider>

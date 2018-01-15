@@ -31,7 +31,7 @@ aws.config.update({
 router.get("/", users.findAll);
 router.get("/profile/:id", users.findById);
 router.post("/recover", users.forgot);
-router.put("/change:",users.recovery)
+router.put("/change",users.recovery)
 router.post("/", users.create);
 router.post("/signIn", users.signIn);
 router.put("/:email", users.update);
