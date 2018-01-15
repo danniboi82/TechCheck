@@ -42,12 +42,12 @@ const footer = () => {
         <Separator>|</Separator>
         <ExtLink href="/privacy">Privacy Policy</ExtLink>
 
-        <div class="footer-icons">
+        <div className="footer-icons">
 
-          <ExtLink href="#"><i class="fa fa-facebook"></i></ExtLink>
-          <ExtLink href="#"><i class="fa fa-twitter"></i></ExtLink>
-          <ExtLink href="#"><i class="fa fa-linkedin"></i></ExtLink>
-          <ExtLink href="#"><i class="fa fa-github"></i></ExtLink>
+          <ExtLink href="#"><i className="fa fa-facebook"></i></ExtLink>
+          <ExtLink href="#"><i className="fa fa-twitter"></i></ExtLink>
+          <ExtLink href="#"><i className="fa fa-linkedin"></i></ExtLink>
+          <ExtLink href="#"><i className="fa fa-github"></i></ExtLink>
 
         </div>
       </Container>

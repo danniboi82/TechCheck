@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
-//import Cart from './Cart/Cart';
-//import props from './../../Views/app';
+import CheckOutPage from '../CheckOutPage/CheckOutPage';
 
 class Navbar extends Component {
 
@@ -17,8 +16,6 @@ class Navbar extends Component {
     logged: true,
     userInput: '',
   };
-
-
 
   handleChange = (event, logged) => {
     this.setState({ logged: logged });
@@ -31,7 +28,6 @@ class Navbar extends Component {
   userInputHandler = (event) => {
     this.setState({ userInput: event.target.value })
   }
-
 
   handleClick = (i, j) => {
 
@@ -54,8 +50,6 @@ class Navbar extends Component {
     this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
   };
 
-
-
   render() {
 
     return (
@@ -63,15 +57,12 @@ class Navbar extends Component {
         <AppBar
           title="TechCheck"
           onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <LoggedInButton  logOut={this.logOutHandler}/> : <LoginButton />  }
-       >
-        <br />Cart Items: {this.props.cartitem}<br />Cart Total: ${this.props.cartamount} 
-        <br/>
-        <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray} 
-        onClick={this.props.onClick}
-      /> 
-         
-     
+          iconElementRight={this.state.logged ? <LoggedInButton logOut={this.logOutHandler} /> : <LoginButton />}
+        >
+          <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
+          />
+
+
         </AppBar>
 
         <div className='routeDiv'>
@@ -81,12 +72,13 @@ class Navbar extends Component {
           <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
           <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/registration'> Registration </Link> </FlatButton>
           <FlatButton ><Link to='/api/users/profile/'>user Profile</Link></FlatButton>
+          <Link to='/check_out'><FlatButton>Check Out</FlatButton></Link>
         </div>
 
         <SearchBar
           dataSource={this.state.dataSource}
           onChange={this.userInputHandler}
-          // (value) => this.setState({ dataSource: [value, value + value, value + value + value] })
+          onRequestSearch= {(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
           style={{
             margin: '0 auto',
             maxWidth: '100%',

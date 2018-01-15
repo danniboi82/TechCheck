@@ -185,7 +185,7 @@ alert('There is already an account with that email addres,please try a diffrent 
                             name="description"
                             hintText="Other Details or PC/Laptop Specifications"
                             multiLine={true}
-                            underLineShow={true}
+                            underlineShow={true}
                             rows={1}
                             rowsMax={4}
                             onChange={this.onChange}
