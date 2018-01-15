@@ -38,7 +38,6 @@ const userRegistrationStyles = {
 }
 
 
-const formData = new FormData();
 class addUser extends React.Component {
     constructor(props) {
         super(props);
@@ -63,16 +62,23 @@ class addUser extends React.Component {
             [e.target.name]: e.target.value
         });
     }
-    uploadPic =(e) => {
-        this.setState({file:e.target.files[0]})
-    }
+    imageChange =(e) => { 
+        this.setState({ 
+            [e.target.name]: e.target.value.split('\\').pop() 
+        }); 
+        const file = e.target.files[0] 
+        
+         
+ 
+        const dataPic = new FormData(); 
+        dataPic.append('upl', file , file.name); 
+        console.log(dataPic) 
+        const config = { 
+            headers: { 'content-type': 'multipart/form-data'} 
+        } 
+        axios.post("/api/users/upload", dataPic, config)
     
-picUpload=(e)=>{
-    e.preventDefault();
-   
-  
-    
-      formData.append('upl', this.state.file,this.state.file.name);
+
      
    
 
@@ -91,17 +97,6 @@ if(result =='already'){
 }else{
 
 }
-            }).then(function(){
-                axios.post("/api/users/upload", {
-                    
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-            
-                    }
-            
-                  })
             })
     }
     render() {
@@ -167,7 +162,7 @@ if(result =='already'){
                             containerElement="label"
                             
                         >
-                            <input name='profilePic'type="file" onChange={this.uploadPic} style={styles.exampleImageInput} />
+                            <input name='profilePic'type="file" onChange={this.imageChange} style={styles.exampleImageInput} />
                         </RaisedButton>
                     </div>
                     <div>
@@ -179,34 +174,6 @@ if(result =='already'){
         );
     }
 }
-// const addUser = () => {
-//     return (
-//         <div style={userRegistrationStyles.wrapper}>
-//             <h1 style={userRegistrationStyles.h1}> Sign-up!! </h1>
-//             <Subheader> First Name :</Subheader>
-//             <TextField
-//                 hintText="First Name"
-//                 helper="First Name"
-//             /><br />
-//             <Subheader> Last Name :</Subheader>
-//             <TextField
-//                 hintText="Last Name"
-//             /><br />
-//             <Subheader> Address :</Subheader>
-//             <TextField
-//                 hintText="Address"
-//                 multiLine={true}
-//                 rows={2}
-//             /><br />
-//             <Subheader> E-mail :</Subheader>
-//             <TextField
-//                 hintText="E-mail"
-//             /><br />
-//             <div style={{ padding: '20px' }}>
-//                 <FlatButton style={userRegistrationStyles.buttonDiv} label='Submit' primary={true} />
-//             </div>
-//         </div>
-//     );
-// }
+
 
 export default addUser;

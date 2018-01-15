@@ -2,7 +2,12 @@ import React, { Component, ReactDOM  } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
+import logo from '../../../ic_shopping_cart_black_24px.svg';
 
+const style = {
+    textAlign: 'center',
+    marginTop: '20px',
+  }
 
 class CartModal extends Component {
     state = {
@@ -73,7 +78,9 @@ class CartModal extends Component {
         return (
             <div>
                 <div>
-                    <FlatButton {...this.props} label="Cart" onClick={this.handleOpen} />
+                    <FlatButton {...this.props} title='cart' style={style}  onClick={this.handleOpen} > 
+                    <img src={logo} alt="shopping cart" /> 
+                    </FlatButton>
                 </div>
                 <div>
                     <Dialog
