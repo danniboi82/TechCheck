@@ -68,15 +68,17 @@ createdAt:fullDate
       .catch(err => res.status(422).json(err));
   },
   signIn: function (req, res) {
-    
+    console.log(req.body)
     db.Users.findOne({
       where: {
         email: req.body.email
       }
     }).then(function (userSign) {
+      console.log(userSign.dataValues.password)
+     console.log(req.body)
          //if the database enycrpted password and non enypyted email from the database 
        //match create a JWT token and send it to the front end for storage
-      bcrypt.compare(req.body.password, userSign.password).then(function (pass) {
+      bcrypt.compare(req.body.pass, userSign.dataValues.password).then(function (pass) {
         if (pass === true && req.body.email === userSign.email) {
 
          const splitAddy = userSign.dataValues.address.split(' ');
@@ -112,7 +114,7 @@ createdAt:fullDate
          //if the database enycrpted password and non enypyted email from the database don't match
          //send the front end a string of noMatch telling the front end to prompt the user to retry 
         } else {
-          res.status(404).send("noMatch");
+          res.send("noMatch");
           console.log('you got it wrong')
         }
       });

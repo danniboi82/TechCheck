@@ -42,7 +42,7 @@ class recover extends Component{
                 passswordConfirm:this.state.passswordConfirm
             },
           }).then(function (h){
-             window.location='/confrimation/reset'
+             window.location='/confirmation/reset'
           }).catch(function (error) {
              console.log(error);
            });
@@ -50,11 +50,7 @@ class recover extends Component{
         const currentState = this.state.noMatch;
         this.setState({ noMatch: !currentState });
       }
-        
-
-     
-      //crossDomain: true
-        
+ 
     }
 
   render() {

@@ -3,8 +3,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
-
-
+import users from '../../Data/users-api'
+import axios from "axios";  
+import '../navbar.scss'
 const loginButtonStyles = {
         maxWidth: '30%',
         position: 'fixed',
@@ -13,13 +14,24 @@ const loginButtonStyles = {
         margin: 'auto'
 }
 class Login extends Component {
-    state = {
+    constructor(props) {
+        super(props);
+    this.state = {
         showSignInDialogue: false,
         open: false,
-        userName: '',
-        password: '',
+        email: '',
+        pass: '',
+        doesntMatch: false,
+        signedIn:false
     }
-
+}
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+        
+     
+    }
     handleOpen = () => {
         this.setState({ open: true });
     };
@@ -27,6 +39,43 @@ class Login extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+    
+    onSubmit =()=>{
+       
+       axios({
+            method: 'post',
+            url: '/api/users/signIn',
+            data: {
+               email:this.state.email,
+                pass:this.state.pass,
+             
+            },
+          })
+          
+            
+           .then(function (res){
+               
+             if(res.data==='noMatch'){
+
+                
+
+                this.setState({ doesntMatch: !false });
+             
+             }else{
+console.log(res)
+                  sessionStorage.setItem('athen',res.data)
+                  this.handleClose()
+             }
+            }).catch(function (error) {
+               console.log(error);
+             });
+       
+        //   const currentState = this.state.noMatch;
+        //   this.setState({ noMatch: !currentState });
+        
+   
+      }
+  
 
     static muiName = 'FlatButton';
 
@@ -41,20 +90,24 @@ class Login extends Component {
                 label="Submit"
                 primary={true}
                 keyboardFocused={true}
-                onClick={this.handleClose}
+             
+                onClick={ this.onSubmit}
             />,
             <Link to='/acount/recovery'> <FlatButton
                                 label="Forgot Password"
                                 primary={true}
-                                onRequestClose={this.handleClose}
+                                onClick={this.handleClose}
                             /></Link>,
                             <Link to='/registration'> <FlatButton
                                 label="Registration"
                                 primary={true}
+                                onClick={this.handleClose}
                             /></Link>
         ];
         return (
             <div>
+               
+               
                 <div className='LogInSection'>
                     <FlatButton {...this.props} label="Login" onClick={this.handleOpen} />
                 </div>
@@ -67,15 +120,22 @@ class Login extends Component {
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                     >
+                      {this.state.doesntMatch &&
+                <h1   >Email And Password does not match. Please try again.</h1>
+                }
+              
                         <TextField
+                        floatingLabelText="Email"
+                        name='email'
                             hintText="Email"
-                            onChange=''
+                            onChange={this.onChange}
                         /><br />
                         <TextField
-                            hintText="Password Field"
+                        name="pass"
+                            hintText="Password"
                             floatingLabelText="Password"
                             type="Password"
-                            onChange=''
+                            onChange={this.onChange}
                         /><br />
                        
                         <div className='RegistrationDiv'>

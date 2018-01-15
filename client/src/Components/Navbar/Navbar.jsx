@@ -14,7 +14,7 @@ import CartModal from './CartButton/CartModal';
 class Navbar extends Component {
 
   state = {
-    logged: true,
+    logged: false,
     userInput: '',
   };
 
