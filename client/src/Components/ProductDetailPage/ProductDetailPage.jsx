@@ -2,10 +2,11 @@ import React from 'react';
 import ProductDetail from './ProductDetail/ProductDetail';
 
 
-const productDetailPage = () => {
+const productDetailPage = (props) => {
     return (
         <div>
-            <ProductDetail/>
+            
+            <ProductDetail onClick={props.onClick}/>
         </div>
     );
 }

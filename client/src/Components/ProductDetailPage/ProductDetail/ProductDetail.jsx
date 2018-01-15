@@ -53,21 +53,21 @@ const dummyData = [
     {
         img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDcuanBn',
         title: 'Breakfast',
-        author: 'jill111',
+        author: 100,
     },
     {
         img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDEuanBn',
         title: 'Tasty burger',
-        author: 'pashminu',
+        author: 200,
     },
     {
         img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDIuanBn',
-        title: 'Tasty burger',
-        author: 'pashminu',
+        title: 'burger',
+        author: 300,
     },
 ]
 
-const productDetail = () => {
+const productDetail = (props) => {
     return (
         <div style={productDetailStyles.wrapper}>
             <h1 style={productDetailStyles.h1}> Product Details </h1>
@@ -113,7 +113,7 @@ const productDetail = () => {
             </div>
 
              <div style={{ paddingBottom: '60px' }}>
-                <Link to='/done'><FlatButton style={productDetailStyles.purchaseButton} label='Purchase' primary={true} /></Link>
+                <Link to='/'><FlatButton style={productDetailStyles.purchaseButton} label='Purchase' primary={true} onClick={() => props.onClick(dummyData[0].author, dummyData[0])}/></Link>
             </div>
 
         </div>
