@@ -3,6 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import logo from '../../../ic_shopping_cart_black_24px.svg';
+import {Link} from 'react-router-dom';
 
 const style = {
     textAlign: 'center',
@@ -67,12 +68,12 @@ class CartModal extends Component {
                 primary={true}
                 onClick={this.handleClose}
             />,
-            <FlatButton
+            <Link to='check_out'><FlatButton
                 label="Check Out"
                 primary={true}
                 keyboardFocused={true}
                 onClick={this.handleCheckOut}
-            />,
+            /></Link>,
         ];
 
         return (

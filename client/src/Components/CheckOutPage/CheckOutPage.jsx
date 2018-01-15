@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper'
 import PayPalButton from './PayPalButton/PayPalButton';
 
 
+
 const dummyData = [
     {
         img: 'https://cdn.mos.cms.futurecdn.net/QSjwpofL4v2VgLvWaJWAhH.jpg',

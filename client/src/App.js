@@ -46,8 +46,8 @@ class App extends Component {
     render() {
         /* below Routed.... components are created to pass down props to routed component */
         const RoutedMainPage = (props) => {
-            return (<
-                MainPage component={ MainPage }
+            return (
+                <MainPage component={ MainPage }
                 cartitem={ this.state.cartItem }
                 cartamount={ this.state.cartAmount }
                 cartarray={ this.state.cartarray }
@@ -57,8 +57,9 @@ class App extends Component {
         }
 
         const RoutedProductDetailPage = (props) => {
-            return (<
-                ProductDetailPage component={ ProductDetailPage }
+            return (
+                <ProductDetailPage 
+                component={ ProductDetailPage }
                 cartitem={ this.state.cartItem }
                 cartamount={ this.state.cartAmount }
                 cartarray={ this.state.cartarray }
@@ -69,7 +70,7 @@ class App extends Component {
 
         return (
 
-            < BrowserRouter >
+            <BrowserRouter>
                 <MuiThemeProvider muiTheme={ getMuiTheme(darkBaseTheme) } >
                     <div className="App" >
 
@@ -87,10 +88,8 @@ class App extends Component {
                             <Route path='/sell_product' component={ SellProduct } />
                             <Route exact path='/api/users/profile/:id' component={ userProfile } />
                         </Switch>
-
-                        <Footer />
+                        <Footer/>
                     </div>
-
                 </MuiThemeProvider>
             </BrowserRouter>
 
