@@ -53,7 +53,7 @@ class CartModal extends Component {
        
         const items = this.props.cartarray.map((step) => { 
             return (
-               <li><img src="https://cdn3.iconfinder.com/data/icons/softwaredemo/PNG/256x256/DeleteRed.png" width='20px' height='20px'  onClick={() => this.props.onClick(step)} />  Item: {step.title} .    . Price: ${step.author} 
+               <li> Item: {step.title} .    . Price: ${step.author} 
               </li> 
             );
     

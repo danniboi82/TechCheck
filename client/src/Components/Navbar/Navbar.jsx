@@ -63,7 +63,7 @@ class Navbar extends Component {
         <AppBar
           title="TechCheck"
           onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <LoggedInButton /> : <LoginButton />  }
+          iconElementRight={this.state.logged ? <LoggedInButton  logOut={this.logOutHandler}/> : <LoginButton />  }
        >
         <br />Cart Items: {this.props.cartitem}<br />Cart Total: ${this.props.cartamount} 
         <br/>
@@ -71,7 +71,7 @@ class Navbar extends Component {
         onClick={this.props.onClick}
       /> 
          
-          logOut={this.logOutHandler}
+     
         </AppBar>
 
         <div className='routeDiv'>

@@ -89,7 +89,7 @@ const productGridList  = (props) => (
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>
           }
           > 
-        <img src={tile.img} onClick={() => props.onClick(tile.author, tile)} />
+        <img src={tile.img}  />
         </GridTile>
       ))}
     </GridList>
