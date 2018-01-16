@@ -56,7 +56,6 @@ class Navbar extends Component {
       <div>
         <AppBar
           title="TechCheck"
-          onClick={this.handleChange}
           iconElementRight={this.state.logged ? <LoggedInButton logOut={this.logOutHandler} /> : <LoginButton />}
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
