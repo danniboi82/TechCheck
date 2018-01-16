@@ -1,41 +1,51 @@
-module.exports = function(sequelize, DataTypes) {
-  var Products = sequelize.define("Products", {
-    userId:{
-      type:DataTypes.STRING
-  },
-  category:{
-      
-          type:DataTypes.STRING},
-      product_name:{type: DataTypes.STRING},
-      
-          product_description:{type: DataTypes.STRING},
-          tags:{
-              type: DataTypes.STRING
+module.exports = function (sequelize, DataTypes) {
+    var Products = sequelize.define("Products", {
+        id: {
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
           },
-          computerInfo:{
-              type:DataTypes.STRING},
-          zipcode:{
-type:DataTypes.STRING
-          },
-          serialNum:{
-              type: DataTypes.STRING
-          },
-          userUploadImage1:{ type: DataTypes.STRING},
-          userUploadImage2:{type: DataTypes.STRING},
-      price:{type:DataTypes.INTEGER
-      },
-      condition:{type:DataTypes.STRING
-
-      },
-
-      warranty:{
-          type:DataTypes.STRING
-      },
-  packingStat:{
-      type:DataTypes.STRING
-  },status:{
-      type:DataTypes.STRING
-  }
-  });
-  return Products;
+        userId: {
+            type: DataTypes.STRING,
+            defaultValue: null
+        },
+        productName: { 
+            type: DataTypes.STRING 
+        },
+        serialNumber: {
+            type: DataTypes.STRING
+        },
+        category: {
+            type: DataTypes.STRING
+        },
+        price: {
+            type: DataTypes.INTEGER
+        },
+        productDescription: { 
+            type: DataTypes.STRING 
+        },
+        condition: {
+            type: DataTypes.STRING
+        },
+        warranty: {
+            type: DataTypes.STRING
+        },
+        packaging: {
+            type: DataTypes.STRING
+        }, 
+        userUploadImage1: { 
+            type: DataTypes.STRING 
+        },
+        userUploadImage2: { 
+            type: DataTypes.STRING 
+        },
+        verified: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        status: {
+            type: DataTypes.STRING
+        }
+    });
+    return Products;
 };

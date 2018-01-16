@@ -40,16 +40,16 @@ const controller = {
       category: req.body.category,
      tags: req.body.tags,
      computerInfo:req.body.computerInfo,
-      product_name: req.body.product_name,
-      product_description: req.body.product_description,
-      serialNum:req.body.serialNum,
+      productName: req.body.productName,
+      productDescription: req.body.productDescription,
+      serialNumber:req.body.serialNumber,
       userUploadImage1: req.body.userUploadImage1,
       userUploadImage2: req.body.userUploadImage2,
       condition:req.body.condition,
       price: req.body.price,
       warranty:req.body.warranty,
       status:req.body.status,
-     packingStat: req.body.packingStat
+     packaging: req.body.packaging
       })
       .then(dbModel => {
 
