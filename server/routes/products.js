@@ -7,6 +7,7 @@ import multer from 'multer'
 import multerS3 from 'multer-s3'
 import s3Key from '../../awskey'
 import s3Secret from '../../awssecret'
+
 const router = express.Router();
 aws.config.update({
     accessKeyId:process.env.s3_key||s3Key,
@@ -28,8 +29,9 @@ const upload = multer({
     })
   });
 // Route to get list of crypto currencies for drop down.
-router.get("/", products.findAll);
-router.get("/:id", products.findById);
+// router.get("/", products.findAll);
+router.get('/user/products/:id',products.userProducts);
+///router.get("/", products.findById);
 router.post("/", products.create);
 router.put("/:id", products.update);
 router.delete("/:id", products.remove);

@@ -34,9 +34,9 @@ class verify extends Component {
   render() {
     return (
       <div className="profile">
-        <h1> {this.state.name}'s Profile Page</h1>
+        <h1> {this.state.name ||'hi'}'s Profile Page</h1>
 
-        <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}`} alt=""/>
+        <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}` ||'https://www.eharmony.com/dating-advice/wp-content/uploads/images/sexy-smiler.jpg'}  alt=""/>
 
         User Id:<Link to='/profile'>{this.state.userId}</Link>
 

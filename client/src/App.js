@@ -15,6 +15,8 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import userProfile from './Components/userProfile/userProfile';
+import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index'
+
 
 class App extends Component {
     state = {
@@ -44,6 +46,7 @@ class App extends Component {
 
 
     render() {
+
         /* below Routed.... components are created to pass down props to routed component */
         const RoutedMainPage = (props) => {
             return (
@@ -79,14 +82,23 @@ class App extends Component {
                             cartarray={ this.state.cartarray } />
 
                         <Switch>
-                            <Route exact path='/' render={ RoutedMainPage } />
-                            <Route path='/product_detail' render={ RoutedProductDetailPage } />
-                            <Route exact path='/api/users/verification/:id' component={ verification } />
-                            <Route path='/check_out' component={ CheckOutPage } />
-                            <Route path='/search_results' component={ SearchedPage } />
-                            <Route path='/registration' component={ RegisterUser } />
-                            <Route path='/sell_product' component={ SellProduct } />
-                            <Route exact path='/api/users/profile/:id' component={ userProfile } />
+
+                            <Route exact path='/' component={MainPage} />
+                             {/* //  <Route exact path='/' render={ RoutedMainPage } />
+                               */}
+                            <Route exact path='/api/users/verification/:id' component={verification} />
+                            <Route path='/check_out' component={CheckOutPage} />
+                            <Route path='/product_detail' component={ProductDetailPage} />
+                               {/* //<Route path='/product_detail' render={ RoutedProductDetailPage } /> */}
+                            <Route path='/search_results' component={SearchedPage} />
+                            <Route path='/registration' component={RegisterUser} />
+                            <Route path='/sell_product' component={SellProduct} />
+                            <Route exact path='/api/users/profile/:id' component={userProfile} />
+                            <Route path='/acount/recovery' component={reset}/>
+                            <Route path ='/sent' component={emailSent}/>
+                            <Route path='/reset/:id' component={resetPassword}/>
+                            <Route path='/confirmation/reset' component={confirmation}/>
+
                         </Switch>
                         <Footer/>
                     </div>
