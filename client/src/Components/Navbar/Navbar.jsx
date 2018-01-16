@@ -71,6 +71,7 @@ else{
 
   logOutHandler = () => {
     this.setState({ logged: false });
+    sessionStorage.removeItem('auth')
   }
 
   userInputHandler = (event) => {
