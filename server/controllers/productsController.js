@@ -6,13 +6,16 @@ import db from"../models"
 // Defining methods for the booksController
 const controller = {
   userProducts: (req, res) => {
+    console.log(req.params)
     db.Products.findAll({
         where: {
           userId:req.params.id
         }
       })
       .then(dbModel =>{
-        console.log(dbModel)
+
+       
+        res.send(dbModel)
       })
       .catch(err => res.status(422).json(err));
   },
@@ -20,7 +23,7 @@ const controller = {
     db.Products.findOne({
         where: {
           id: req.params.id,
-          inactive: false
+          
         }
       })
       .then(dbModel => {
