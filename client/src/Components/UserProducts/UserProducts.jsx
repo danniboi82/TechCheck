@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import products from '../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
@@ -12,8 +13,8 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
-  } from 'material-ui/Table';
-  
+} from 'material-ui/Table';
+
 
 const productDetailStyles = {
     h1: {
@@ -57,67 +58,79 @@ const productDetailStyles = {
     }
 
 };
+class userProduct extends Component {
 
-const dummyData = [
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDcuanBn',
-        title: 'Breakfast',
-        author: 'jill111',
-    },
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDEuanBn',
-        title: 'Tasty burger',
-        author: 'pashminu',
-    },
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDIuanBn',
-        title: 'Tasty burger',
-        author: 'pashminu',
-    },
-]
-const userProducts = () => {
-    
-    return(
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
-              <TableHeaderColumn>Listing</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableRowColumn>1</TableRowColumn>
-              <TableRowColumn>John Smith</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>2</TableRowColumn>
-              <TableRowColumn>Randal White</TableRowColumn>
-              <TableRowColumn>Unemployed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>3</TableRowColumn>
-              <TableRowColumn>Stephanie Sanders</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>4</TableRowColumn>
-              <TableRowColumn>Steve Brown</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>5</TableRowColumn>
-              <TableRowColumn>Christopher Nolan</TableRowColumn>
-              <TableRowColumn>Unemployed</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      );
-      
-      
+    state = {
+        id: "",
+        productName: "",
+        serialNumber: "",
+        category: "",
+        price: "",
+        condition: "",
+        warranty: "",
+        packaging: "",
+        productDescription: "",
+        userUploadImage1: "",
+        userUploadImage2: ""
+
+    }
+
+    componentDidMount = () => {
+
+        console.log('this is my test')
+
+        console.log(this.props.match.params.id)
+        users.userProfile(this.props.match.params.id).then(dataPoints => {
+            console.log(dataPoints)
+            this.setState({
+                id: dataPoints.data.id,
+                productName: dataPoints.data.productName,
+                serialNumber: dataPoints.data.serialNumber,
+                category: dataPoints.data.category,
+                price: dataPoints.data.price,
+                condition: dataPoints.data.condition,
+                warranty: dataPoints.data.warranty,
+                packaging: dataPoints.data.packaging,
+                productDescription: dataPoints.data.productDescription,
+                userUploadImage1: dataPoints.data.userUploadImage1,
+                userUploadImage2: dataPoints.data.userUploadImage2
+            })
+        });
+        const s3bucket = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage1}`
+        const s3bucket2 = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage2}`
+    }
+
+    //{this.state.name}
+    render() {
+        return (
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        {dataPoints.map((col) => (
+                            <TableHeaderColumn
+                                key={col.id}
+                            >
+                            </TableHeaderColumn> ,
+                            <TableHeaderColumn
+                                key={col.productName}
+                            >
+                            </TableHeaderColumn> ,
+                            <TableHeaderColumn
+                                key={col.productSold}
+                            >
+                            </TableHeaderColumn>
+                        ))}
+                    </TableRow>
+                </TableHeader>
+            </Table>
+
+        );
+
+    }
 }
+
+
+
 
 
 
