@@ -38,6 +38,7 @@ router.put("/:email", users.update);
 router.put("/verification/:id?",users.verification)
 router.delete("/:id", users.remove);
 router.post("/signOut",users.signOut);
+router.post('/auth',users.authUser)
 
 // Export routes for server.js to use.
 export default router;
