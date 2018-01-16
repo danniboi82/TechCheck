@@ -7,6 +7,7 @@ import Avatar from 'material-ui/Avatar';
 import Link from 'react-router-dom';
 
 const loggedIn = (props) => (
+  
     <IconMenu
       {...props}
       iconButtonElement={
@@ -14,13 +15,13 @@ const loggedIn = (props) => (
       }
       targetOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-    >
+    >{console.log(props)}
       <MenuItem>
         <Avatar
-          src="images/uxceo-128.jpg"
+          src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
           size={30}
           style={{display: 'in-line', margin: 'auto'}}
-        /> Username
+        /> {props.userData.firstName +' '+props.userData.lastName}
       </MenuItem>
       <MenuItem primaryText="My Products" />
       {/* User props from NavBar logOut={this.logOutHandler} */}

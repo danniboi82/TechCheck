@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
+import RaisedButton from 'material-ui/RaisedButton';
+import axios from "axios";
 //import Cart from './Cart/Cart';
 //import props from './../../Views/app';
 
@@ -16,9 +18,52 @@ class Navbar extends Component {
   state = {
     logged: false,
     userInput: '',
+    userDataObj:{},
+    // profilePic:'',
+    // userId:'',
+    // email:'',
+    // firstName:'',
+    // lastName:'',
+    // phoneNumber:'',
+    verified:false,
+    // createdAt:'',
+    // active:false
   };
 
+componentDidMount= ()=> {
 
+  //console.log(sessionStorage.auth)
+if(sessionStorage.auth != null){
+console.log('auth')
+
+axios({
+  method: 'post',
+  url: 'api/users/auth',
+  data: {
+  userToken:sessionStorage.getItem('auth')
+   
+  },
+}).then(user=>{
+ if(user !=null){
+   this.setState({
+     logged:true,
+     userDataObj:{profilePic:user.data.profilePic, userId:user.data.id, firstName:user.data.firstName,
+      lastName:user.data.lastName, active:user.data.active,verified:user.data.verified},
+      
+    
+   })
+
+ }else{
+   console.log('no token')
+ }
+})
+}
+else{
+  console.log('here auth failed')
+}
+
+
+}
 
   handleChange = (event, logged) => {
     this.setState({ logged: logged });
@@ -60,10 +105,18 @@ class Navbar extends Component {
 
     return (
       <div>
+        {!this.state.userDataObj.verified  && this.state.logged&&
+       <div className='verify'>
+Please verify your email address. <br/><a href='https://www.google.com/gmail/about/#'> Gmail  </a>  
+<a href='https://login.yahoo.com/?.src=ym&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2F'> Yahoo  </a>  
+<a href='https://my.screenname.aol.com/_cqr/login/login.psp?sitedomain=sns.mail.aol.com&seamless=novl&lang=en&locale=US&authLev=0&siteState=uv%3AAOL%7Crt%3ASTD%7Cat%3ASNS%7Clc%3Aen_US%7Cld%3Amail.aol.com%7Csnt%3AScreenName%7Csid%3A75be8f73-edfd-4559-8c55-945b9c9b2f4f%7Cqp%3A%7C&offerId=newmail-en-us-v2'> Aol </a>
+<a href='https://www.icloud.com/#mail'> iCloud </a>  
+ </div>
+        }
         <AppBar
           title="TechCheck"
-          onClick={this.handleChange}
-          iconElementRight={this.state.logged ? <LoggedInButton  logOut={this.logOutHandler}/> : <LoginButton />  }
+         
+          iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logOut={this.logOutHandler}/> : <LoginButton />  }
        >
         <br />Cart Items: {this.props.cartitem}<br />Cart Total: ${this.props.cartamount} 
         <br/>

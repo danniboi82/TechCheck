@@ -21,6 +21,58 @@ const controller = {
       })
       .catch(err => res.status(422).json(err));
   },
+  authUser: (req, res) => {
+    //console.log(req.body)
+    let authenticateUser;
+     jwt.verify(req.body.userToken, secret, function(err, decoded) {      
+     if (err) {
+       return res.json({ success: false, message: 'Failed to authenticate token.' });    
+     } else {
+
+      //if everything is good, save to request for use in other routes
+       req.decoded = decoded;    
+      authenticateUser= decoded.currentUser.currentUser.userId  
+        return authenticateUser
+    //console.log(decoded.currentUser.currentUser.userId)
+      
+        
+     }
+   });
+  console.log( authenticateUser)
+    db.Users.findOne({
+      where: {
+        id:authenticateUser
+      }
+    })
+      .then(user => {
+        function getDbDate () {
+          const split=JSON.stringify(user.dataValues.createdAt);
+     const dbDate = split.split(':')
+     const splitDate=dbDate[0].split('-')
+    const dayCreated =splitDate[2].split('T')
+    const removed=splitDate[0].split('"')
+   
+   const dates=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
+  return dates
+        }
+  const createdAt=getDbDate()
+         
+       const userInfo={
+id:user.dataValues.id,
+email:user.dataValues.email,
+firstName:user.dataValues.firstName,
+lastName:user.dataValues.lastName,
+profilePic:user.dataValues.profilePic,
+phoneNumber:user.dataValues.phoneNumber,
+address:user.dataValues.address,
+verified:user.dataValues.verified,
+createdAt:createdAt,
+active:user.dataValues.active
+        }
+        res.json(userInfo)
+      })
+      .catch(err => res.status(422).json(err));
+  },
   findById: function (req, res) {
     console.log('look here')
     console.log(req.params.id)
@@ -74,8 +126,7 @@ createdAt:fullDate
         email: req.body.email
       }
     }).then(function (userSign) {
-      console.log(userSign.dataValues.password)
-     console.log(req.body)
+      
          //if the database enycrpted password and non enypyted email from the database 
        //match create a JWT token and send it to the front end for storage
       bcrypt.compare(req.body.pass, userSign.dataValues.password).then(function (pass) {
