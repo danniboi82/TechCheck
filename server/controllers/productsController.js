@@ -5,20 +5,25 @@ import db from"../models"
 
 // Defining methods for the booksController
 const controller = {
-  findAll: (req, res) => {
+  userProducts: (req, res) => {
+    console.log(req.params)
     db.Products.findAll({
         where: {
-          active: true
+          userId:req.params.id
         }
       })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel =>{
+
+       
+        res.send(dbModel)
+      })
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Products.findOne({
         where: {
           id: req.params.id,
-          inactive: false
+          
         }
       })
       .then(dbModel => {
