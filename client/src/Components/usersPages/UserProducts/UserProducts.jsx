@@ -15,6 +15,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import users from '../../Data/users-api'
+import products1 from '../../Data/products-api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const productDetailStyles = {
@@ -82,7 +83,7 @@ let products=[];
         console.log('this is my test')
 
         console.log(this.props.match.params.id)
-        users.userProfile(this.props.match.params.id).then(dataPoints => {
+        products1.userProfile(this.props.match.params.id).then(dataPoints => {
             console.log(dataPoints)
             for(let i=0;i<dataPoints.data.length;i++){
              

@@ -57,7 +57,7 @@ class recover extends Component{
     return (   
         <MuiThemeProvider> 
         <div>{this.state.noMatch &&
-            <h1 className={this.state.noMatch ? 'noMatch': null} >Your passwords do not match</h1>
+            <p className={this.state.noMatch ? 'noMatch': null} >Your passwords do not match</p>
             }
         <TextField
     type='password'

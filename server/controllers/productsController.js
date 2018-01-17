@@ -14,7 +14,7 @@ const controller = {
         }
       })
       .then(dbModel =>{
-
+console.log(dbModel.length)
        
         res.send(dbModel)
       })
