@@ -38,7 +38,7 @@ console.log('auth')
 
 axios({
   method: 'post',
-  url: 'api/users/auth',
+  url: '/api/users/auth',
   data: {
   userToken:sessionStorage.getItem('auth')
    
