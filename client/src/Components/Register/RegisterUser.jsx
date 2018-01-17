@@ -61,6 +61,14 @@ class addUser extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+        let value = event.target.value;
+        const name = event.target.name;
+        const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+
+        if (name === "password") {
+        value = value.substring(0, 15);
+        "^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+    }
     }
     imageChange =(e) => { 
         this.setState({ 
