@@ -21,11 +21,14 @@ const loggedIn = (props) => (
           src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
           size={30}
           style={{display: 'in-line', margin: 'auto'}}
+          href={`/api/users/profile/${props.userData.userId}`}
         /> {props.userData.firstName +' '+props.userData.lastName}
       </MenuItem>
-      <MenuItem primaryText="My Products" />
+    <MenuItem primaryText="My Products" />
       {/* User props from NavBar logOut={this.logOutHandler} */}
-      <MenuItem primaryText="Sign out" onClick={props.logOut}/>
+      <MenuItem 
+      primaryText="Sign out" 
+      onClick={props.logOut}/>
     </IconMenu>
   );
 

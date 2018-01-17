@@ -15,7 +15,8 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import userProfile from './Components/userProfile/userProfile';
-import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index'
+import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index';
+import UserProducts from './Components/UserProducts/UserProducts';
 
 
 class App extends Component {
@@ -70,9 +71,7 @@ class App extends Component {
             />
             );
         }
-
         return (
-
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={ getMuiTheme(darkBaseTheme) } >
                     <div className="App" >
@@ -95,6 +94,7 @@ class App extends Component {
                             <Route path ='/sent' component={emailSent}/>
                             <Route path='/reset/:id' component={resetPassword}/>
                             <Route path='/confirmation/reset' component={confirmation}/>
+                            <Route path='/user_products' component={UserProducts}/>
 
                         </Switch>
                         <Footer/>

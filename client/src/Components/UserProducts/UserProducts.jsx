@@ -1,77 +1,28 @@
 import React, { Component } from 'react';
 import products from '../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
-import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
-import { GridList, GridTile } from 'material-ui/GridList';
-import { List, ListItem } from 'material-ui/List';
-import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
+import './UserProducts.css';
 
 
-const productDetailStyles = {
-    h1: {
-        color: 'white',
-    },
 
-    purchaseButton: {
-        backgroundColor: 'white',
-        marginTop: '30px',
-        width: "30%",
-        height: '50px'
-    },
 
-    wrapper: {
-        backgroundColor: 'black',
-        textAlign: 'center',
-    },
-
-    paperWrapper: {
-        display: 'inline-block',
-        backgroundColor: 'black',
-        width: '500px',
-        height: '300px',
-    },
-    grid: {
-        div: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-        },
-
-        gridList: {
-            width: '80%',
-            height: '80%',
-            overflowY: 'auto',
-        },
-
-        gridTile: {
-
-        }
-    }
-
-};
 class userProduct extends Component {
 
     state = {
-        id: "",
-        productName: "",
-        serialNumber: "",
-        category: "",
-        price: "",
-        condition: "",
-        warranty: "",
-        packaging: "",
-        productDescription: "",
-        userUploadImage1: "",
-        userUploadImage2: ""
+        userProducts: {
+            id: "",
+            productName: "",
+            serialNumber: "",
+            category: "",
+            price: "",
+            condition: "",
+            warranty: "",
+            packaging: "",
+            productDescription: "",
+            userUploadImage1: "",
+            userUploadImage2: ""
+        }
 
     }
 
@@ -103,36 +54,34 @@ class userProduct extends Component {
     //{this.state.name}
     render() {
         return (
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {dataPoints.map((col) => (
-                            <TableHeaderColumn
-                                key={col.id}
-                            >
-                            </TableHeaderColumn> ,
-                            <TableHeaderColumn
-                                key={col.productName}
-                            >
-                            </TableHeaderColumn> ,
-                            <TableHeaderColumn
-                                key={col.productSold}
-                            >
-                            </TableHeaderColumn>
-                        ))}
-                    </TableRow>
-                </TableHeader>
-            </Table>
+            <div className='CheckOutPageDiv'>
+                <div>
+                    <h1>User Products</h1>
+                </div>
+                {this.state.userProducts.map((card, id) => (
+                    <Paper
+                        zDepth={5}
+                        className='ProductPaper'
+                        key={card.id}
+                    >
+                        <div className='ImageDiv'>
+                            <img className='ProductImage' src={card.userUploadImage1} alt="image1" />
+                        </div>
+                        <div className='ProductDescription'>
+                            Description: {card.title}
+                        </div>
+                        <FlatButton label='Remove'
+                            onClick={() => this.deleteProductHandler(id)} />
+                    </Paper>
+                ))}
+                <div className='PlaceOrderDiv'>
+                    <FlatButton style={{ backgroundColor: 'blue' }} label='Place Order' />
+                </div>
 
-        );
-
+            </div>
+        )
     }
 }
-
-
-
-
-
 
 
 export default productDetail;
