@@ -22,6 +22,7 @@ class Login extends Component {
             email: '',
             pass: '',
             doesntMatch: false,
+            noUser:false
 
         }
     }
@@ -55,7 +56,12 @@ class Login extends Component {
             .then(function (res) {
                 if (res.data === 'noMatch') {
                     self.setState({ doesntMatch: true });
-                } else {
+                    self.setState({ noUser: false });
+                }else if(res.data === 'noUser'){
+                    self.setState({ noUser: true });
+                    self.setState({ doesntMatch: false });
+                } 
+                else {
                     console.log(res)
                     sessionStorage.setItem('auth', res.data)
                     self.handleClose()
@@ -112,8 +118,10 @@ class Login extends Component {
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                     >
+                    {this.state.noUser &&
+                    <p className='noMatch'>There is no account associated with that email</p>}
                         {this.state.doesntMatch &&
-                            <h1  className='noMatch' >Email And Password does not match. Please try again.</h1>
+                            <p  className='noMatch' >Email And Password does not match. Please try again.</p>
                         }
 
                         <TextField
