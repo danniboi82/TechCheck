@@ -10,16 +10,11 @@ import MainPage from './Components/MainPage/MainPage';
 import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
-
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
-import userProfile from './Components/userProfile/userProfile';
-import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index';
-import UserProducts from './Components/UserProducts/UserProducts';
+import { userProfile, userProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
 
-
-import {userProfile,userProducts,verification,reset, resetPassword, emailSent,confirmation} from './Components/usersPages/index'
 
 class App extends Component {
     state = {
@@ -53,52 +48,52 @@ class App extends Component {
         /* below Routed.... components are created to pass down props to routed component */
         const RoutedMainPage = (props) => {
             return (
-                <MainPage component={ MainPage }
-                cartitem={ this.state.cartItem }
-                cartamount={ this.state.cartAmount }
-                cartarray={ this.state.cartarray }
-                onClick={ this.handleClick } {...props }
-            />
+                <MainPage component={MainPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                    onClick={this.handleClick} {...props }
+                />
             );
         }
 
         const RoutedProductDetailPage = (props) => {
             return (
-                <ProductDetailPage 
-                component={ ProductDetailPage }
-                cartitem={ this.state.cartItem }
-                cartamount={ this.state.cartAmount }
-                cartarray={ this.state.cartarray }
-                onClick={ this.handleClick } {...props }
-            />
+                <ProductDetailPage
+                    component={ProductDetailPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                    onClick={this.handleClick} {...props }
+                />
             );
         }
         return (
             <BrowserRouter>
-                <MuiThemeProvider muiTheme={ getMuiTheme(darkBaseTheme) } >
+                <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
 
-                        <Navbar cartitem={ this.state.cartItem }
-                            cartamount={ this.state.cartAmount }
-                            cartarray={ this.state.cartarray } />
+                        <Navbar cartitem={this.state.cartItem}
+                            cartamount={this.state.cartAmount}
+                            cartarray={this.state.cartarray} />
 
                         <Switch>
 
-                            <Route exact path='/' render={ RoutedMainPage } />
+                            <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' component={CheckOutPage} />
-                            <Route path='/product_detail' render={ RoutedProductDetailPage } />
+                            <Route path='/product_detail' render={RoutedProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product' component={SellProduct} />
                             <Route exact path='/api/users/profile/:id' component={userProfile} />
-                            <Route path='/acount/recovery' component={reset}/>
-                            <Route path ='/sent' component={emailSent}/>
-                            <Route path='/reset/:id' component={resetPassword}/>
-                            <Route path='/confirmation/reset' component={confirmation}/>
-<Route path='/user/products/:id'component={userProducts}/>
+                            <Route path='/acount/recovery' component={reset} />
+                            <Route path='/sent' component={emailSent} />
+                            <Route path='/reset/:id' component={resetPassword} />
+                            <Route path='/confirmation/reset' component={confirmation} />
+                            <Route path='/user/products/:id' component={userProducts} />
                         </Switch>
-                        <Footer/>
+                        <Footer />
                     </div>
                 </MuiThemeProvider>
             </BrowserRouter>

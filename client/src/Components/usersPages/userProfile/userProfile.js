@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import users from '../../Data/users-api'
 //import { Route } from 'react-router-dom';
 import {  Link } from 'react-router-dom';
+import Paper from 'material-ui/Paper';
+import './userProfile';
+
 class verify extends Component {
   
   state = {
@@ -34,11 +37,12 @@ class verify extends Component {
   //{this.state.name}
   render() {
     return (
-      <div className="profile">
+      <div className="Profile">
+  
         <h1> {this.state.name ||'hi'}'s Profile Page</h1>
-{console.log(this.state.name)}
-        <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}` ||'https://www.eharmony.com/dating-advice/wp-content/uploads/images/sexy-smiler.jpg'}  alt=""/>
-
+        <Paper circle={true} style={{width: 300, height: 300}}>
+        <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}`} style={{width: 300, height: 300}}  alt=""/>
+        </Paper>
         User Id:<Link to='/profile'>{this.state.userId}</Link>
 
       </div>
