@@ -126,7 +126,9 @@ createdAt:fullDate
         email: req.body.email
       }
     }).then(function (userSign) {
-      
+      if(userSign == null){
+        res.send('noUser')
+      }
          //if the database enycrpted password and non enypyted email from the database 
        //match create a JWT token and send it to the front end for storage
       bcrypt.compare(req.body.pass, userSign.dataValues.password).then(function (pass) {
