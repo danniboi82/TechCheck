@@ -10,13 +10,13 @@ import MainPage from './Components/MainPage/MainPage';
 import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
-import verification from './Components/verification/verification';
+
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 
-import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index'
-import {userProfile,userProducts} from './Components/usersPages/index'
+
+import {userProfile,userProducts,verification,reset, resetPassword, emailSent,confirmation} from './Components/usersPages/index'
 
 class App extends Component {
     state = {

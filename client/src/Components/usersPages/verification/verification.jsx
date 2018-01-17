@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import users from '../Data/users-api'
+import users from '../../Data/users-api'
 import { Route } from 'react-router-dom';
 
 class verify extends Component{
