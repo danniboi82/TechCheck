@@ -6,6 +6,7 @@ import db from"../models"
 // Defining methods for the booksController
 const controller = {
   userProducts: (req, res) => {
+    console.log('hi')
     console.log(req.params)
     db.Products.findAll({
         where: {

@@ -10,7 +10,7 @@ import MainPage from './Components/MainPage/MainPage';
 import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
-import verification from './Components/verification/verification';
+
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
@@ -18,6 +18,8 @@ import userProfile from './Components/userProfile/userProfile';
 import {reset, resetPassword, emailSent,confirmation}from './Components/recover/index';
 import UserProducts from './Components/UserProducts/UserProducts';
 
+
+import {userProfile,userProducts,verification,reset, resetPassword, emailSent,confirmation} from './Components/usersPages/index'
 
 class App extends Component {
     state = {
@@ -94,8 +96,7 @@ class App extends Component {
                             <Route path ='/sent' component={emailSent}/>
                             <Route path='/reset/:id' component={resetPassword}/>
                             <Route path='/confirmation/reset' component={confirmation}/>
-                            <Route path='/user_products' component={UserProducts}/>
-
+<Route path='/user/products/:id'component={userProducts}/>
                         </Switch>
                         <Footer/>
                     </div>

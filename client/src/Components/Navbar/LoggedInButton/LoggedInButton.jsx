@@ -17,7 +17,7 @@ const loggedIn = (props) => (
       anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
     >{console.log(props)}
       <MenuItem>
-        <Avatar
+       <a href={`/api/users/profile/${props.userData.userId}`}> <Avatar
           src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
           size={30}
           style={{display: 'in-line', margin: 'auto'}}
