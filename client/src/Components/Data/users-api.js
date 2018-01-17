@@ -1,5 +1,5 @@
 import axios from "axios";
-import userProfile from "../userProfile/userProfile";
+
 const usersApi = {
   getAll: () => axios.get('/api/users').then(results => results.data),
   getById: id => axios.get(`/api/users/${id}`).then(results => results.data),
