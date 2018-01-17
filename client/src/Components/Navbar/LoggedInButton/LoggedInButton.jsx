@@ -17,13 +17,13 @@ const loggedIn = (props) => (
       anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
     >{console.log(props)}
       <MenuItem>
-        <Avatar
+       <a href={`/api/users/profile/${props.userData.userId}`}> <Avatar
           src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
           size={30}
           style={{display: 'in-line', margin: 'auto'}}
-        /> {props.userData.firstName +' '+props.userData.lastName}
+        /> {props.userData.firstName +' '+props.userData.lastName}</a>
       </MenuItem>
-      <MenuItem primaryText="My Products" />
+     <a href={`/user/products/${props.userData.userId} `}> <MenuItem primaryText="My Products" /></a>
       {/* User props from NavBar logOut={this.logOutHandler} */}
       <MenuItem primaryText="Sign out" onClick={props.logOut}/>
     </IconMenu>

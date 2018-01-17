@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import users from '../Data/users-api'
+import users from '../../Data/users-api'
 //import { Route } from 'react-router-dom';
 import './userProfile.scss'
 import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
@@ -36,6 +36,7 @@ console.log(dataPoints)
       })
     });
     const s3buck ='https://s3-us-west-1.amazonaws.com/techcheckbucket/' +`${this.state.profilePic}`
+    
   }
   
   //{this.state.name}
@@ -43,7 +44,7 @@ console.log(dataPoints)
     return (
       <div className="profile">
         <h1> {this.state.name ||'hi'}'s Profile Page</h1>
-
+{console.log(this.state.name)}
         <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}` ||'https://www.eharmony.com/dating-advice/wp-content/uploads/images/sexy-smiler.jpg'}  alt=""/>
 
         User Id:<Link to='/profile'>{this.state.userId}</Link>

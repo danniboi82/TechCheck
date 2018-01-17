@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import products from '../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
 import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
@@ -14,7 +13,8 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-
+import products from '../../Data/products-api'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const productDetailStyles = {
     h1: {
@@ -61,41 +61,47 @@ const productDetailStyles = {
 class userProduct extends Component {
 
     state = {
-        id: "",
-        productName: "",
-        serialNumber: "",
-        category: "",
-        price: "",
-        condition: "",
-        warranty: "",
-        packaging: "",
-        productDescription: "",
-        userUploadImage1: "",
-        userUploadImage2: ""
+        userProducts:[],
+        // id: "",
+        // productName: "",
+        // serialNumber: "",
+        // category: "",
+        // price: "",
+        // condition: "",
+        // warranty: "",
+        // packaging: "",
+        // productDescription: "",
+        // userUploadImage1: "",
+        // userUploadImage2: ""
 
     }
 
     componentDidMount = () => {
-
+let products=[];
         console.log('this is my test')
 
         console.log(this.props.match.params.id)
         users.userProfile(this.props.match.params.id).then(dataPoints => {
             console.log(dataPoints)
-            this.setState({
-                id: dataPoints.data.id,
-                productName: dataPoints.data.productName,
-                serialNumber: dataPoints.data.serialNumber,
-                category: dataPoints.data.category,
-                price: dataPoints.data.price,
-                condition: dataPoints.data.condition,
-                warranty: dataPoints.data.warranty,
-                packaging: dataPoints.data.packaging,
-                productDescription: dataPoints.data.productDescription,
-                userUploadImage1: dataPoints.data.userUploadImage1,
-                userUploadImage2: dataPoints.data.userUploadImage2
-            })
+            for(let i=0;i<dataPoints.data.length;i++){
+             
+             var userProducts= {id: dataPoints.data.id,
+                       productName: dataPoints.data.productName,
+                       serialNumber: dataPoints.data.serialNumber,
+                       category: dataPoints.data.category,
+                       price: dataPoints.data.price,
+                       condition: dataPoints.data.condition,
+                       warranty: dataPoints.data.warranty,
+                       packaging: dataPoints.data.packaging,
+                       productDescription: dataPoints.data.productDescription,
+                       userUploadImage1: dataPoints.data.userUploadImage1,
+                       userUploadImage2: dataPoints.data.userUploadImage2}
+          
+            }
+            products.push(userProducts)
+            
         });
+        console.log(this.userProducts)
         const s3bucket = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage1}`
         const s3bucket2 = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage2}`
     }
@@ -103,28 +109,31 @@ class userProduct extends Component {
     //{this.state.name}
     render() {
         return (
+<MuiThemeProvider>
+           
             <Table>
                 <TableHeader>
                     <TableRow>
-                        {dataPoints.map((col) => (
+                        {this.userProducts.map((col) => (
                             <TableHeaderColumn
-                                key={col.id}
+                                key={col.userId}
+                              
+                            >{console.log(this.state.userProducts)}
+                            </TableHeaderColumn> ,
+                            <TableHeaderColumn
+                                key={col.userId}
                             >
                             </TableHeaderColumn> ,
                             <TableHeaderColumn
-                                key={col.productName}
-                            >
-                            </TableHeaderColumn> ,
-                            <TableHeaderColumn
-                                key={col.productSold}
+                                key={col.userId}
                             >
                             </TableHeaderColumn>
-                        ))}
+                        ))} }
                     </TableRow>
                 </TableHeader>
             </Table>
-
-        );
+            </MuiThemeProvider>
+       );
 
     }
 }
@@ -135,4 +144,4 @@ class userProduct extends Component {
 
 
 
-export default productDetail;
+export default userProduct;
