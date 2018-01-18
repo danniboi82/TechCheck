@@ -1,7 +1,6 @@
-import React, { Component, ReactDOM } from 'react';
+import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
 import logo from '../../../ic_shopping_cart_black_24px.svg';
 import {Link} from 'react-router-dom';
 
@@ -30,7 +29,6 @@ class CartModal extends Component {
             this.setState({ open: true });
         } else {
             this.setState({ open: false });
-            this.paypalwindow();
         }
     };
 
@@ -41,14 +39,11 @@ class CartModal extends Component {
         let newcartarray = this.state.cartarray.slice();
         let cartitemindex = newcartarray.indexOf(k);
         let cartamount = this.state.cartAmount - k.author;
-
         newcartarray.splice(cartitemindex, 1);
         let cartitem = this.state.cartItem - 1;
 
         this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
     };
-
-    paypalwindow = () => { window.open('https://www.sandbox.paypal.com/checkoutnow?version=4&locale.x=en_US&fundingSource=paypal&sessionID=7bf9930270_gaydunjwhiydg&buttonSessionID=6a9e07786e_gaydunjwhiydg&env=sandbox&logLevel=warn&uid=1010c3f084&token=PAY-0PF60705F53248615LJOBQCY&xcomponent=1#/checkout/login', 'sharer', 'toolbar=0,status=0,width=548,height=325') };
 
     render() {
 

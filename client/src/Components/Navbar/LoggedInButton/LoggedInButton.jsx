@@ -30,7 +30,7 @@ const loggedIn = (props) => (
       href={`/user/products/${props.userData.userId}`} />
     <MenuItem
       primaryText="Sign out"
-      onClick={props.logOut}
+      onClick={props.logout}
       href='/' />
   </IconMenu>
 );

@@ -6,8 +6,6 @@ import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 
 
-import {twillioAuth,accountSid} from '../../twillio'
-const client = require('twilio')(accountSid, twillioAuth);
 const secret = process.env.jwt_secret || jwtSecret;
 const saltRounds =10;
 const sengrido =process.env.sendgrid ||sendGridkey;
