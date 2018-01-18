@@ -7,8 +7,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import axios from "axios";
 import validator from 'validator';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
 // import FormErrors from '../../'
 import { FormErrors } from '../../';
 
