@@ -2,8 +2,42 @@ import React, { Component } from 'react';
 import products from '../../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+
 import './UserProducts.css';
 import { Link } from 'react-router-dom';
+
+import { GridList, GridTile } from 'material-ui/GridList';
+import { List, ListItem } from 'material-ui/List';
+import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
+import users from '../../Data/users-api'
+import products1 from '../../Data/products-api'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+const productDetailStyles = {
+    h1: {
+        color: 'white',
+    },
+
+    purchaseButton: {
+        backgroundColor: 'white',
+        marginTop: '30px',
+        width: "30%",
+        height: '50px'
+    },
+
+    wrapper: {
+        backgroundColor: 'black',
+        textAlign: 'center',
+    },
+
 
 
 
@@ -19,8 +53,10 @@ class userProducts extends Component {
 
         console.log('this is my test')
 
-        console.log(this.props)
-        products.userProfile(this.props.match.params.id).then(dataPoints => {
+
+        console.log(this.props.match.params.id)
+        products1.userProfile(this.props.match.params.id).then(dataPoints => {
+
             console.log(dataPoints)
         this.setState({
             userProducts: dataPoints.data

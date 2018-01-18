@@ -1,12 +1,16 @@
-import sendGridkey from '../../sendgrid.js'
+//import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-import jwtSecret from '../../jwtSecret'
+//import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
-const secret = process.env.jwt_secret || jwtSecret
+//||sendGridkey
+//|| jwtSecret
+//import {twillioAuth,accountSid} from '../../twillio'
+//const client = require('twilio')(accountSid, twillioAuth);
+const secret = process.env.jwt_secret 
 const saltRounds =10;
-const sengrido =process.env.sendgrid ||sendGridkey
+const sengrido =process.env.sendgrid 
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
@@ -120,13 +124,19 @@ createdAt:fullDate
       .catch(err => res.status(422).json(err));
   },
   signIn: function (req, res) {
+   
+
+   
+
     console.log(req.body)
     db.Users.findOne({
       where: {
         email: req.body.email
       }
     }).then(function (userSign) {
-      
+      if(userSign == null){
+        res.send('noUser')
+      }
          //if the database enycrpted password and non enypyted email from the database 
        //match create a JWT token and send it to the front end for storage
       bcrypt.compare(req.body.pass, userSign.dataValues.password).then(function (pass) {
@@ -235,16 +245,57 @@ else{
   })
     })
   },
-  update: function (req, res) {
-    db.Users.update({
-     active:false
-    }, {
-        where: {
-          email: req.params.email,
-          active: true
-        }
+  updateInfo: function (req, res) {
+    
+    db.Users.findOne({
+      where:{
+        id:req.params.id
+      }
+    }).then(user=>{
+
+let diffrentEmail=true
+function detectNewEmail ()  {
+  if(req.body.email != user.dataValues.email){
+         const name = user.dataValues.firstName + ' ' + user.dataValues.lastName
+          const msg = {
+            to: req.body.email,
+            from: 'TechCheck@donotreply.com',
+            subject: 'Reqister Your Email With TechChecks ',
+            text: 'click me ',
+             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +user.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
+          };
+  
+         // sgMail.send(msg);
+    diffrentEmail=false
+    return diffrentEmail
+    }else{
+      
+    }
+} 
+     diffrentEmail= detectNewEmail()
+   console.log(diffrentEmail)
+      db.Users.update({
+        email: req.body.email||user.dataValues.email,
+       
+        firstName: req.body.firstName||user.dataValues.firstName,
+        lastName: req.body.lastName || user.dataValues.lastName,
+        profilePic: req.body.profilePic||user.dataValues.profilePic,
+        phoneNumber: req.body.phoneNumber||user.dataValues.phoneNumber,
+        address: req.body.address||user.dataValues.address,
+        dateOfBirth: req.body.dateOfBirth||user.dataValues.dateOfBirth,
+        verified:diffrentEmail
+      }, {
+          where: {
+            id: req.params.id,
+            active: true
+          }
+        })
+        .then(changedUser =>{
+  res.send('j')
+    
+        })
       })
-      .then(dbModel => res.json(dbModel))
+
       .catch(err => res.status(422).json(err));
   },
  verification: function (req, res) {
@@ -310,10 +361,21 @@ console.log(req.params.id)
           .catch(err => res.status(422).json(err));
       },
       recovery: function (req, res) {
+        client.messages.create(
+          {
+            to: '+8184294897',
+            from: '+14243810089',
+            body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+          },
+          (err, message) => {
+            console.log(message.sid);
+          }
+        );
+
         console.log('hi')
-        console.log(req.body)
+        console.log(req.body.newpass)
         
-        bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+        bcrypt.hash(req.body.passswordConfirm, saltRounds, function (err, hash) {
         db.Users.update({
          password:hash
         }, {
