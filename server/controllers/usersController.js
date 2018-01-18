@@ -87,7 +87,12 @@ active:user.dataValues.active
       }
     })
       .then(dbModel => {
-        dbModel.dataValues.address
+
+        if(dbModel==null){
+          res.send('noUser')
+        }else{
+
+        
       function getDbDate () {
         const split=JSON.stringify(dbModel.dataValues.createdAt);
    const dbDate = split.split(':')
@@ -122,6 +127,7 @@ address: dbModel.dataValues.address
         //     message: 'Id not found.'
         //   });
       //  }
+      }
       })
       .catch(err => res.status(422).json(err));
   },
