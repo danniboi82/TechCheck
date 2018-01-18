@@ -4,6 +4,8 @@ import bcrypt from'bcrypt'
 import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
+import {twillioAuth,accountSid} from '../../twillio'
+const client = require('twilio')(accountSid, twillioAuth);
 const secret = process.env.jwt_secret || jwtSecret
 const saltRounds =10;
 const sengrido =process.env.sendgrid ||sendGridkey
@@ -120,6 +122,10 @@ createdAt:fullDate
       .catch(err => res.status(422).json(err));
   },
   signIn: function (req, res) {
+   
+
+   
+
     console.log(req.body)
     db.Users.findOne({
       where: {
@@ -353,6 +359,17 @@ console.log(req.params.id)
           .catch(err => res.status(422).json(err));
       },
       recovery: function (req, res) {
+        client.messages.create(
+          {
+            to: '+8184294897',
+            from: '+14243810089',
+            body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+          },
+          (err, message) => {
+            console.log(message.sid);
+          }
+        );
+        
         console.log('hi')
         console.log(req.body.newpass)
         
