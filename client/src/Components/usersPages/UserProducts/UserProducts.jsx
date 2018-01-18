@@ -4,20 +4,18 @@ import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 
 import './UserProducts.css';
-import { Link } from 'react-router-dom';
-
 import { GridList, GridTile } from 'material-ui/GridList';
 import { List, ListItem } from 'material-ui/List';
 import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
-import users from '../../Data/users-api'
+// import {
+//     Table,
+//     TableBody,
+//     TableHeader,
+//     TableHeaderColumn,
+//     TableRow,
+//     TableRowColumn,
+// } from 'material-ui/Table';
+
 import products1 from '../../Data/products-api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -38,7 +36,7 @@ const productDetailStyles = {
         textAlign: 'center',
     },
 
-
+}
 
 
 
@@ -63,8 +61,7 @@ class userProducts extends Component {
         })
                        
         });
-        const s3bucket = `https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.userUploadImage1}`
-        const s3bucket2 = `https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.userUploadImage2}`
+     
     }
 
     deleteProductHandler = (id) => {
