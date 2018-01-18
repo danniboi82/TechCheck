@@ -81,7 +81,7 @@ let products=[];
         console.log('this is my test')
 
         console.log(this.props.match.params.id)
-        users.userProfile(this.props.match.params.id).then(dataPoints => {
+        products.userProfile(this.props.match.params.id).then(dataPoints => {
             console.log(dataPoints)
             for(let i=0;i<dataPoints.data.length;i++){
              

@@ -55,11 +55,11 @@ class Login extends Component {
         })
             .then(function (res) {
                 if (res.data === 'noMatch') {
-                    self.setState({ doesntMatch: true });
-                    self.setState({ noUser: false });
+                    self.setState({ doesntMatch: true, noUser: false });
+            
                 }else if(res.data === 'noUser'){
-                    self.setState({ noUser: true });
-                    self.setState({ doesntMatch: false });
+                    self.setState({ noUser: true ,doesntMatch: false});
+                  
                 } 
                 else {
                     console.log(res)
