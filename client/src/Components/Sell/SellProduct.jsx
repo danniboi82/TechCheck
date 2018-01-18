@@ -198,7 +198,7 @@ class addProduct extends React.Component {
                             name="productDescription"
                             hintText="Other Details or PC/Laptop Specifications"
                             multiLine={true}
-                            underLineShow={true}
+                            underlineShow={true}
                             rows={1}
                             rowsMax={4}
                             onChange={this.onChange}

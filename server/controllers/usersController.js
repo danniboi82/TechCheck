@@ -26,7 +26,7 @@ const controller = {
       .catch(err => res.status(422).json(err));
   },
   authUser: (req, res) => {
-    //console.log(req.body)
+    // console.log(req.body)
     let authenticateUser;
      jwt.verify(req.body.userToken, secret, function(err, decoded) {      
      if (err) {

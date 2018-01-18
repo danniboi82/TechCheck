@@ -1,0 +1,20 @@
+.Profile {
+    color: green;
+    overflow: auto;
+    text-align: center;
+    height: 100%;
+}
+
+.Paper{
+    height: 90%;
+    max-width: 80%;
+    display: flex;
+    color: black;
+    overflow: auto;
+    margin: 15px auto;
+}
+
+.UserInfoDiv {
+    padding: 25px 0; 
+}
+

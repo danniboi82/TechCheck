@@ -77,14 +77,14 @@ const productDetail = (props) => {
                     cellHeight={300}
                     style={productDetailStyles.grid.gridList}
                     cols={3}
-                    padding={5}
+                    padding={25}
                 >
                     {dummyData.map((tile) => (
                         <GridTile
                             style={productDetailStyles.grid.gridTile}
                             key={tile.img}
                         >
-                            <img src={tile.img} alt='product image' />
+                            <img src={tile.img} alt='productimage' />
                         </GridTile>
                     ))}
                 </GridList>
