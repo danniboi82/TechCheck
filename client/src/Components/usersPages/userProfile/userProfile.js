@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import users from '../../Data/users-api'
 //import { Route } from 'react-router-dom';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Paper from 'material-ui/Paper';
-import './userProfile';
+import './userProfile.css';
+import Avatar from 'material-ui/Avatar';
 
 class verify extends Component {
-  
+
   state = {
     name: "",
     profilePic: "",
@@ -16,7 +17,7 @@ class verify extends Component {
     memberSince: "",
     verified: ""
   }
-  
+
   componentDidMount = () => {
     console.log('this is my test')
     console.log(this.props.match.params.id)
@@ -27,23 +28,26 @@ class verify extends Component {
         profilePic: dataPoints.data.profilePic,
         userId: dataPoints.data.id,
         email: dataPoints.data.email,
-        active: dataPoints.data.active
+        active: dataPoints.data.active,
+        address: dataPoints.data.address,
       })
     });
-    const s3buck ='https://s3-us-west-1.amazonaws.com/techcheckbucket/' +`${this.state.profilePic}`
-    
+    const s3buck = `https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}`
   }
-  
-  //{this.state.name}
+
   render() {
     return (
       <div className="Profile">
-  
-        <h1> {this.state.name ||'hi'}'s Profile Page</h1>
-        <Paper circle={true} style={{width: 300, height: 300}}>
-        <img id="profilePic" src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}`} style={{width: 300, height: 300}}  alt=""/>
+        <Paper >
+          <Avatar size={150} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic}`} />
+
+
+          <div className='UserInfo'>
+            <div className='UserInfoDiv'>Name : {this.state.name}</div>
+            <div className='UserInfoDiv'>Email : {this.state.email}</div>
+            <div className='UserInfoDiv'>Address : {this.state.address}</div>
+          </div>
         </Paper>
-        User Id:<Link to='/profile'>{this.state.userId}</Link>
 
       </div>
     )
