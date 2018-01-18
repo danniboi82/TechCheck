@@ -43,7 +43,8 @@ const productDetailStyles = {
 class userProducts extends Component {
 
     state = {
-        userProducts: []
+        userProducts: [],
+        userId:""
 
     }
 
@@ -57,7 +58,8 @@ class userProducts extends Component {
 
             console.log(dataPoints)
         this.setState({
-            userProducts: dataPoints.data
+            userProducts: dataPoints.data,
+            userId:this.props.match.params.id
         })
                        
         });
@@ -98,7 +100,7 @@ class userProducts extends Component {
                     </Paper>
                 ))}
                 <div className='AddProductDiv'>
-                    <Link to='/sell_product'><FlatButton style={{ backgroundColor: 'blue' }} label='Add Product' /></Link>
+                    <Link to={`/sell_product/${this.state.userId}`}><FlatButton style={{ backgroundColor: 'blue' }} label='Add Product' /></Link>
                 </div>
 
             </div>
