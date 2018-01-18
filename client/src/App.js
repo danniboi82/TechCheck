@@ -85,7 +85,7 @@ class App extends Component {
                             <Route path='/product_detail' render={RoutedProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
-                            <Route path='/sell_product' component={SellProduct} />
+                            <Route path='/sell_product/:id' component={SellProduct} />
                             <Route exact path='/api/users/profile/:id' component={userProfile} />
                             <Route path='/acount/recovery' component={reset} />
                             <Route path='/sent' component={emailSent} />
