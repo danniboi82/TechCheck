@@ -55,7 +55,7 @@ class addProduct extends React.Component {
         super(props);
 
         this.state = {
-
+            userId: "",
             productName: "",
             serialNumber: "",
             category: "",
@@ -68,6 +68,11 @@ class addProduct extends React.Component {
             userUploadImage2: ""
         }
 
+    }
+    componentDidMount=()=>{
+        this.setState({
+            userId:this.props.match.params.id
+        })
     }
     onChange = (e) => {
         this.setState({
@@ -98,7 +103,7 @@ class addProduct extends React.Component {
         e.preventDefault();
 
         const {
-
+            userId,
             productName,
             serialNumber,
             category,
@@ -111,7 +116,7 @@ class addProduct extends React.Component {
             userUploadImage2
     } = this.state;
 
-        axios.post('/api/products', { productName, serialNumber, category, price, productDescription, condition, warranty, packaging, userUploadImage1, userUploadImage2 })
+        axios.post('/api/products', {userId, productName, serialNumber, category, price, productDescription, condition, warranty, packaging, userUploadImage1, userUploadImage2 })
             .then((result) => {
                 if (result == 'already') {
                     alert('There is already an account with that email addres,please try a diffrent one')
@@ -130,7 +135,7 @@ class addProduct extends React.Component {
 
                 //       })
             })
-            window.location='/'
+        window.location = `/user/products/${this.state.userId}`
     }
 
     handleChange = (event, index, category) => this.setState({ category });
@@ -198,7 +203,7 @@ class addProduct extends React.Component {
                             name="productDescription"
                             hintText="Other Details or PC/Laptop Specifications"
                             multiLine={true}
-                            underLineShow={true}
+                            underlineShow={true}
                             rows={1}
                             rowsMax={4}
                             onChange={this.onChange}

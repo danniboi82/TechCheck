@@ -1,0 +1,38 @@
+.CheckOutPageDiv{
+    border : 101px solid bronze;
+    color: red;
+    display: inline;
+    overflow: auto;
+    text-align: center;
+}
+
+.ProductPaper{
+    height: 200;
+    max-width: 80%;
+    display: flex;
+    color: black;
+    overflow: auto;
+    margin: 15px auto;
+    text-align: left;
+}
+
+.ImageDiv{
+    height: 95%;
+    width: 30%;
+    border: 1px solid red;
+}
+
+.ProductImage{
+    height: 100%;
+    width: 100%;
+}
+
+.ProductDescription{
+    padding-left: 30px;
+    width: 65%;
+    border: 1px solid gold;
+}
+
+.PlaceOrderDiv{
+    padding: 50px 0;
+}

@@ -4,11 +4,13 @@ import bcrypt from'bcrypt'
 import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
+
+
 //import {twillioAuth,accountSid} from '../../twillio'
 //const client = require('twilio')(accountSid, twillioAuth);
-const secret = process.env.jwt_secret || jwtSecret
+const secret = process.env.jwt_secret || jwtSecret;
 const saltRounds =10;
-const sengrido =process.env.sendgrid ||sendGridkey
+const sengrido =process.env.sendgrid ||sendGridkey;
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
@@ -24,7 +26,7 @@ const controller = {
       .catch(err => res.status(422).json(err));
   },
   authUser: (req, res) => {
-    //console.log(req.body)
+    // console.log(req.body)
     let authenticateUser;
      jwt.verify(req.body.userToken, secret, function(err, decoded) {      
      if (err) {
@@ -85,7 +87,7 @@ active:user.dataValues.active
       }
     })
       .then(dbModel => {
-        
+        dbModel.dataValues.address
       function getDbDate () {
         const split=JSON.stringify(dbModel.dataValues.createdAt);
    const dbDate = split.split(':')
@@ -93,9 +95,10 @@ active:user.dataValues.active
   const dayCreated =splitDate[2].split('T')
   const removed=splitDate[0].split('"')
  
- const dates=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
+ const dates=splitDate[1]+'-'+dayCreated[0]+'-'+removed[1]
 return dates
        }
+
       const fullDate= getDbDate()
     const userProfilePage={
 id:dbModel.dataValues.id,
@@ -106,7 +109,8 @@ profilePic:dbModel.dataValues.profilePic,
 phoneNumber:dbModel.dataValues.phoneNumber,
 verified:dbModel.dataValues.verified,
 active:dbModel.dataValues.active,
-createdAt:fullDate
+createdAt:fullDate,
+address: dbModel.dataValues.address
 
         }
         res.send(userProfilePage)
@@ -359,16 +363,16 @@ console.log(req.params.id)
           .catch(err => res.status(422).json(err));
       },
       recovery: function (req, res) {
-        client.messages.create(
-          {
-            to: '+8184294897',
-            from: '+14243810089',
-            body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-          },
-          (err, message) => {
-            console.log(message.sid);
-          }
-        );
+        // client.messages.create(
+        //   {
+        //     to: '+8184294897',
+        //     from: '+14243810089',
+        //     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+        //   },
+        //   (err, message) => {
+        //     console.log(message.sid);
+        //   }
+        // );
 
         console.log('hi')
         console.log(req.body.newpass)

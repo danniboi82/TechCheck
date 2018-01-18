@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-
+import products from '../../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
-import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
+
+import './UserProducts.css';
 import { GridList, GridTile } from 'material-ui/GridList';
 import { List, ListItem } from 'material-ui/List';
 import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
-import users from '../../Data/users-api'
+// import {
+//     Table,
+//     TableBody,
+//     TableHeader,
+//     TableHeaderColumn,
+//     TableRow,
+//     TableRowColumn,
+// } from 'material-ui/Table';
+
 import products1 from '../../Data/products-api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -35,115 +36,77 @@ const productDetailStyles = {
         textAlign: 'center',
     },
 
-    paperWrapper: {
-        display: 'inline-block',
-        backgroundColor: 'black',
-        width: '500px',
-        height: '300px',
-    },
-    grid: {
-        div: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-        },
-
-        gridList: {
-            width: '80%',
-            height: '80%',
-            overflowY: 'auto',
-        },
-
-        gridTile: {
-
-        }
-    }
-
-};
-class userProduct extends Component {
-
-    state = {
-        userProducts:[],
-        // id: "",
-        // productName: "",
-        // serialNumber: "",
-        // category: "",
-        // price: "",
-        // condition: "",
-        // warranty: "",
-        // packaging: "",
-        // productDescription: "",
-        // userUploadImage1: "",
-        // userUploadImage2: ""
-
-    }
-
-    componentDidMount = () => {
-let products=[];
-        console.log('this is my test')
-
-        console.log(this.props.match.params.id)
-        products1.userProfile(this.props.match.params.id).then(dataPoints => {
-            console.log(dataPoints)
-            for(let i=0;i<dataPoints.data.length;i++){
-             
-             var userProducts= {id: dataPoints.data.id,
-                       productName: dataPoints.data.productName,
-                       serialNumber: dataPoints.data.serialNumber,
-                       category: dataPoints.data.category,
-                       price: dataPoints.data.price,
-                       condition: dataPoints.data.condition,
-                       warranty: dataPoints.data.warranty,
-                       packaging: dataPoints.data.packaging,
-                       productDescription: dataPoints.data.productDescription,
-                       userUploadImage1: dataPoints.data.userUploadImage1,
-                       userUploadImage2: dataPoints.data.userUploadImage2}
-          
-            }
-            products.push(userProducts)
-            
-        });
-        console.log(this.userProducts)
-        const s3bucket = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage1}`
-        const s3bucket2 = 'https://s3-us-west-1.amazonaws.com/techcheckbucket/' + `${this.state.userUploadImage2}`
-    }
-
-    //{this.state.name}
-    render() {
-        return (
-<MuiThemeProvider>
-           
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        {/* {this.userProducts.map((col) => ( */}
-                            <TableHeaderColumn
-                                key={1}
-                               
-                            >{console.log(this.state.userProducts)}
-                            </TableHeaderColumn> ,
-                            <TableHeaderColumn
-                                key={1}
-                            >
-                            </TableHeaderColumn> ,
-                            <TableHeaderColumn
-                                key={1}
-                            >
-                            </TableHeaderColumn>
-                        {/* ))} } */}
-                    </TableRow>
-                </TableHeader>
-            </Table>
-            </MuiThemeProvider>
-       );
-
-    }
 }
 
 
 
+class userProducts extends Component {
+
+    state = {
+        userProducts: [],
+        userId:""
+
+    }
+
+    componentDidMount = () => {
+
+        console.log('this is my test')
 
 
+        console.log(this.props.match.params.id)
+        products1.userProfile(this.props.match.params.id).then(dataPoints => {
+
+            console.log(dataPoints)
+        this.setState({
+            userProducts: dataPoints.data,
+            userId:this.props.match.params.id
+        })
+                       
+        });
+     
+    }
+
+    deleteProductHandler = (id) => {
+        const ogProductList = this.state.userProducts;
+        ogProductList.splice(id, 1);
+        const updatedProductList = ogProductList;
+        this.setState({
+            userProducts: updatedProductList
+        })
+        console.log(this.state.userProducts);
+    }
+
+    render() {
+        return (
+            <div className='CheckOutPageDiv'>
+                <div>
+                    <h1>User Products</h1>
+                </div>
+                {console.log('HELLO', this.state.userProducts)}
+                {this.state.userProducts.map((card, id) => (
+                    <Paper
+                        zDepth={5}
+                        className='ProductPaper'
+                        key={card.id}
+                    >
+                        <div className='ImageDiv'>
+                            <img className='ProductImage' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.userUploadImage1}`} alt="image1" />
+                        </div>
+                        <div className='ProductDescription'>
+                            Description: {card.productName}
+                        </div>
+                        <FlatButton label='Remove'
+                            onClick={() => this.deleteProductHandler(id)} />
+                    </Paper>
+                ))}
+                <div className='AddProductDiv'>
+                    <Link to={`/sell_product/${this.state.userId}`}><FlatButton style={{ backgroundColor: 'blue' }} label='Add Product' /></Link>
+                </div>
+
+            </div>
+        )
+    }
+}
 
 
-export default userProduct;
+export default userProducts;

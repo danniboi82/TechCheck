@@ -9,9 +9,10 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    width: '100%',
   },
   gridList: {
-    width: '100%',
+    width: '90%',
     height: '100%',
     overflowY: 'auto',
   },
@@ -72,12 +73,14 @@ const dummyData = [
  */
 const productCard = () => (
   <div style={styles.root}>
+   <Subheader style={styles.subheader}>Search Results</Subheader>
     <GridList
       cellHeight={180}
       style={styles.gridList}
       cols={4}
+      padding={10}
     >
-      <Subheader style={styles.subheader}>Search Results</Subheader>
+     
       {dummyData.map((tile) => (
         <GridTile
           key={tile.img}
