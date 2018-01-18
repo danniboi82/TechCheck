@@ -130,6 +130,7 @@ class addProduct extends React.Component {
 
                 //       })
             })
+            window.location='/'
     }
 
     handleChange = (event, index, category) => this.setState({ category });
