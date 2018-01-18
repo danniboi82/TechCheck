@@ -243,6 +243,7 @@ this.setState({
 
                 }
             })
+            window.location='/'
     }
     render() {
         return (
