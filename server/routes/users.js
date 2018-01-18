@@ -1,14 +1,17 @@
 import express from "express";
 import users from "../controllers/usersController"
-import s3Key from '../../awskey'
-import s3Secret from '../../awssecret'
 import aws from 'aws-sdk'
 import multer from 'multer'
 import multerS3 from 'multer-s3'
+
+//import s3Key from '../../awskey'
+//import s3Secret from '../../awssecret'
+//||s3Key
+//||s3Secret
 const router = express.Router();
 aws.config.update({
-    accessKeyId:process.env.s3_key||s3Key,
-    secretAccessKey: process.env.s3_secret||s3Secret
+    accessKeyId:process.env.s3_key,
+    secretAccessKey: process.env.s3_secret
   });
   const s3 = new aws.S3();
   const upload = multer({
