@@ -77,26 +77,26 @@ class Navbar extends Component {
     this.setState({ userInput: event.target.value })
   }
 
-  handleClick = (i, j) => {
+  // handleClick = (i, j) => {
 
-    let cartitem = this.state.cartItem + 1;
-    let cartamount = this.state.cartAmount + i;
-    let newcartarray = this.state.cartarray.concat(j);
-    this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-    alert('Item ' + j.title + ' added to shopping cart!')
-  };
+  //   let cartitem = this.state.cartItem + 1;
+  //   let cartamount = this.state.cartAmount + i;
+  //   let newcartarray = this.state.cartarray.concat(j);
+  //   this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
+  //   alert('Item ' + j.title + ' added to shopping cart!')
+  // };
 
-  handleDelete = (k) => {
+  // handleDelete = (k) => {
 
-    let newcartarray = this.state.cartarray.slice();
-    let cartitemindex = newcartarray.indexOf(k);
-    let cartamount = this.state.cartAmount - k.author;
-    newcartarray.splice(cartitemindex, 1);
-    let cartitem = this.state.cartItem - 1;
+  //   let newcartarray = this.state.cartarray.slice();
+  //   let cartitemindex = newcartarray.indexOf(k);
+  //   let cartamount = this.state.cartAmount - k.author;
+  //   newcartarray.splice(cartitemindex, 1);
+  //   let cartitem = this.state.cartItem - 1;
 
 
-    this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
-  };
+  //   this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
+  // };
 
   render() {
 
@@ -115,13 +115,9 @@ class Navbar extends Component {
 
           iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logOut={this.logOutHandler} /> : <LoginButton />}
         >
-          <br />Cart Items: {this.props.cartitem}<br />Cart Total: ${this.props.cartamount}
-          <br />
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}
           />
-
-
         </AppBar>
 
         <div className='routeDiv'>

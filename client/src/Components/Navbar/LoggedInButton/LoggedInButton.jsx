@@ -18,10 +18,11 @@ const loggedIn = (props) => (
   >{console.log(props)}
     <MenuItem href={`/api/users/profile/${props.userData.userId}`}
     >
+      {props.userData.firstName + ' ' + props.userData.lastName}
       <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
         size={30}
-        style={{ display: 'in-line', margin: 'auto' }}
-      /> {props.userData.firstName + ' ' + props.userData.lastName}
+        style={{ display: 'in-line', margin: 'auto', position: 'relative', left: '16px', top: '7px' }}
+      />
     </MenuItem>
 
 
@@ -30,7 +31,7 @@ const loggedIn = (props) => (
     <MenuItem
       primaryText="Sign out"
       onClick={props.logOut}
-      href='/'/>
+      href='/' />
   </IconMenu>
 );
 

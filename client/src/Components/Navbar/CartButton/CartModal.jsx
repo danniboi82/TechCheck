@@ -80,7 +80,7 @@ class CartModal extends Component {
             <div>
                 <div>
                     <FlatButton {...this.props} title='cart' style={style} onClick={this.handleOpen} >
-                        <img src={logo} alt="shopping cart" />
+                        <img src={logo} alt="shopping cart" /> <span style={{position: 'relative', bottom: '11px', left: '-22px', color: 'white'}}> {this.props.cartitem}</span> 
                     </FlatButton>
                 </div>
                 <div>
