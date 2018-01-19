@@ -24,8 +24,10 @@ class verify extends Component {
     createdOn: "",
     phoneNumber: "",
     edit: false,
-    noUser: false
+    noUser: false,
+    
   }
+ 
   changedToEdit = () => {
     this.setState({
       edit: true
@@ -37,14 +39,37 @@ class verify extends Component {
     });
  
 }
+
   onsubmit=()=>{
  this.setState({
    edit:false
  })
+ 
+ axios({
+   method:'put',
+   url:"/api/users/update/info",
+data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.state.lastName,
+  email:this.state.email,address:this.state.address,phoneNumber:this.state.phoneNumber,profilePic:this.state.profilePic
+}
+
+
+ })
+  }
+  handleKeyPress = (event) => {
+    if(event.key == 'Enter'){
+      console.log('enter press here! ')
+  
+        this.onsubmit()
+        console.log(this.state.edit)
+    
+     
+      
+    }
   }
   componentDidMount = () => {
     console.log('this is my test')
-    console.log(this.props.match.params.id)
+    console.log(this.props)
+
     users.userProfile(this.props.match.params.id).then(dataPoints => {
       console.log(dataPoints)
       if (dataPoints.data === 'noUser') {
@@ -122,4 +147,4 @@ class verify extends Component {
   }
 
 }
-export default verify;
+export default UserProfile;

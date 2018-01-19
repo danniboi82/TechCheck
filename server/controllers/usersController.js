@@ -254,14 +254,17 @@ else{
     })
   },
   updateInfo: function (req, res) {
-    
+    var diffrentEmail=true
+    console.log(req.body)
+    console.log('req.body')
     db.Users.findOne({
       where:{
-        id:req.params.id
+        id:req.body.userId
       }
     }).then(user=>{
 
-let diffrentEmail=true
+
+
 function detectNewEmail ()  {
   if(req.body.email != user.dataValues.email){
          const name = user.dataValues.firstName + ' ' + user.dataValues.lastName
@@ -281,20 +284,22 @@ function detectNewEmail ()  {
     }
 } 
      diffrentEmail= detectNewEmail()
+
+     console.log('above diffrent email')
    console.log(diffrentEmail)
       db.Users.update({
         email: req.body.email||user.dataValues.email,
        
-        firstName: req.body.firstName||user.dataValues.firstName,
-        lastName: req.body.lastName || user.dataValues.lastName,
-        profilePic: req.body.profilePic||user.dataValues.profilePic,
-        phoneNumber: req.body.phoneNumber||user.dataValues.phoneNumber,
-        address: req.body.address||user.dataValues.address,
-        dateOfBirth: req.body.dateOfBirth||user.dataValues.dateOfBirth,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName ,
+        profilePic: req.body.profilePic,
+        phoneNumber: req.body.phoneNumber,
+        address: req.body.address,
+        dateOfBirth: req.body.dateOfBirth,
         verified:diffrentEmail
       }, {
           where: {
-            id: req.params.id,
+            id: req.body.userId,
             active: true
           }
         })
