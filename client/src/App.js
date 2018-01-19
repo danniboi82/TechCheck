@@ -14,16 +14,72 @@ import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage'
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
-import { userProfile, userProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
+import { UserProfile, userProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
 
-
+import axios from "axios";
 class App extends Component {
     state = {
         cartItem: 0,
         cartAmount: 0,
-        cartarray: []
+        cartarray: [],
+        userDataObj: {},
+        theId: '',
+        logged: false,
+        userInput: '',
+        dataSource: ''
     };
 
+    
+    componentDidMount = () => {
+
+
+        if (sessionStorage.auth != null) {
+            console.log('auth')
+
+            axios({
+                method: 'post',
+                url: '/api/users/auth',
+                data: {
+                    userToken: sessionStorage.getItem('auth')
+
+                },
+            }).then(user => {
+                if (user != null) {
+                    console.log(user)
+                    this.setState({
+                        logged: true,
+                        userDataObj: {
+                            profilePic: user.data.profilePic, userId: user.data.id, firstName: user.data.firstName,
+                            lastName: user.data.lastName, active: user.data.active, verified: user.data.verified
+                        },
+                       theId: user.data.id
+
+
+                    })
+                    console.log(this.state.theId);
+                } else {
+                    console.log('no token')
+                }
+            })
+        }
+        else {
+            console.log('here auth failed')
+        }
+
+    }
+    handleLoggedChange = (event, logged) => {
+        this.setState({ logged: logged });
+    };
+
+
+    logOutHandler = () => {
+        this.setState({ logged: false });
+        sessionStorage.removeItem('auth')
+    }
+
+    userInputHandlerlogged = (event) => {
+        this.setState({ userInput: event.target.value })
+    }
     handleClick = (i, j) => {
         let cartitem = this.state.cartItem + 1;
         let cartamount = this.state.cartAmount + i;
@@ -57,7 +113,19 @@ class App extends Component {
                 />
             );
         }
+        console.log(this.state.theId);
+        let tmpid=this.state.theId;
+      
+        const RoutedProfilePage = (props) => {
+            console.log(tmpid);
+         
+            return (
+                
+                <UserProfile theuserid={tmpid} component={UserProfile} {...props}
 
+                />
+            )
+        }
         const RoutedProductDetailPage = (props) => {
             return (
                 <ProductDetailPage
@@ -73,8 +141,15 @@ class App extends Component {
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-
-                        <Navbar cartitem={this.state.cartItem}
+{console.log(this.state.userId)}
+                        <Navbar userdata={this.state.userDataObj}
+                            dataSource={this.state.dataSource}
+                            userInput={this.state.userInput}
+                            loggedInput={this.userInputHandlerlogged}
+                            loginFunction={this.handleLoggedChange}
+                            logged={this.state.logged}
+                            logoutFunction={this.state.logged ? this.logOutHandler : null}
+                            cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
 
@@ -87,7 +162,7 @@ class App extends Component {
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />
-                            <Route exact path='/api/users/profile/:id' component={userProfile} />
+                            <Route path='/profile/:id' render={RoutedProfilePage} />
                             <Route path='/acount/recovery' component={reset} />
                             <Route path='/sent' component={emailSent} />
                             <Route path='/reset/:id' component={resetPassword} />
