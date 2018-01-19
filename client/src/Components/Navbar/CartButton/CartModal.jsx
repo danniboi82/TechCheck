@@ -107,7 +107,11 @@ class CartModal extends Component {
                             </div>
                         </Menu>
                         <div style={{ textAlign: 'center', padding: '10px 0', }}>
-                            <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
+                        <FlatButton style={{ backgroundColor: '#92B222' }}
+                label="Close"
+                primary={true}
+                onClick={this.handleRequestClose}
+            />   <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
                         </div>
                     </Popover>
                     {/* <Dialog
