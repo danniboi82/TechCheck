@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
 import logo from '../../../ic_shopping_cart_black_24px.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
+
 
 const style = {
     textAlign: 'center',
@@ -11,17 +15,24 @@ const style = {
 
 class CartModal extends Component {
     state = {
-        showCartModalDialogue: false,
-        open: false
+        open: false,
+    };
+    handleClick = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
 
-    }
-    handleOpen = () => {
-        this.setState({ open: true });
+        this.setState({
+            open: true,
+            anchorEl: event.currentTarget,
+        });
     };
 
-    handleClose = () => {
-        this.setState({ open: false });
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
     };
+
 
     handleCheckOut = () => {
         if (this.props.cartitem === 0) {
@@ -47,15 +58,13 @@ class CartModal extends Component {
 
     render() {
 
-        const items = this.props.cartarray.map((step) => {
+        const items = this.props.cartarray.map(step => {
             return (
-                <li> Item: {step.title} .    . Price: ${step.author}
-                </li>
+                <MenuItem>
+                    Item: {step.cartitem}    Price: {step.cartamount}
+                </MenuItem>
             );
-
         });
-
-
 
         const actions = [
             <FlatButton
@@ -74,19 +83,41 @@ class CartModal extends Component {
         return (
             <div>
                 <div>
-                    <FlatButton {...this.props} title='cart' style={style} onClick={this.handleOpen} >
-                        <img src={logo} alt="shopping cart" /> <span style={{position: 'relative', bottom: '11px', left: '-22px', color: 'white'}}> {this.props.cartitem}</span> 
+                    <FlatButton {...this.props} title='cart' style={style} onClick={this.handleClick} >
+                        <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-22px', color: 'white' }}> {this.props.cartitem}</span>
                     </FlatButton>
                 </div>
                 <div>
-                    <Dialog
+                    <Popover
+                        actions={actions}
+                        open={this.state.open}
+                        anchorEl={this.state.anchorEl}
+                        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                        targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                        onRequestClose={this.handleRequestClose}
+                        animation={PopoverAnimationVertical}
+                    >
+                        <Menu>
+                            <div style={{ textAlign: 'center' }}>
+                            Item Count :   {this.props.cartitem}  |
+                            Amount : {this.props.cartamount}
+                            </div>
+                            <div className='BoughtProducts'>
+                                {items}
+                            </div>
+                        </Menu>
+                        <div style={{ textAlign: 'center', padding: '10px 0', }}>
+                            <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
+                        </div>
+                    </Popover>
+                    {/* <Dialog
                         title="Cart"
                         actions={actions}
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                     >
-                        Item Count :   {this.props.cartitem}
+                        Item Count :   
                         <br />
                         Item Total Amount :  {this.props.cartamount}
                         <br />
@@ -96,7 +127,7 @@ class CartModal extends Component {
                         </ol>
                         <hr />
 
-                    </Dialog>
+                    </Dialog> */}
 
                 </div>
             </div>

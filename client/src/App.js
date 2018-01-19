@@ -88,13 +88,12 @@ class App extends Component {
                         <Navbar cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
-
+                        
                         <Switch>
-
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' render={RoutedCheckOutPage} />
-                            <Route path='/product_detail' render={RoutedProductDetailPage} />
+                            <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />

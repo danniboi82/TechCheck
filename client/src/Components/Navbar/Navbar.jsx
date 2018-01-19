@@ -92,7 +92,7 @@ class Navbar extends Component {
         <AppBar
           title="TechCheck"
           showMenuIconButton={false}
-          iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logout={this.logOutHandler} /> : <LoginButton />}
+          iconElementRight={this.state.logged ? <LoggedInButton userdata={this.state.userDataObj} logout={this.logOutHandler} /> : <LoginButton />}
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}
