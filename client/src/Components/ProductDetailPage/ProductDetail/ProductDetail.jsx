@@ -171,7 +171,7 @@ class productDetail extends Component {
         );
     }
 }
-
+// use data.data
 
 
 
