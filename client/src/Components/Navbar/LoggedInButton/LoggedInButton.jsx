@@ -16,10 +16,10 @@ const loggedIn = (props) => (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >{console.log(props)}
-    <MenuItem href={`/api/users/profile/${props.userData.userId}`}
+    <MenuItem href={`/api/users/profile/${props.userdata.userId}`}
     >
-      {props.userData.firstName + ' ' + props.userData.lastName}
-      <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userData.profilePic}`}
+      {props.userdata.firstName + ' ' + props.userdata.lastName}
+      <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userdata.profilePic}`}
         size={30}
         style={{ display: 'in-line', margin: 'auto', position: 'relative', left: '16px', top: '7px' }}
       />
@@ -27,10 +27,10 @@ const loggedIn = (props) => (
 
 
     <MenuItem primaryText="My Products"
-      href={`/user/products/${props.userData.userId}`} />
+      href={`/user/products/${props.userdata.userId}`} />
     <MenuItem
       primaryText="Sign out"
-      onClick={props.logOut}
+      onClick={props.logout}
       href='/' />
   </IconMenu>
 );

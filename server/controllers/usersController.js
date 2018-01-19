@@ -6,8 +6,6 @@ import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 
 
-//import {twillioAuth,accountSid} from '../../twillio'
-//const client = require('twilio')(accountSid, twillioAuth);
 const secret = process.env.jwt_secret || jwtSecret;
 const saltRounds =10;
 const sengrido =process.env.sendgrid ||sendGridkey;
@@ -87,7 +85,12 @@ active:user.dataValues.active
       }
     })
       .then(dbModel => {
-        dbModel.dataValues.address
+
+        if(dbModel==null){
+          res.send('noUser')
+        }else{
+
+        
       function getDbDate () {
         const split=JSON.stringify(dbModel.dataValues.createdAt);
    const dbDate = split.split(':')
@@ -122,6 +125,7 @@ address: dbModel.dataValues.address
         //     message: 'Id not found.'
         //   });
       //  }
+      }
       })
       .catch(err => res.status(422).json(err));
   },

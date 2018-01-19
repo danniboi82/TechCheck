@@ -8,7 +8,7 @@ import PayPalButton from './PayPalButton/PayPalButton';
 
 class checkOutPage extends Component {
     state = {
-        dummyData : [
+        dummyData: [
             {
                 img: 'https://cdn.mos.cms.futurecdn.net/QSjwpofL4v2VgLvWaJWAhH.jpg',
                 title: 'Video Card',
@@ -62,7 +62,7 @@ class checkOutPage extends Component {
 
     deleteProductHandler = (id) => {
         const ogProductList = this.state.dummyData;
-        ogProductList.splice( id, 1);
+        ogProductList.splice(id, 1);
         const updatedProductList = ogProductList;
         this.setState({
             dummyData: updatedProductList
@@ -70,7 +70,10 @@ class checkOutPage extends Component {
         console.log(this.state.dummyData);
     }
 
+
     render() {
+
+        console.log(this.props.cartamount)
         return (
             <div className='CheckOutPageDiv'>
                 <div>
@@ -89,12 +92,12 @@ class checkOutPage extends Component {
                             Description: {card.title}
                         </div>
                         <FlatButton label='Remove'
-                        onClick={()=>this.deleteProductHandler(id)} />
+                            onClick={() => this.deleteProductHandler(id)} />
                     </Paper>
                 ))}
                 <div className='PlaceOrderDiv'>
-                    <FlatButton style={{ backgroundColor: 'blue' }} label='Place Order' />
-                    <PayPalButton />
+                    <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount}/>
+                    <FlatButton style={{ backgroundColor: 'blue', margin: '25px' }} label='Place Order' />
                 </div>
 
             </div>

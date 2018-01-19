@@ -10,6 +10,7 @@ import MainPage from './Components/MainPage/MainPage';
 import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
+//import ProductDetailPage from '../src/Components/ProductDetailPage/ProductDetail/ProductDetail'
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
@@ -68,6 +69,17 @@ class App extends Component {
                 />
             );
         }
+
+        const RoutedCheckOutPage = (props) => {
+            return ( 
+                <CheckOutPage
+                    component={CheckOutPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                />
+            )
+        }
         return (
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
@@ -76,13 +88,12 @@ class App extends Component {
                         <Navbar cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
-
+                        
                         <Switch>
-
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
-                            <Route path='/check_out' component={CheckOutPage} />
-                            <Route path='/product_detail' render={RoutedProductDetailPage} />
+                            <Route path='/check_out' render={RoutedCheckOutPage} />
+                            <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />

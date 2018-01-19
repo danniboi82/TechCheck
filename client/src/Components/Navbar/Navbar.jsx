@@ -77,27 +77,6 @@ class Navbar extends Component {
     this.setState({ userInput: event.target.value })
   }
 
-  // handleClick = (i, j) => {
-
-  //   let cartitem = this.state.cartItem + 1;
-  //   let cartamount = this.state.cartAmount + i;
-  //   let newcartarray = this.state.cartarray.concat(j);
-  //   this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-  //   alert('Item ' + j.title + ' added to shopping cart!')
-  // };
-
-  // handleDelete = (k) => {
-
-  //   let newcartarray = this.state.cartarray.slice();
-  //   let cartitemindex = newcartarray.indexOf(k);
-  //   let cartamount = this.state.cartAmount - k.author;
-  //   newcartarray.splice(cartitemindex, 1);
-  //   let cartitem = this.state.cartItem - 1;
-
-
-  //   this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
-  // };
-
   render() {
 
     return (
@@ -112,8 +91,8 @@ class Navbar extends Component {
         }
         <AppBar
           title="TechCheck"
-
-          iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logOut={this.logOutHandler} /> : <LoginButton />}
+          showMenuIconButton={false}
+          iconElementRight={this.state.logged ? <LoggedInButton userdata={this.state.userDataObj} logout={this.logOutHandler} /> : <LoginButton />}
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}
@@ -123,7 +102,7 @@ class Navbar extends Component {
         <div className='routeDiv'>
           <FlatButton> <Link to='/'>Home</Link> </FlatButton>
           <FlatButton> <Link to='/search_results'>Search Results</Link> </FlatButton>
-          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/product_detail'> Product Details</Link> </FlatButton>
+          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/product_detail/3214e644-9c1c-48ca-baba-d699af75a1ea'> Product Details</Link> </FlatButton>
           <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
           <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/registration'> Registration </Link> </FlatButton>
           <FlatButton ><Link to='/api/users/profile/'>user Profile</Link></FlatButton>
