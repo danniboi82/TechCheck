@@ -9,7 +9,8 @@ import {Link} from 'react-router-dom';
 class userProducts extends Component {
 
     state = {
-        userProducts: []
+        userProducts: [],
+        userId:""
 
     }
 
@@ -22,9 +23,11 @@ class userProducts extends Component {
         products1.userProfile(this.props.match.params.id).then(dataPoints => {
 
             console.log(dataPoints)
-            this.setState({
-                userProducts: dataPoints.data
-            })
+        this.setState({
+            userProducts: dataPoints.data,
+            userId:this.props.match.params.id
+        })
+                       
         });
     }
 
@@ -62,7 +65,7 @@ class userProducts extends Component {
                     </Paper>
                 ))}
                 <div className='AddProductDiv'>
-                    <Link to='/sell_product'><FlatButton style={{ backgroundColor: '#DC4C46' }} label='Add Product' /></Link>
+                    <Link to={`/sell_product/${this.state.userId}`}><FlatButton style={{ backgroundColor: 'blue' }} label='Add Product' /></Link>
                 </div>
 
             </div>

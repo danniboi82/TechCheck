@@ -21,6 +21,7 @@ console.log(dbModel.length)
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
+  console.log(req.params.id)
     db.Products.findOne({
         where: {
           id: req.params.id,
@@ -28,13 +29,7 @@ console.log(dbModel.length)
         }
       })
       .then(dbModel => {
-        if (dbModel) {
-          res.json(dbModel);
-        } else {
-          res.status(404).json({
-            message: 'Id not found.'
-          });
-        }
+      res.send(dbModel)
       })
       .catch(err => res.status(422).json(err));
   },

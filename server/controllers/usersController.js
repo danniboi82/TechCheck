@@ -85,6 +85,11 @@ active:user.dataValues.active
       }
     })
       .then(dbModel => {
+
+        if(dbModel==null){
+          res.send('noUser')
+        }else{
+
         
       function getDbDate () {
         const split=JSON.stringify(dbModel.dataValues.createdAt);
@@ -93,9 +98,10 @@ active:user.dataValues.active
   const dayCreated =splitDate[2].split('T')
   const removed=splitDate[0].split('"')
  
- const dates=splitDate[1]+' '+dayCreated[0]+' '+removed[1]
+ const dates=splitDate[1]+'-'+dayCreated[0]+'-'+removed[1]
 return dates
        }
+
       const fullDate= getDbDate()
     const userProfilePage={
 id:dbModel.dataValues.id,
@@ -106,7 +112,8 @@ profilePic:dbModel.dataValues.profilePic,
 phoneNumber:dbModel.dataValues.phoneNumber,
 verified:dbModel.dataValues.verified,
 active:dbModel.dataValues.active,
-createdAt:fullDate
+createdAt:fullDate,
+address: dbModel.dataValues.address
 
         }
         res.send(userProfilePage)
@@ -118,6 +125,7 @@ createdAt:fullDate
         //     message: 'Id not found.'
         //   });
       //  }
+      }
       })
       .catch(err => res.status(422).json(err));
   },
@@ -359,16 +367,16 @@ console.log(req.params.id)
           .catch(err => res.status(422).json(err));
       },
       recovery: function (req, res) {
-        client.messages.create(
-          {
-            to: '+8184294897',
-            from: '+14243810089',
-            body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-          },
-          (err, message) => {
-            console.log(message.sid);
-          }
-        );
+        // client.messages.create(
+        //   {
+        //     to: '+8184294897',
+        //     from: '+14243810089',
+        //     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+        //   },
+        //   (err, message) => {
+        //     console.log(message.sid);
+        //   }
+        // );
 
         console.log('hi')
         console.log(req.body.newpass)

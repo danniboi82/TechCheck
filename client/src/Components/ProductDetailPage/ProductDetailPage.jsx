@@ -6,7 +6,7 @@ const productDetailPage = (props) => {
     return (
         <div>
             
-            <ProductDetail onClick={props.onClick}/>
+            <ProductDetail {...props}/>
         </div>
     );
 }
