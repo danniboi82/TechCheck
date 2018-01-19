@@ -155,6 +155,7 @@ class addProduct extends React.Component {
                             value={this.state.productName}
                             floatingLabelText="Product Name"
                             onChange={this.onChange}
+                            defaultValue={this.state.productName}
                         />
                     </div>
                     <div>
@@ -164,6 +165,7 @@ class addProduct extends React.Component {
                             value={this.state.serialNumber}
                             floatingLabelText="Serial Number"
                             onChange={this.onChange}
+                            defaultValue={this.state.serialNumber}
                         />
                     </div>
                     <div>
@@ -173,6 +175,7 @@ class addProduct extends React.Component {
                             value={this.state.category}
                             onChange={this.handleChange}
                             floatingLabelText="Category"
+                            defaultValue={this.state.
                         >
                             <MenuItem value={"Graphic Card"} primaryText="Graphic Card" />
                             <MenuItem value={"Motherboard"} primaryText="Motherboard" />
@@ -277,3 +280,140 @@ class addProduct extends React.Component {
     }
 }
 export default editProduct;
+
+import React, { Component } from 'react';
+import users from '../../Data/users-api'
+//import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Paper from 'material-ui/Paper';
+import './userProfile.css';
+import Avatar from 'material-ui/Avatar';
+import notFound from './404.jpg'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+class verify extends Component {
+
+  state = {
+    userId: "",
+    productName: "",
+    serialNumber: "",
+    category: "",
+    price: "",
+    condition: "",
+    warranty: "",
+    packaging: "",
+    productDescription: "",
+    userUploadImage1: "",
+    userUploadImage2: "",
+    edit: false,
+    noUser: false
+  }
+  changedToEdit = () => {
+    this.setState({
+      edit: true
+    })
+  }
+  onChange = (e) => {
+    this.setState({
+        [e.target.name]: e.target.value
+    });
+ 
+}
+  onsubmit=()=>{
+ this.setState({
+   edit:false
+ })
+  }
+  componentDidMount = () => {
+    console.log('this is my test')
+    console.log(this.props.match.params.id)
+    users.userProfile(this.props.match.params.id).then(dataPoints => {
+      console.log(dataPoints)
+      if (dataPoints.data === 'noUser') {
+        this.setState({
+          noUser: true,
+          name: '404',
+          notPRofile: notFound,
+          userId: '404',
+          email: '404',
+          active: '404',
+          address: '404',
+          memberSince: '404',
+          phoneNumber: '404'
+
+        })
+      } else {
+
+
+        this.setState({
+          name: dataPoints.data.firstName + ' ' + dataPoints.data.lastName,
+          profilePic: dataPoints.data.profilePic,
+          userId: dataPoints.data.id,
+          email: dataPoints.data.email,
+          active: dataPoints.data.active,
+          address: dataPoints.data.address,
+          memberSince: dataPoints.data.createdAt,
+          phoneNumber: dataPoints.data.phoneNumber,
+          userId: dataPoints.data.userId,
+          productName: dataPoints.data.productName,
+          serialNumber: dataPoints.data.serialNumber,
+          category: dataPoints.data.category,
+          price: dataPoints.data.price,
+          condition: dataPoints.data.condition,
+          warranty: dataPoints.data.warranty,
+          packaging: dataPoints.data.packaging,
+          productDescription: dataPoints.data.productDescription,
+          userUploadImage1: dataPoints.data.userUploadImage1,
+          userUploadImage2: dataPoints.data.userUploadImage2
+        })
+      }
+    });
+
+  }
+
+  render() {
+    return (
+      // <Link to={`/edit/user/${this.state.userId}`}> 
+      <div className="Profile">
+    
+        <Paper >
+          {this.state.noUser &&
+            <h1>404 No User Found</h1>
+          }
+          {!this.state.edit?
+          <Avatar size={150} onChange={this.onChange} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic || this.state.notPRofile}`} />:<div><input type='file' ></input> <br/></div>}
+         
+
+          <div className='UserInfo'>
+
+{!this.state.edit ? 
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Name" disabled={true} value={this.state.name}/></div>: <div><TextField floatingLabelText="Name" name='name' onChange={this.onChange} defaultValue={this.state.name}/> <br/></div>}
+          
+           {!this.state.edit ? 
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Email" disabled={true} value={this.state.email}/></div>: <div><TextField floatingLabelText="Email" name='email' onChange={this.onChange} defaultValue={this.state.email}/> <br/></div>}
+  
+            {!this.state.edit ?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Address" disabled={true} value={this.state.address}/></div>:<div><TextField floatingLabelText="Address" name='address' onChange={this.onChange} defaultValue={this.state.address}/> <br/></div>}
+    
+         {!this.state.edit?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Phone Number" disabled={true} value={this.state.phoneNumber}/></div>:<div><TextField floatingLabelText="Phone Number" name='phoneNumber' onChange={this.onChange} defaultValue={this.state.phoneNumber}/> <br/></div>}
+         
+          {!this.state.edit ?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="User ID" disabled={true} value={this.state.userId}/></div>:<div><TextField floatingLabelText="User ID" disabled={true} name='userId' onChange={this.onChange} defaultValue={this.state.userId}/> <br/></div>}
+             
+            {!this.state.edit ?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>:<div><TextField floatingLabelText="Member Since" disabled={true} name='memberSince' onChange={this.onChange} defaultValue={this.state.memberSince}/> <br/></div>}
+   {!this.state.edit ?
+        
+<RaisedButton label="Edit Information" onClick={this.changedToEdit}Edit Profile />:<RaisedButton label="Submit Changes" onClick={this.onsubmit}change Profile/>}
+
+          </div>
+        </Paper>
+
+      </div>
+    )
+  }
+
+}
+export default verify;

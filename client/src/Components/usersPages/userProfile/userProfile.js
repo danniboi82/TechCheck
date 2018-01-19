@@ -6,6 +6,9 @@ import Paper from 'material-ui/Paper';
 import './userProfile.css';
 import Avatar from 'material-ui/Avatar';
 import notFound from './404.jpg'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 class verify extends Component {
 
   state = {
@@ -91,25 +94,25 @@ class verify extends Component {
           <div className='UserInfo'>
 
 {!this.state.edit ? 
-            <div className='UserInfoDiv'>Name : {this.state.name}</div>: <div><br/><input name='name' onChange={this.onChange} value={this.state.name}></input> <br/></div>}
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Name" disabled={true} value={this.state.name}/></div>: <div><TextField floatingLabelText="Name" name='name' onChange={this.onChange} defaultValue={this.state.name}/> <br/></div>}
           
            {!this.state.edit ? 
-            <div className='UserInfoDiv'>Email : {this.state.email}</div>: <div><br/><input  name='email' onChange={this.onChange} value={this.state.email}></input> <br/></div>}
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Email" disabled={true} value={this.state.email}/></div>: <div><TextField floatingLabelText="Email" name='email' onChange={this.onChange} defaultValue={this.state.email}/> <br/></div>}
   
             {!this.state.edit ?
-            <div className='UserInfoDiv'>Address : {this.state.address}</div>:<div><br/><input name='address' onChange={this.onChange} value={this.state.address}></input> <br/></div>}
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Address" disabled={true} value={this.state.address}/></div>:<div><TextField floatingLabelText="Address" name='address' onChange={this.onChange} defaultValue={this.state.address}/> <br/></div>}
     
          {!this.state.edit?
-            <div className='UserInfoDiv'>phoneNumber : {this.state.phoneNumber}</div>:<div><br/><input name='phoneNumber' onChange={this.onChange} value={this.state.phoneNumber}></input> <br/></div>}
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Phone Number" disabled={true} value={this.state.phoneNumber}/></div>:<div><TextField floatingLabelText="Phone Number" name='phoneNumber' onChange={this.onChange} defaultValue={this.state.phoneNumber}/> <br/></div>}
          
-          {!this.state.edit &&
-            <div className='UserInfoDiv'>User Id : {this.state.userId}</div>}
+          {!this.state.edit ?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="User ID" disabled={true} value={this.state.userId}/></div>:<div><TextField floatingLabelText="User ID" disabled={true} name='userId' onChange={this.onChange} defaultValue={this.state.userId}/> <br/></div>}
              
-            {!this.state.edit &&
-            <div className='UserInfoDiv'>Member Since : {this.state.memberSince}</div>}
+            {!this.state.edit ?
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>:<div><TextField floatingLabelText="Member Since" disabled={true} name='memberSince' onChange={this.onChange} defaultValue={this.state.memberSince}/> <br/></div>}
    {!this.state.edit ?
         
-<button onClick={this.changedToEdit}>Edit Profile</button>:<button onClick={this.onsubmit}>change Profile</button>}
+<RaisedButton label="Edit Information" onClick={this.changedToEdit}Edit Profile />:<RaisedButton label="Submit Changes" onClick={this.onsubmit}change Profile/>}
 
           </div>
         </Paper>

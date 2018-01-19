@@ -112,6 +112,9 @@ class Navbar extends Component {
         }
         <AppBar
           title="TechCheck"
+          style={{
+            backgroundColor: "#2196F3",
+            }}
 
           iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logOut={this.logOutHandler} /> : <LoginButton />}
         >
