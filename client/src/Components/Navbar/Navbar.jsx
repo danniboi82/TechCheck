@@ -15,67 +15,36 @@ import axios from "axios";
 class Navbar extends Component {
 
   state = {
-    logged: false,
-    userInput: '',
-    userDataObj: {},
-    // profilePic:'',
-    // userId:'',
-    // email:'',
-    // firstName:'',
-    // lastName:'',
-    // phoneNumber:'',
-    verified: false,
-    // createdAt:'',
-    // active:false
+    dataSource:''
+  //   logged: false,
+  //   userInput: '',
+  //   userDataObj: {},
+  //   // profilePic:'',
+  //   // userId:'',
+  //   // email:'',
+  //   // firstName:'',
+  //   // lastName:'',
+  //   // phoneNumber:'',
+  //   verified: false,
+  //   // createdAt:'',
+  //   // active:false
   };
 
-  componentDidMount = () => {
+  // componentDidMount = (props) => {
+  //   console.log(this.props)
+  //   if(this.props.logged==true){
+  //     this.setState({
+  //       logged:true
+  //     })
+  //   }
 
     //console.log(sessionStorage.auth)
-    if (sessionStorage.auth != null) {
-      console.log('auth')
+    
+  // }
 
-      axios({
-        method: 'post',
-        url: '/api/users/auth',
-        data: {
-          userToken: sessionStorage.getItem('auth')
-
-        },
-      }).then(user => {
-        if (user != null) {
-          this.setState({
-            logged: true,
-            userDataObj: {
-              profilePic: user.data.profilePic, userId: user.data.id, firstName: user.data.firstName,
-              lastName: user.data.lastName, active: user.data.active, verified: user.data.verified
-            },
+ 
 
 
-          })
-
-        } else {
-          console.log('no token')
-        }
-      })
-    }
-    else {
-      console.log('here auth failed')
-    }
-  }
-
-  handleChange = (event, logged) => {
-    this.setState({ logged: logged });
-  };
-
-  logOutHandler = () => {
-    this.setState({ logged: false });
-    sessionStorage.removeItem('auth')
-  }
-
-  userInputHandler = (event) => {
-    this.setState({ userInput: event.target.value })
-  }
 
   // handleClick = (i, j) => {
 
@@ -101,8 +70,12 @@ class Navbar extends Component {
   render() {
 
     return (
+      
+      
       <div>
-        {!this.state.userDataObj.verified && this.state.logged &&
+        {console.log(this.props
+)}
+        {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
             Please verify your email address. <br /><a href='https://www.google.com/gmail/about/#'> Gmail  </a>
             <a href='https://login.yahoo.com/?.src=ym&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2F'> Yahoo  </a>
@@ -110,10 +83,12 @@ class Navbar extends Component {
             <a href='https://www.icloud.com/#mail'> iCloud </a>
           </div>
         }
+
+        
         <AppBar
           title="TechCheck"
 
-          iconElementRight={this.state.logged ? <LoggedInButton userData={this.state.userDataObj} logOut={this.logOutHandler} /> : <LoginButton />}
+          iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton  />}
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}
@@ -130,17 +105,17 @@ class Navbar extends Component {
           <Link to='/check_out'><FlatButton>Check Out</FlatButton></Link>
         </div>
 
-        <SearchBar
-          dataSource={this.state.dataSource}
-          onChange={this.userInputHandler}
-          onRequestSearch={(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
+        {<SearchBar
+          // dataSource={this.state.dataSource}
+         // onChange={this.props.userInputHandler}
+         // onRequestSearch={(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
           style={{
             margin: '0 auto',
             maxWidth: '100%',
             backgroundColor: '#344b70',
             color: 'black'
           }}
-        />
+        />}
       </div>
     );
   }

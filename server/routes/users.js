@@ -38,7 +38,7 @@ router.put("/change",users.recovery)
 router.post("/", users.create);
 router.post("/signIn", users.signIn);
 
-router.put("/update/info/:id",users.updateInfo)
+router.put("/update/info",users.updateInfo)
 router.put("/verification/:id?",users.verification)
 router.delete("/:id", users.remove);
 router.post("/signOut",users.signOut);
