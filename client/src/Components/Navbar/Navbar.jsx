@@ -46,27 +46,6 @@ class Navbar extends Component {
 
 
 
-  // handleClick = (i, j) => {
-
-  //   let cartitem = this.state.cartItem + 1;
-  //   let cartamount = this.state.cartAmount + i;
-  //   let newcartarray = this.state.cartarray.concat(j);
-  //   this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-  //   alert('Item ' + j.title + ' added to shopping cart!')
-  // };
-
-  // handleDelete = (k) => {
-
-  //   let newcartarray = this.state.cartarray.slice();
-  //   let cartitemindex = newcartarray.indexOf(k);
-  //   let cartamount = this.state.cartAmount - k.author;
-  //   newcartarray.splice(cartitemindex, 1);
-  //   let cartitem = this.state.cartItem - 1;
-
-
-  //   this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
-  // };
-
   render() {
 
     return (
@@ -87,11 +66,15 @@ class Navbar extends Component {
         
         <AppBar
           title="TechCheck"
+
           style={{
             backgroundColor: "#2196F3",
             }}
 
-          iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton  />}
+          showMenuIconButton={false}
+          iconElementRight={this.state.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
+
+
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}

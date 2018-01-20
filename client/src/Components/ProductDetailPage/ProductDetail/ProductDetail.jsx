@@ -49,23 +49,6 @@ const productDetailStyles = {
 
 };
 
-const dummyData = [
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDcuanBn',
-        title: 'Breakfast',
-        author: 100,
-    },
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDEuanBn',
-        title: 'Tasty burger',
-        author: 200,
-    },
-    {
-        img: 'https://img.purch.com/o/aHR0cHM6Ly93d3cubGFwdG9wbWFnLmNvbS9pbWFnZXMvdXBsb2Fkcy81MjY2L2cvbWFjYm9vay1haXItMjAxNy0wMDIuanBn',
-        title: 'burger',
-        author: 300,
-    },
-]
 class productDetail extends Component {
 
     constructor(props) {
@@ -82,8 +65,8 @@ class productDetail extends Component {
             warranty: "",
             packaging: "",
             photos: [],
-               
-                  verified: "",
+
+            verified: "",
             status: "",
             createdAt: ""
 
@@ -92,7 +75,7 @@ class productDetail extends Component {
     }
     componentDidMount = () => {
         console.log('product detail')
-         console.log(this.props)
+        console.log(this.props)
         products1.Product(this.props.match.params.id).then(data => {
             console.log(data)
             const photosImg = {
@@ -114,13 +97,11 @@ class productDetail extends Component {
                 productName: data.data.productName,
                 serialNumber: data.data.serialNumber,
                 category: data.data.category,
-                
                 price: data.data.price,
                 productDescription: data.data.productDescription,
                 condition: data.data.condition,
                 warranty: data.data.warranty,
                 packaging: data.data.packaging,
-
                 verified: data.data.verified,
                 status: data.data.status,
                 createdAt: data.data.createdAt
@@ -145,13 +126,13 @@ class productDetail extends Component {
                         {this.state.photos.map((tile) => (
                             <GridTile
                                 style={productDetailStyles.grid.gridTile}
-                              key={tile.img}
-                            > 
-                            <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' />
-                            {/* <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.userUploadImage2}`} alt='productimage' /> */}
+                                key={tile.img}
+                            >
+                                <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' />
+                                {/* <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.userUploadImage2}`} alt='productimage' /> */}
                                 {/* <img src={tile.img} alt='productimage' /> */}
                             </GridTile>
-                          ))}
+                        ))}
                     </GridList>
 
 
@@ -163,31 +144,32 @@ class productDetail extends Component {
                                 <ListItem>category: $1200</ListItem>
                                 <ListItem>Condition : {this.state.condition}</ListItem>
                                 <ListItem>Product Description : {this.state.productDescription}</ListItem>
+                                <ListItem>warranty : {this.state.warranty}</ListItem>
                             </List>
                         </Paper>
                         <Paper style={productDetailStyles.paperWrapper}>
-                            <List> 
+                            <List>
                                 <ListItem>Packaging : {this.state.packaging}</ListItem>
-                                <ListItem>warranty : {this.state.warranty}</ListItem>
                                 <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
                                 <ListItem>Prouduct Id :{this.state.productId}</ListItem>
                                 <ListItem>Price : $1200</ListItem>
                                 <ListItem>Product Status : {this.state.status}</ListItem>
                             </List>
                         </Paper>
-
                     </div>
                 </div>
 
                 <div style={{ paddingBottom: '60px' }}>
-                    <Link to='/'><FlatButton style={productDetailStyles.purchaseButton} label='Purchase' primary={true} /></Link>
+                    <Link to='/'><FlatButton
+                        style={productDetailStyles.purchaseButton}
+                        label='Purchase'
+                        primary={true}
+                        onClick={() => this.props.onClick(this.state.price, this.state.productDescription)} />
+                    </Link>
                 </div>
-                {/* // onClick={() => props.onClick(dummyData[0].author, dummyData[0])} */}
             </div>
         );
-
     }
-
 }
 
 
