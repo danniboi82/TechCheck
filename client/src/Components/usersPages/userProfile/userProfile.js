@@ -8,8 +8,9 @@ import Avatar from 'material-ui/Avatar';
 import notFound from './404.jpg'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from "axios";
 
-class verify extends Component {
+class UserProfile extends Component {
 
   state = {
     name: "",

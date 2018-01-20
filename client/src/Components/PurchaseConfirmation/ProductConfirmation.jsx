@@ -19,4 +19,4 @@ const PaperExampleSimple = () => (
   </div>
 );
 
-export default PaperExampleSimple;
+export default ProductConfirmation;
