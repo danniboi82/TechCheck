@@ -6,7 +6,10 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Avatar from 'material-ui/Avatar';
 import Link from 'react-router-dom';
 
-const loggedIn = (props) => (
+const loggedIn = (props) => {
+  let {logout, ...newProps} = props;
+  props = newProps;
+  return (
 
   <IconMenu
     {...props}
@@ -16,7 +19,9 @@ const loggedIn = (props) => (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >{console.log(props)}
-    <MenuItem href={`/api/users/profile/${props.userdata.userId}`}
+
+    <MenuItem href={`/profile/${props.userdata.userId}`}
+
     >
       {props.userdata.firstName + ' ' + props.userdata.lastName}
       <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${props.userdata.profilePic}`}
@@ -30,10 +35,12 @@ const loggedIn = (props) => (
       href={`/user/products/${props.userdata.userId}`} />
     <MenuItem
       primaryText="Sign out"
-      onClick={props.logout}
       href='/' />
+      onClick={logout}
+     />
   </IconMenu>
-);
+)
+};
 
 loggedIn.muiName = 'IconMenu';
 
