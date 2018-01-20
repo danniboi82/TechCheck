@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import productsApi from '../../Data/products-api'
 
 const styles = {
   root: {
@@ -71,7 +72,23 @@ const dummyData = [
 /**
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
  */
-const productCard = () => (
+class ProductSearch extends Component{
+  state={
+    products:[]
+  }
+  componentDidMount=()=>{
+    console.log(this.props.match.params.category)
+    productsApi.catagorySearch(this.props.match.params.category).then(products=>{
+      console.log(products)
+      this.setState({
+        products: products.data,
+        
+    })
+    })
+  }
+  render(){
+
+  return (
   <div style={styles.root}>
    <Subheader style={styles.subheader}>Search Results</Subheader>
     <GridList
@@ -81,18 +98,22 @@ const productCard = () => (
       padding={10}
     >
      
-      {dummyData.map((tile) => (
+      {this.state.products.map((tile) => (
         <GridTile
-          key={tile.img}
-          title={tile.title}
-          subtitle={<span>Price Range<b>{tile.author}</b></span>}
+          key={tile.id}
+          title={tile.productName}
+          price={tile.price
+          }
+          subtitle={<span>Price Range<b>{tile.price}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={tile.img} alt='Searched Products'/>
+          <img src={tile.userUploadImage1} alt='Searched Products'/>
         </GridTile>
       ))}
     </GridList>
   </div>
-);
+  )
+}
+  }
 
-export default productCard;
+export default ProductSearch;
