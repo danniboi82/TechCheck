@@ -120,6 +120,7 @@ class addUser extends React.Component {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
+        let phoneNumberValid=this.state.phoneNumber
         // let firstNameValid = this.state.firstNameValid;
         // let lastNameValid = this.state.lastNameValid;
         // let addressValid = this.state.addressValid;
@@ -137,6 +138,8 @@ class addUser extends React.Component {
                 passwordValid = value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$/);
                 fieldValidationErrors.password = passwordValid ? '' : 'Password is not secure enough';
                 break;
+                case 'phoneNumber':
+                phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
             default:
                 break;
         }

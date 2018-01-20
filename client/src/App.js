@@ -56,6 +56,7 @@ class App extends Component {
 
 
                     })
+                    console.log(this.state.userDataObj)
                     console.log(this.state.theId);
                 } else {
                     console.log('no token')
@@ -122,7 +123,7 @@ class App extends Component {
          
             return (
                 
-                <UserProfile theuserid={tmpid} component={UserProfile} {...props}
+                <UserProfile theuserid={this.state.theId} component={UserProfile} {...props}
 
                 />
             )
@@ -153,8 +154,11 @@ class App extends Component {
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-{console.log(this.state.userId)}
-                        <Navbar userdata={this.state.userDataObj}
+{console.log(this.state.userDataObj)}
+                        <Navbar 
+                        //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
+                        {...this.props}
+                        userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
                             loggedInput={this.userInputHandlerlogged}
