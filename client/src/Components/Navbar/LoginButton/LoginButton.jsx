@@ -117,11 +117,14 @@ class Login extends Component {
                                         /><br />
                                     </Col>
                                 </Row>
+                                <br/>
+                                <br/>
+
                                 <div className='SignInDiv' style={{ paddingLeft: '25px' }}>
                                     <Row>
                                         <Col sm={6}>
                                             <FlatButton
-                                                style={{ backgroundColor: 'white' }}
+                                                style={{ backgroundColor: 'white', maxWidth: '50px' }}
                                                 label="Submit"
                                                 primary={true}
                                                 keyboardFocused={true}
