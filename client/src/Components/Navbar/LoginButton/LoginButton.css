@@ -1,12 +1,12 @@
 .SignInDiv{
     position: relative;
     top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 50px;
 }
 
 .RegistrationDiv{
-    float: right;
     width: 200px;
-    background-color: white;
+    float: right;
     text-align: center;
+    position: relative;
 }
