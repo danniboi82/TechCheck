@@ -56,6 +56,7 @@ class App extends Component {
 
 
                     })
+                    console.log(this.state.userDataObj)
                     console.log(this.state.theId);
                 } else {
                     console.log('no token')
@@ -80,12 +81,13 @@ class App extends Component {
     userInputHandlerlogged = (event) => {
         this.setState({ userInput: event.target.value })
     }
+
     handleClick = (i, j) => {
         let cartitem = this.state.cartItem + 1;
         let cartamount = this.state.cartAmount + i;
         let newcartarray = this.state.cartarray.concat(j);
         this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-        alert('Item ' + j.title + ' added to shopping cart!')
+        alert('Item ' + j.productName + ' added to shopping cart!')
     };
 
     handleDelete = (k) => {
@@ -117,11 +119,11 @@ class App extends Component {
         let tmpid=this.state.theId;
       
         const RoutedProfilePage = (props) => {
-            console.log(tmpid);
+            console.log(this.state.theId);
          
             return (
                 
-                <UserProfile theuserid={tmpid} component={UserProfile} {...props}
+                <UserProfile theuserid={this.state.theId} component={UserProfile} {...props}
 
                 />
             )
@@ -152,8 +154,11 @@ class App extends Component {
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-{console.log(this.state.userId)}
-                        <Navbar userdata={this.state.userDataObj}
+{console.log(this.state.userDataObj)}
+                        <Navbar 
+                        //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
+                        {...this.props}
+                        userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
                             loggedInput={this.userInputHandlerlogged}
@@ -169,7 +174,7 @@ class App extends Component {
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' render={RoutedCheckOutPage} />
                             <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
-                            <Route path='/search_results' component={SearchedPage} />
+                            <Route path='/search_results/:category' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />
                             <Route path='/profile/:id' render={RoutedProfilePage} />

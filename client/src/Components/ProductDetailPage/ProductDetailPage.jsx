@@ -3,6 +3,7 @@ import ProductDetail from './ProductDetail/ProductDetail';
 
 
 const productDetailPage = (props) => {
+    console.log(props);
     return (
         <div>
             

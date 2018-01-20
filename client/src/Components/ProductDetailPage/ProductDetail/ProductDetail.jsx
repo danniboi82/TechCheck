@@ -69,13 +69,13 @@ class productDetail extends Component {
             verified: "",
             status: "",
             createdAt: ""
-
+          
         }
 
     }
     componentDidMount = () => {
         console.log('product detail')
-        console.log(this.props)
+        console.log(this.props);
         products1.Product(this.props.match.params.id).then(data => {
             console.log(data)
             const photosImg = {
@@ -109,7 +109,8 @@ class productDetail extends Component {
         })
     }
     render() {
-        console.log(this.state.photos)
+        console.log(this.state.photos);
+        console.log(this.props);
         return (
 
             <div style={productDetailStyles.wrapper}>
@@ -164,17 +165,12 @@ class productDetail extends Component {
                         style={productDetailStyles.purchaseButton}
                         label='Purchase'
                         primary={true}
-                        onClick={() => this.props.onClick(this.state.price, this.state.productDescription)} />
+                        onClick={() => this.props.onClick(this.state.price,  this.state)} />
                     </Link>
                 </div>
             </div>
         );
     }
 }
-
-
-
-
-
 
 export default productDetail;

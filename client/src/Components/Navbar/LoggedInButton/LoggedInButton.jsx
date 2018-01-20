@@ -16,9 +16,10 @@ const loggedIn = (props) => {
     iconButtonElement={
       <IconButton><MoreVertIcon /></IconButton>
     }
+    
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >{console.log(props)}
+  >{console.log(props.userdata.userId)}
 
     <MenuItem href={`/profile/${props.userdata.userId}`}
 
@@ -35,7 +36,7 @@ const loggedIn = (props) => {
       href={`/user/products/${props.userdata.userId}`} />
     <MenuItem
       primaryText="Sign out"
-      href='/'
+      href='/' 
       onClick={logout}
      />
   </IconMenu>
