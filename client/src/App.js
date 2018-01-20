@@ -137,6 +137,17 @@ class App extends Component {
                 />
             );
         }
+
+        const RoutedCheckOutPage = (props) => {
+            return ( 
+                <CheckOutPage
+                    component={CheckOutPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                />
+            )
+        }
         return (
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
@@ -152,13 +163,12 @@ class App extends Component {
                             cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} />
-
+                        
                         <Switch>
-
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
-                            <Route path='/check_out' component={CheckOutPage} />
-                            <Route path='/product_detail/:id' render={ProductDetailPage} />
+                            <Route path='/check_out' render={RoutedCheckOutPage} />
+                            <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
                             <Route path='/search_results' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />

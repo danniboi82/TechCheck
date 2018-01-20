@@ -6,13 +6,8 @@ import { Link } from 'react-router-dom';
 import users from '../../Data/users-api'
 import axios from "axios";
 import '../navbar.scss'
-const loginButtonStyles = {
-    maxWidth: '30%',
-    position: 'fixed',
-    top: '30%',
-    right: '10%',
-    margin: 'auto'
-}
+import './LoginButton.css'
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +17,7 @@ class Login extends Component {
             email: '',
             pass: '',
             doesntMatch: false,
-            noUser:false
+            noUser: false
 
         }
     }
@@ -41,10 +36,10 @@ class Login extends Component {
     };
 
 
-    
+
 
     onSubmit = () => {
-        const self= this;
+        const self = this;
         axios({
             method: 'post',
             url: '/api/users/signIn',
@@ -56,16 +51,16 @@ class Login extends Component {
             .then(function (res) {
                 if (res.data === 'noMatch') {
                     self.setState({ doesntMatch: true, noUser: false });
-            
-                }else if(res.data === 'noUser'){
-                    self.setState({ noUser: true ,doesntMatch: false});
-                  
-                } 
+
+                } else if (res.data === 'noUser') {
+                    self.setState({ noUser: true, doesntMatch: false });
+
+                }
                 else {
                     console.log(res)
                     sessionStorage.setItem('auth', res.data)
                     self.handleClose()
-                    window.location='/'
+                    window.location = '/'
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -78,34 +73,8 @@ class Login extends Component {
     static muiName = 'FlatButton';
 
     render() {
-        const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={this.handleClose}
-            />,
-            <FlatButton
-                label="Submit"
-                primary={true}
-                keyboardFocused={true}
-                
-                onClick={this.onSubmit}
-            />,
-            <Link to='/acount/recovery'> <FlatButton
-                label="Forgot Password"
-                primary={true}
-                onClick={this.handleClose}
-            /></Link>,
-            <Link to='/registration'> <FlatButton
-                label="Registration"
-                primary={true}
-                onClick={this.handleClose}
-            /></Link>
-        ];
         return (
             <div>
-
-
                 <div className='LogInSection'>
                     <FlatButton {...this.props} label="Login" onClick={this.handleOpen} />
                 </div>
@@ -113,15 +82,15 @@ class Login extends Component {
                     <Dialog
                         actionsContainerStyle={{ textAlign: 'left' }}
                         title="Login"
-                        actions={actions}
+
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
                     >
-                    {this.state.noUser &&
-                    <p className='noMatch'>There is no account associated with that email</p>}
+                        {this.state.noUser &&
+                            <p className='noMatch'>There is no account associated with that email</p>}
                         {this.state.doesntMatch &&
-                            <p  className='noMatch' >Email And Password does not match. Please try again.</p>
+                            <p className='noMatch' >Email And Password does not match. Please try again.</p>
                         }
 
                         <TextField
@@ -138,10 +107,36 @@ class Login extends Component {
                             onChange={this.onChange}
                         /><br />
 
-                        <div className='RegistrationDiv'>
+                        <div className='SignInDiv'>
+                            <FlatButton
+                                label="Cancel"
+                                primary={true}
+                                onClick={this.handleClose}
+                            />
+                            <FlatButton
+                                label="Submit"
+                                primary={true}
+                                keyboardFocused={true}
 
+                                onClick={this.onSubmit}
+                            />
+                            <Link to='/acount/recovery'>
+                                <FlatButton
+                                    label="Forgot Password"
+                                    primary={true}
+                                    onClick={this.handleClose}
+                                />
+                            </Link>
+                            <span className='RegistrationDiv'>
+                            <Link to='/registration'>
+                                <FlatButton
+                                    label="Registration"
+                                    primary={true}
+                                    onClick={this.handleClose}
+                                />
+                            </Link>
+                            </span>
                         </div>
-
                     </Dialog>
                 </div>
 
