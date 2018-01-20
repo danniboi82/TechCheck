@@ -80,12 +80,13 @@ class App extends Component {
     userInputHandlerlogged = (event) => {
         this.setState({ userInput: event.target.value })
     }
+
     handleClick = (i, j) => {
         let cartitem = this.state.cartItem + 1;
         let cartamount = this.state.cartAmount + i;
         let newcartarray = this.state.cartarray.concat(j);
         this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-        alert('Item ' + j.title + ' added to shopping cart!')
+        alert('Item ' + j.productName + ' added to shopping cart!')
     };
 
     handleDelete = (k) => {
