@@ -66,8 +66,14 @@ class Navbar extends Component {
         
         <AppBar
           title="TechCheck"
+
+          style={{
+            backgroundColor: "#2196F3",
+            }}
+
           showMenuIconButton={false}
           iconElementRight={this.state.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
+
 
         >
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
