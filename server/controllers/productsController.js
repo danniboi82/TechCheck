@@ -116,30 +116,36 @@ console.log(req.body)
  let limit=15
  offset =parseInt(req.body.page)
 limit=parseInt(req.body.limit)
-console.log('helloits',typeof limit)
+console.log(offset)
+let newOffset=0
+
 function changingLimit (){
-  console.log(limit)
+  console.log('limitnum',limit)
   let newo
 if(limit==30){
  newo = offset += 15
-
+console.log('offseting',newo)
+}else{
+  newo=0
+  
 }
 return newo
 }
 changingLimit()
-let newOffset=changingLimit();
+newOffset=changingLimit();
 console.log('hrll',newOffset)
    
     db.Products.findAll({
      
       limit:limit,
       offset: newOffset,
-      where: {like:{
+      like:{
 
       
-        category: req.body.category||'MotherBoard'},
+       where:{ category: req.body.category||'MotherBoard'}
+      },
         
-      }
+      
     }).then(products=>{
       res.send(products)
     })

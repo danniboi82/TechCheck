@@ -107,7 +107,7 @@ class ProductSearch extends Component{
          method:'post',
         url: `/api/products/category`,
         data:{
-            userId:this.props.match.params.category,
+            category:this.props.match.params.category,
             page:this.state.page,
             limit:this.state.limit
 
@@ -144,7 +144,7 @@ this.setState({
   return (
   <div style={styles.root}>
    <Subheader style={styles.subheader}>Search Results</Subheader>
-   <p>Results per page</p>
+   <p>Results per page:</p>
                 <button onClick={this.limit} value={15}>15</button><button onClick={this.limit}value={30}>30</button>
     <GridList
       cellHeight={180}
@@ -164,7 +164,7 @@ this.setState({
         >
           <img src={tile.userUploadImage1} alt='Searched Products'/>
         </GridTile>
-      ))}
+      ))}<br/>
         <div className='pages'>
                 <button onClick={this.pages} name='1'value={0} >1</button><button onClick={this.pages}name='2' value={15} >2</button> <button onClick={this.pages}name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button> 
                 </div>
