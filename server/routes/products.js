@@ -31,8 +31,9 @@ const upload = multer({
   });
 // Route to get list of crypto currencies for drop down.
 // router.get("/", products.findAll);
-router.get('/category/:cat',products.categorySearch)
-router.get('/user/products/:id',products.userProducts);
+router.post('/category',products.categorySearch)
+router.post('/search',products.search)
+router.post('/user/products',products.userProducts);
 router.get("/product/:id", products.findById);
 router.post("/", products.create);
 router.put("/:id", products.update);

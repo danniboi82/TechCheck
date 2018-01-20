@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import productsApi from '../../Data/products-api'
-
+import axios from "axios";
 const styles = {
   root: {
     display: 'flex',
@@ -74,23 +74,78 @@ const dummyData = [
  */
 class ProductSearch extends Component{
   state={
-    products:[]
+    products:[],
+    pages:0,
+    limit:0
   }
   componentDidMount=()=>{
     console.log(this.props.match.params.category)
-    productsApi.catagorySearch(this.props.match.params.category).then(products=>{
-      console.log(products)
-      this.setState({
-        products: products.data,
+    axios({
+      method:'post',
+     url: `/api/products/category`,
+     data:{
+      category:this.props.match.params.category,
+      page:0,
+      limit:15
+
+     }
+  })
+.then(products=>{
+  console.log(products)
+  this.setState({
+    products: products.data,
+    
+})
+})
+}
+    // userId:this.props.match.params.id,
+           
+    // productsApi.catagorySearch(this.props.match.params.category)
+  console=()=>{
+    console.log( this.state.limit)
+     axios({
+         method:'post',
+        url: `/api/products/category`,
+        data:{
+            userId:this.props.match.params.category,
+            page:this.state.page,
+            limit:this.state.limit
+
+        }
+     }).then(next=>{
+console.log(next)
+this.setState({
+ userProducts: next.data
+})
+     })
+}
+limit=(e)=>{
+
+console.log(e.currentTarget.attributes.value.nodeValue)
+    this.setState({
         
-    })
-    })
-  }
+        limit:e.currentTarget.attributes.value.nodeValue
+    },this.console)
+  
+    
+}
+pages=(e)=>{
+
+
+this.setState({
+    page:e.currentTarget.attributes.value.nodeValue,
+ 
+},this.console)
+
+
+}
   render(){
 
   return (
   <div style={styles.root}>
    <Subheader style={styles.subheader}>Search Results</Subheader>
+   <p>Results per page</p>
+                <button onClick={this.limit} value={15}>15</button><button onClick={this.limit}value={30}>30</button>
     <GridList
       cellHeight={180}
       style={styles.gridList}
@@ -110,6 +165,9 @@ class ProductSearch extends Component{
           <img src={tile.userUploadImage1} alt='Searched Products'/>
         </GridTile>
       ))}
+        <div className='pages'>
+                <button onClick={this.pages} name='1'value={0} >1</button><button onClick={this.pages}name='2' value={15} >2</button> <button onClick={this.pages}name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button> 
+                </div>
     </GridList>
   </div>
   )

@@ -43,13 +43,13 @@ class Navbar extends Component {
   // }
 
  componentDidMount=()=>{
-  console.log(this.props
-  )
+  // console.log(this.props
+  // )
  }
 
  componentWillReceiveProps=()=>{
-  console.log(this.props
-  )
+  // console.log(this.props
+  // )
  }
 
   render() {
@@ -58,8 +58,8 @@ class Navbar extends Component {
       
       
       <div>
-        {console.log(this.props
-)}
+        {/* {console.log(this.props
+)} */}
 
 
         {!this.props.userdata.verified && this.props.logged &&

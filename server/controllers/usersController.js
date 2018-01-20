@@ -348,12 +348,12 @@ console.log(req.params.id)
           })
           .then(forgottenUser => {
           console.log(forgottenUser)
-            // const token = jwt.sign({
-            //   auth: forgottenUser.userId,
-            //   agent: req.headers['user-agent'],
-            //   currentUser:{ forgottenUser },
-            //   exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
-            // }, secret);
+            const token = jwt.sign({
+              auth: forgottenUser.userId,
+              agent: req.headers['user-agent'],
+              currentUser:{ forgottenUser },
+              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+            }, secret);
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
@@ -361,7 +361,7 @@ console.log(req.params.id)
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
-               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +token +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
             
             };
     
@@ -370,6 +370,10 @@ console.log(req.params.id)
             
           })
           .catch(err => res.status(422).json(err));
+      },
+      secrity: function (req, res) {
+        let change
+        
       },
       recovery: function (req, res) {
         // client.messages.create(
@@ -382,7 +386,21 @@ console.log(req.params.id)
         //     console.log(message.sid);
         //   }
         // );
-
+        let decoded
+        jwt.verify(req.body.userToken, secret, function(err, decoded) {      
+          if (err) {
+            return res.json('NoAuth');    
+          } else {
+     
+           //if everything is good, save to request for use in other routes
+            req.decoded = decoded;    
+          console.log(decoded)
+             return decoded
+         //console.log(decoded.currentUser.currentUser.userId)
+           
+             
+          }
+        });
         console.log('hi')
         console.log(req.body.newpass)
         

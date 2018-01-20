@@ -1,16 +1,64 @@
 
 import db from"../models"
+import s3Key from '../../awskey'
+import s3Secret from '../../awssecret'
+import aws from 'aws-sdk'
+
+import multer from 'multer'
+import multerS3 from 'multer-s3'
+aws.config.update({
+  accessKeyId:process.env.s3_key||s3Key,
+  secretAccessKey: process.env.s3_secret||s3Secret
+});
+const s3 = new aws.S3();
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'techcheckbucket',
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, file.originalname); //use Date.now() for unique file keys
+      //var imagePath = file.originalname
+
+    }
 
 
+  })
+});
 
 // Defining methods for the booksController
 const controller = {
   userProducts: (req, res) => {
-    console.log('hi')
-    console.log(req.params)
+   
+    console.log(req.body)
+ let offset=15
+ let limit=15
+ offset =parseInt(req.body.page)
+limit=parseInt(req.body.limit)
+console.log('helloits',limit)
+function changingLimit (){
+  let newo
+if(limit==30){
+ newo = offset += 15
+
+}
+return newo
+}changingLimit()
+let newOffset=changingLimit();
+console.log('hrll',newOffset)
+//     s3.headObject({
+//     Bucket: 'bucketname',
+//     Key: 'file.txt'})
+// .then (result=>{
+// console.log(result)
+// })
+
     db.Products.findAll({
+      offset:newOffset,
+      limit:limit,
         where: {
-          userId:req.params.id
+          userId:req.body.userId,
+          
         }
       })
       .then(dbModel =>{
@@ -63,16 +111,68 @@ createdAt:createdOn
       .catch(err => res.status(422).json(err));
   },
   categorySearch:function(req,res){
+console.log(req.body)
+    let offset=0
+ let limit=15
+ offset =parseInt(req.body.page)
+limit=parseInt(req.body.limit)
+console.log('helloits',typeof limit)
+function changingLimit (){
+  console.log(limit)
+  let newo
+if(limit==30){
+ newo = offset += 15
+
+}
+return newo
+}
+changingLimit()
+let newOffset=changingLimit();
+console.log('hrll',newOffset)
    
     db.Products.findAll({
-      where: {
-        category: req.params.cat,
+     
+      limit:limit,
+      offset: newOffset,
+      where: {like:{
+
+      
+        category: req.body.category||'MotherBoard'},
         
       }
     }).then(products=>{
       res.send(products)
     })
   },
+  search:function(req,res){
+    console.log(req.body)
+        let offset=15
+     let limit=15
+     offset =parseInt(req.body.page)
+    limit=parseInt(req.body.limit)
+    console.log('helloits',typeof limit)
+    function changingLimit (){
+      let newo
+    if(limit==30){
+     newo = offset += 15
+    
+    }
+    return newo
+    }changingLimit()
+    let newOffset=changingLimit();
+    console.log('hrll',newOffset)
+       
+        db.Products.findAll({
+          offset: 0,
+          limit:30,
+          where: {
+            category: req.body.category,
+            
+          }
+        }).then(products=>{
+          res.send(products)
+        })
+      },
   create: function(req, res) {
     console.log(req.body)
     db.Products.create({

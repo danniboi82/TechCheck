@@ -9,7 +9,7 @@ import Link from 'react-router-dom';
 const loggedIn = (props) => {
   let {logout, ...newProps} = props;
   props = newProps;
-  console.log(props)
+  // console.log(props)
   return (
 
   <IconMenu
@@ -20,7 +20,8 @@ const loggedIn = (props) => {
     
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >{console.log(props.userdata.userId)}
+  >
+  {/* {console.log(props.userdata.userId)} */}
 
     <MenuItem href={`/profile/${props.userdata.userId}`}
 
