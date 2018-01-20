@@ -7,7 +7,7 @@ import users from '../../Data/users-api'
 import axios from "axios";
 import '../navbar.scss';
 import './LoginButton.css';
-import { Container, Row } from 'react-grid-system';
+import { Container, Col, Row } from 'react-grid-system';
 
 class Login extends Component {
     constructor(props) {
@@ -81,12 +81,13 @@ class Login extends Component {
                 </div>
                 <Container>
                     <Dialog
-                        actionsContainerStyle={{ textAlign: 'center' }}
                         title="Login / Registration"
+                        autoDetectWindowHeight={true}
                         className='Dialogue'
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
+                        style={{margin: 'auto'}}
                     >
                         {this.state.noUser &&
                             <p className='noMatch'>There is no account associated with that email</p>}
@@ -94,59 +95,75 @@ class Login extends Component {
                             <p className='noMatch' >Email And Password does not match. Please try again.</p>
                         }
                         <Row>
-                            <div>
-                                <TextField
-                                    floatingLabelText="Email"
-                                    name='email'
-                                    hintText="Email"
-                                    onChange={this.onChange}
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    name="pass"
-                                    hintText="Password"
-                                    floatingLabelText="Password"
-                                    type="Password"
-                                    onChange={this.onChange}
-                                />
-                            </div>
-                            <div className='SignInDiv'>
-                                <FlatButton
-                                    style={{ backgroundColor: 'white', margin: '25px 15px' }}
-                                    label="Submit"
-                                    primary={true}
-                                    keyboardFocused={true}
-                                    onClick={this.onSubmit}
-                                />
-                                <FlatButton
-                                    style={{ backgroundColor: '#DD4124', margin: '25px 15px' }}
-                                    label="Cancel"
-                                    primary={true}
-                                    onClick={this.handleClose}
-                                />
-                            </div>
+                            <Col sm={6}>
+                                <Row>
+                                    <Col sm={12}>
+                                        <TextField
+                                            floatingLabelText="Email"
+                                            name='email'
+                                            hintText="Email"
+                                            onChange={this.onChange}
+                                        /><br />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={12}>
+                                        <TextField
+                                            name="pass"
+                                            hintText="Password"
+                                            floatingLabelText="Password"
+                                            type="Password"
+                                            onChange={this.onChange}
+                                        /><br />
+                                    </Col>
+                                </Row>
+                                <div className='SignInDiv' style={{ paddingLeft: '25px' }}>
+                                    <Row>
+                                        <Col sm={6}>
+                                            <FlatButton
+                                                style={{ backgroundColor: 'white' }}
+                                                label="Submit"
+                                                primary={true}
+                                                keyboardFocused={true}
+                                                onClick={this.onSubmit}
+                                            />
+                                        </Col>
+                                        <Col sm={6}>
+                                            <FlatButton
+                                                style={{ backgroundColor: '#DD4124' }}
+                                                label="Cancel"
+                                                primary={true}
+                                                onClick={this.handleClose}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </div>
 
-                            <span className='RegistrationDiv'>
-                                <Link to='/registration'>
-                                    <FlatButton
-                                        style={{ backgroundColor: 'white', margin: '25px 15px' }}
-                                        label="Registration"
-                                        primary={true}
-                                        onClick={this.handleClose}
-                                    />
-                                </Link>
 
-                                <Link to='/acount/recovery'>
-                                    <FlatButton
-                                        style={{ backgroundColor: 'white', margin: '25px 15px' }}
-                                        label="Forgot Password"
-                                        primary={true}
-                                        onClick={this.handleClose}
-                                    />
-                                </Link>
-                            </span>
-
+                                <div className='RegistrationDiv' style={{ paddingLeft: '25px', paddingTop: '15px' }}>
+                                    <Row>
+                                        <Col sm={6}>
+                                            <Link to='/registration'
+                                                onClick={this.handleClose}
+                                            >
+                                                Registration
+                                            </Link>
+                                        </Col>
+                                        <br />
+                                        <Col sm={6}>
+                                            <Link to='/acount/recovery'
+                                                onClick={this.handleClose}
+                                            >
+                                                Forgot Password?
+                                            </Link>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Col>
+                            <Col sm={6}>
+                                <img src="https://i.imgur.com/89X4t5A.png" alt=""
+                                    style={{ position: 'relative', bottom: '10px', left: '25px' }} />
+                            </Col>
                         </Row>
                     </Dialog>
                 </Container>

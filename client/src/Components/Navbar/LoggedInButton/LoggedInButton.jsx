@@ -9,8 +9,8 @@ import Link from 'react-router-dom';
 const loggedIn = (props) => {
   let {logout, ...newProps} = props;
   props = newProps;
-  return (
 
+  return (
   <IconMenu
     {...props}
     iconButtonElement={
@@ -35,7 +35,7 @@ const loggedIn = (props) => {
       href={`/user/products/${props.userdata.userId}`} />
     <MenuItem
       primaryText="Sign out"
-      href='/' />
+      href='/'
       onClick={logout}
      />
   </IconMenu>
