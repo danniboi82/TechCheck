@@ -61,17 +61,13 @@ class CartModal extends Component {
         const items = this.props.cartarray.map(step => {
             return (
                 <MenuItem>
-                    Item: {step.cartitem}    Price: {step.cartamount}
+                   {step.productName}... Price: {step.price}
                 </MenuItem>
             );
         });
 
         const actions = [
-            <FlatButton
-                label="Close"
-                primary={true}
-                onClick={this.handleClose}
-            />,
+            
             <Link to='check_out'><FlatButton
                 label="Check Out"
                 primary={true}
@@ -107,11 +103,7 @@ class CartModal extends Component {
                             </div>
                         </Menu>
                         <div style={{ textAlign: 'center', padding: '10px 0', }}>
-                        <FlatButton style={{ backgroundColor: '#92B222' }}
-                label="Close"
-                primary={true}
-                onClick={this.handleRequestClose}
-            />   <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
+                          <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
                         </div>
                     </Popover>
                     {/* <Dialog
