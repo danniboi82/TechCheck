@@ -118,7 +118,7 @@ class App extends Component {
         let tmpid=this.state.theId;
       
         const RoutedProfilePage = (props) => {
-            console.log(tmpid);
+            console.log(this.state.theId);
          
             return (
                 
@@ -173,7 +173,7 @@ class App extends Component {
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' render={RoutedCheckOutPage} />
                             <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
-                            <Route path='/search_results' component={SearchedPage} />
+                            <Route path='/search_results/:category' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />
                             <Route path='/profile/:id' render={RoutedProfilePage} />

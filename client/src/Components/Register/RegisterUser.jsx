@@ -140,6 +140,7 @@ class addUser extends React.Component {
                 break;
                 case 'phoneNumber':
                 phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
+                break;
             default:
                 break;
         }
