@@ -42,9 +42,15 @@ class Navbar extends Component {
     
   // }
 
- 
+ componentDidMount=()=>{
+  console.log(this.props
+  )
+ }
 
-
+ componentWillReceiveProps=()=>{
+  console.log(this.props
+  )
+ }
 
   render() {
 
@@ -54,6 +60,8 @@ class Navbar extends Component {
       <div>
         {console.log(this.props
 )}
+
+
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
             Please verify your email address. <br /><a href='https://www.google.com/gmail/about/#'> Gmail  </a>
@@ -72,7 +80,7 @@ class Navbar extends Component {
             }}
 
           showMenuIconButton={false}
-          iconElementRight={this.state.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
+          iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
 
 
         >
