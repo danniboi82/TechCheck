@@ -15,7 +15,8 @@ import axios from "axios";
 class Navbar extends Component {
 
   state = {
-    dataSource:''
+    dataSource:'',
+    search:''
   //   logged: false,
   //   userInput: '',
   //   userDataObj: {},
@@ -41,7 +42,10 @@ class Navbar extends Component {
     //console.log(sessionStorage.auth)
     
   // }
-
+onsubmit =()=>{
+  console.log(this.state.search)
+  window.location=  `/searchResults/${this.state.search}`
+}
  componentDidMount=()=>{
   // console.log(this.props
   // )
@@ -51,7 +55,12 @@ class Navbar extends Component {
   // console.log(this.props
   // )
  }
+ onChange = (e) => {
 
+  this.setState({
+      search: e
+  });
+}
   render() {
 
     return (
@@ -98,11 +107,19 @@ class Navbar extends Component {
           <FlatButton ><Link to='/api/users/profile/'>user Profile</Link></FlatButton>
           <Link to='/check_out'><FlatButton>Check Out</FlatButton></Link>
         </div>
-
+{/* // {(value) => this.setState({ dataSource: [value, value + value, value + value + value] })} */}
+      
+      {/* {this.props.userInputHandler} */}
         {<SearchBar
-          // dataSource={this.state.dataSource}
-         // onChange={this.props.userInputHandler}
-         // onRequestSearch={(value) => this.setState({ dataSource: [value, value + value, value + value + value] })}
+        value={this.state.search}
+        name='search'
+        
+        // closeIcon={false}
+        // searchIcon={true}
+        spellCheck={true}
+          //dataSource={this.state.search}
+          onChange={this.onChange}
+         onRequestSearch={this.onsubmit}
           style={{
             margin: '0 auto',
             maxWidth: '100%',
