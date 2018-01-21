@@ -113,7 +113,7 @@ pages=(e)=>{
                     >
                         <div className='ImageDiv'>
 
-                            {/* <img className='ProductImage' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.userUploadImage1}`} alt="image1" /> */}
+                            <img className='ProductImage' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.userUploadImage1}`} alt="image1" />
                         </div>
                         <div className='ProductDescription'>
                             Name: {card.productName}
