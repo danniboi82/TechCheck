@@ -1,40 +1,43 @@
 .CheckOutPageDiv{
-    border : 101px solid bronze;
-    color: red;
     display: inline;
     overflow: auto;
     text-align: center;
+    padding-bottom: 35px;
 }
 
 .ProductPaper{
-    height: 200;
+    height: 150px;
     max-width: 80%;
     display: flex;
-    color: black;
     overflow: auto;
-    margin: 15px auto;
+    margin: 5px auto;
     text-align: left;
 }
 
-.ImageDiv{
+.ImageSection{
     height: 95%;
     width: 30%;
-    border: 1px solid red;
+    margin: auto 5px;
 }
 
-.ProductImage{
+.ProductPic{
     height: 100%;
     width: 100%;
+    margin: auto;
 }
 
-.ProductDescription{
-    padding-left: 30px;
+.DescribeProduct{
+    padding-left: 10px;
     width: 65%;
-    border: 1px solid gold;
+    margin: 15px 15px;
 }
 
 .PlaceOrderDiv{
     padding: 50px 0;
+    border: 1px solid black;
+    width: 80%;
+    margin: 30px auto;
+    background-color: #838487;
 }
 
 

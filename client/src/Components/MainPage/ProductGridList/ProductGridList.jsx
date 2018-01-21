@@ -17,9 +17,9 @@ const styles = {
     overflowY: 'auto',
   },
   subheader: {
-    fontSize: '50px',
+    fontSize: '30px',
     color: 'black', 
-    padding: '50px 0',
+    padding: '20px 0',
     backgroundColor: 'red'
   }
 };
@@ -118,7 +118,7 @@ this.setState({
       cellHeight={180}
       style={styles.gridList}
     >
-      <Subheader style={styles.subheader}>Popular Items</Subheader>
+      <Subheader style={styles.subheader}>Product Categories</Subheader>
       {dummyData.map((tile) => (
         <GridTile
         name={tile.title}
@@ -126,12 +126,11 @@ this.setState({
           value={tile.value}
           onClick={this.searchCat }
          
-          title={tile.title + ' ...Click  image to search by category!'}
+          title={tile.title}
           subtitle={<span>Price Range<b>{tile.author}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>
-          }
+          titleBackground='#484848'
           > 
-        <img src={tile.img}  value={tile.title}alt='categorys'/>
+        <img src={tile.img}  value={tile.title} alt='categories'/>
         </GridTile>
       ))}
     </GridList>

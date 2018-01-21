@@ -15,7 +15,7 @@ const styles = {
         fontSize: '20px',
         color: 'black',
         padding: '50px 0',
-        backgroundColor: 'green'
+        backgroundColor: 'white'
     }
 };
 

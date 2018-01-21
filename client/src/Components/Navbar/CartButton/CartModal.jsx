@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import Popover, { PopoverAnimationVertical } from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+import { Row, Col } from 'react-grid-system';
 
 
 const style = {
@@ -60,27 +61,36 @@ class CartModal extends Component {
 
         const items = this.props.cartarray.map(step => {
             return (
-                <MenuItem>
-                   {step.productName}... Price: {step.price}
+                <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
+                    <Row>
+                        <Col sm={6}>
+                            {step.productName}
+                        </Col>
+                        <Col sm={6}>
+                            Price: {step.price}
+                        </Col>
+                    </Row>
                 </MenuItem>
             );
         });
 
         const actions = [
-            
-            <Link to='check_out'><FlatButton
-                label="Check Out"
-                primary={true}
-                keyboardFocused={true}
-                onClick={this.handleCheckOut}
-            /></Link>,
+
+            <Link to='check_out'>
+                <FlatButton
+                    label="Check Out"
+                    primary={true}
+                    keyboardFocused={true}
+                    
+                />
+            </Link>,
         ];
 
         return (
             <div>
                 <div>
                     <FlatButton {...this.props} title='cart' style={style} onClick={this.handleClick} >
-                        <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-22px', color: 'white' }}> {this.props.cartitem}</span>
+                        <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-20.5px', color: 'white' }}> {this.props.cartitem}</span>
                     </FlatButton>
                 </div>
                 <div>
@@ -95,36 +105,18 @@ class CartModal extends Component {
                     >
                         <Menu>
                             <div style={{ textAlign: 'center' }}>
-                            Item Count :   {this.props.cartitem}  |
-                            Amount : {this.props.cartamount}
+                                <img src={logo} alt="shopping cart" style={{ position: 'relative', top: '7px', left: '3px' }} />  <span style={{ position: 'relative', bottom: '7px', left: '-19px', color: 'white' }}> {this.props.cartitem}</span>  |
+                            Amount : ${this.props.cartamount}
                             </div>
+                            <Divider />
                             <div className='BoughtProducts'>
                                 {items}
                             </div>
                         </Menu>
                         <div style={{ textAlign: 'center', padding: '10px 0', }}>
-                          <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }}>Check Out</FlatButton></Link>
+                            <Link to='/check_out'> <FlatButton style={{ backgroundColor: '#92B558' }} onClick={this.handleCheckOut}>Check Out</FlatButton></Link>
                         </div>
                     </Popover>
-                    {/* <Dialog
-                        title="Cart"
-                        actions={actions}
-                        modal={false}
-                        open={this.state.open}
-                        onRequestClose={this.handleClose}
-                    >
-                        Item Count :   
-                        <br />
-                        Item Total Amount :  {this.props.cartamount}
-                        <br />
-                        <hr />
-                        <ol>
-                            {items}
-                        </ol>
-                        <hr />
-
-                    </Dialog> */}
-
                 </div>
             </div>
 

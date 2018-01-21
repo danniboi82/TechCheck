@@ -6,9 +6,15 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { List, ListItem } from 'material-ui/List';
 import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
 import products1 from '../../Data/products-api'
+
+
 const productDetailStyles = {
     h1: {
-        color: 'white',
+        backgroundColor: '#4C6A92', 
+        margin: '0px auto', 
+        padding: '25px 0', 
+        borderTop: '1px solid white', 
+        color: 'white' 
     },
 
     purchaseButton: {

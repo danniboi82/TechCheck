@@ -58,9 +58,6 @@ class Navbar extends Component {
       
       
       <div>
-        {console.log(this.props
-)}
-
 
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
@@ -82,16 +79,6 @@ class Navbar extends Component {
             onClick={this.props.onClick}
           />
         </AppBar>
-
-        <div className='routeDiv'>
-          <FlatButton> <Link to='/'>Home</Link> </FlatButton>
-          <FlatButton> <Link to='/search_results'>Search Results</Link> </FlatButton>
-          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/product_detail/3214e644-9c1c-48ca-baba-d699af75a1ea'> Product Details</Link> </FlatButton>
-          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/sell_product'>Sell Product</Link> </FlatButton>
-          <FlatButton style={{ paddingLeft: '10px' }}> <Link to='/registration'> Registration </Link> </FlatButton>
-          <FlatButton ><Link to='/api/users/profile/'>user Profile</Link></FlatButton>
-          <Link to='/check_out'><FlatButton>Check Out</FlatButton></Link>
-        </div>
 
         {<SearchBar
           // dataSource={this.state.dataSource}

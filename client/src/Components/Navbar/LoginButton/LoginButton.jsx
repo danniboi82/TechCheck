@@ -3,7 +3,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
-import users from '../../Data/users-api'
 import axios from "axios";
 import '../navbar.scss';
 import './LoginButton.css';
@@ -87,13 +86,9 @@ class Login extends Component {
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
-                        style={{margin: 'auto'}}
+                        style={{ margin: 'auto' }}
                     >
-                        {this.state.noUser &&
-                            <p className='noMatch'>There is no account associated with that email</p>}
-                        {this.state.doesntMatch &&
-                            <p className='noMatch' >Email And Password does not match. Please try again.</p>
-                        }
+
                         <Row>
                             <Col sm={6}>
                                 <Row>
@@ -103,6 +98,7 @@ class Login extends Component {
                                             name='email'
                                             hintText="Email"
                                             onChange={this.onChange}
+                                            className='TextInput'
                                         /><br />
                                     </Col>
                                 </Row>
@@ -114,11 +110,12 @@ class Login extends Component {
                                             floatingLabelText="Password"
                                             type="Password"
                                             onChange={this.onChange}
+                                            className='TextInput'
                                         /><br />
                                     </Col>
                                 </Row>
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
 
                                 <div className='SignInDiv' style={{ paddingLeft: '25px' }}>
                                     <Row>
@@ -164,7 +161,12 @@ class Login extends Component {
                                 </div>
                             </Col>
                             <Col sm={6}>
-                                <img src="https://i.imgur.com/89X4t5A.png" alt=""
+                                {this.state.noUser &&
+                                    <p className='noMatch'>There is no account associated with that email</p>}
+                                {this.state.doesntMatch &&
+                                    <p className='noMatch' >Email or password dont match. Please try again.</p>
+                                }
+                                <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo"
                                     style={{ position: 'relative', bottom: '10px', left: '25px' }} />
                             </Col>
                         </Row>
