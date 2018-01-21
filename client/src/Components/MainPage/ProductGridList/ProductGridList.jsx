@@ -18,9 +18,9 @@ const styles = {
   },
   subheader: {
     fontSize: '50px',
-    color: 'black', 
+    color: 'white', 
     padding: '50px 0',
-    backgroundColor: 'red'
+    backgroundColor: '#2196f3'
   }
 };
 
@@ -68,7 +68,8 @@ this.setState({
       cellHeight={180}
       style={styles.gridList}
     >
-      <Subheader style={styles.subheader}>Popular Items</Subheader>
+      <Subheader style={styles.subheader}>Categories </Subheader>
+      {/* //<br/><h3>Click a category to search by category.</h3> */}
       {catArray.map((tile) => (
         <GridTile
         name={tile.name}
@@ -76,8 +77,8 @@ this.setState({
           value={tile.value}
           onClick={this.searchCat }
          
-          title={tile.name + ' ...Click  image to search by category!'}
-          subtitle={<span>Price Range<b>{tile.priceRange}</b></span>}
+          title={tile.name}
+          subtitle={<span>Price Range: $<b>{tile.priceRange}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>
           }
           > 
