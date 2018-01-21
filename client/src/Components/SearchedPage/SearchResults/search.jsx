@@ -79,12 +79,12 @@ class ProductSearch extends Component{
     limit:15
   }
   componentDidMount=()=>{
-    console.log(this.props.match.params.category)
+    console.log(this.props.match.params.search)
     axios({
       method:'post',
      url: `/api/products/search`,
      data:{
-      category:this.props.match.params.category,
+      search:this.props.match.params.category,
       page:0,
       limit:15
 
@@ -107,7 +107,7 @@ class ProductSearch extends Component{
          method:'post',
         url: `/api/products/search`,
         data:{
-            category:this.props.match.params.category,
+            search:this.props.match.params.category,
             page:this.state.page,
             limit:this.state.limit
 
