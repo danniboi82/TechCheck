@@ -6,7 +6,7 @@ import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 // || jwtSecret;
 // ||sendGridkey;
-const secret = process.env.jwt_secret 
+const secret = process.env.jwt 
 const saltRounds =10;
 const sengrido =process.env.sendgrid 
 sgMail.setApiKey(sengrido);
