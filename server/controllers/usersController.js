@@ -389,18 +389,26 @@ console.log(req.params.id)
         let decoded
         jwt.verify(req.body.userToken, secret, function(err, decoded) {      
           if (err) {
-            return res.json('NoAuth');    
+           
+            return res.json('NoAuth'); 
+          
           } else {
-     
+          
            //if everything is good, save to request for use in other routes
             req.decoded = decoded;    
           console.log(decoded)
              return decoded
          //console.log(decoded.currentUser.currentUser.userId)
-           
+        }
+      })
              
-          }
-        });
+          if(decoded==null){
+res.send('not valid')
+          }else{
+
+         
+    
+    
         console.log('hi')
         console.log(req.body.newpass)
         
@@ -418,7 +426,9 @@ db.Users.findOne({
   where:{
     id:req.body.id
   }
+
 }).then(forgottenUser=>{
+
   console.log(forgottenUser)
   const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
@@ -432,14 +442,15 @@ db.Users.findOne({
     
             sgMail.send(msg);
             res.send('Sucsessfully changed password')
+       
+     
           })
-          
-        
+       
           })
-        
+       
           .catch(err => res.status(422).json(err));
         })
-        
+      }
       },
   remove: function (req, res) {
     db.Users.update({
