@@ -356,7 +356,7 @@ console.log(req.params.id)
               auth: forgottenUser.userId,
               agent: req.headers['user-agent'],
               currentUser:{ forgottenUser },
-              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+              exp: 120, // Note: in seconds!
             }, secret);
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
