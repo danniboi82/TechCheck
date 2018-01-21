@@ -31,21 +31,40 @@ const controller = {
   userProducts: (req, res) => {
    
     console.log(req.body)
+   
  let offset=15
  let limit=15
  offset =parseInt(req.body.page)
 limit=parseInt(req.body.limit)
 console.log('helloits',limit)
-function changingLimit (){
-  let newo
-if(limit==30){
+let trueorfalse=false
+
+  const offsetArray=[15,30,45,60]
+ 
+console.log(offset)
+  for(let i =0;i<4;i++){
+if(offsetArray[i]===offset){
+ trueorfalse=true
+}
+  }
+  
+
+console.log(trueorfalse)
+
+
+  let newo=0
+
+
+
+
+    if(limit===30&&trueorfalse===true){
  newo = offset += 15
 
 }
-return newo
-}changingLimit()
-let newOffset=changingLimit();
-console.log('hrll',newOffset)
+
+
+
+console.log('hrll',newo)
 //     s3.headObject({
 //     Bucket: 'bucketname',
 //     Key: 'file.txt'})
@@ -54,7 +73,7 @@ console.log('hrll',newOffset)
 // })
 
     db.Products.findAll({
-      offset:newOffset,
+      offset:newo,
       limit:limit,
         where: {
           userId:req.body.userId,
@@ -111,39 +130,52 @@ createdAt:createdOn
       .catch(err => res.status(422).json(err));
   },
   categorySearch:function(req,res){
-console.log(req.body)
-    let offset=0
+
+    console.log(req.body)
+   
+ let offset=15
  let limit=15
  offset =parseInt(req.body.page)
 limit=parseInt(req.body.limit)
-console.log(offset)
-let newOffset=0
+console.log('helloits',limit)
+let trueorfalse=false
 
-function changingLimit (){
-  console.log('limitnum',limit)
-  let newo
-if(limit==30){
- newo = offset += 15
-console.log('offseting',newo)
-}else{
-  newo=0
+  const offsetArray=[15,30,45,60]
+ 
+console.log(offset)
+  for(let i =0;i<4;i++){
+if(offsetArray[i]===offset){
+ trueorfalse=true
+}
+  }
   
+
+console.log(trueorfalse)
+
+
+  let newo=0
+
+
+
+
+    if(limit===30&&trueorfalse===true){
+ newo = offset += 15
+
 }
-return newo
-}
-changingLimit()
-newOffset=changingLimit();
-console.log('hrll',newOffset)
+
+
+
+console.log('hrll',newo)
    
     db.Products.findAll({
      
       limit:limit,
-      offset: newOffset,
-      like:{
+      offset: newo,
+      
 
       
-       where:{ category: req.body.category||'MotherBoard'}
-      },
+       where:{ category: req.body.category}
+      ,
         
       
     }).then(products=>{

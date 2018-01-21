@@ -26,7 +26,7 @@ let id=this.props.match.params.id
        console.log(id)
        axios({
         method:'post',
-       url: `/api/products/user/category`,
+       url: `/api/products/user/products`,
        data:{
            userId:this.props.match.params.id,
            page:0,
@@ -51,7 +51,7 @@ let id=this.props.match.params.id
         console.log( this.state.limit)
          axios({
              method:'post',
-            url: `/api/products/user/category`,
+            url: `/api/products/user/products`,
             data:{
                 userId:this.props.match.params.id,
                 page:this.state.page,
