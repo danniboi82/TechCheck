@@ -28,6 +28,7 @@ const upload = multer({
 
 // Defining methods for the booksController
 const controller = {
+  
   userProducts: (req, res) => {
    
     console.log(req.body)

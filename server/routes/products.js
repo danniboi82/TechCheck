@@ -38,7 +38,7 @@ router.get("/product/:id", products.findById);
 router.post("/", products.create);
 router.put("/:id", products.update);
 router.delete("/:id", products.remove);
-
+router.post('/search',products.search)
 router.post('/upload', upload.array('upl', 1), function (req, res, next) {
     res.send("Uploaded!");
   });
