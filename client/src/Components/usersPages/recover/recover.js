@@ -20,9 +20,10 @@ state = {
 
   onSubmit =()=>{
       users.reset(this.state.email).then(function(done){
+          console.log(done)
           console.log(this.state.email)
       })
-      window.location = '/sent'
+      //window.location = '/sent'
   }
   render() {
     return (   
