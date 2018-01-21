@@ -7,7 +7,6 @@ import products1 from '../../Data/products-api';
 import {Link} from 'react-router-dom';
 import axios from "axios";
 
-import MediaQuery from 'react-responsive';
 class userProducts extends Component {
 
     state = {
@@ -125,11 +124,11 @@ pages=(e)=>{
                     </Paper>
                 ))}
 
-import MediaQuery from 'react-responsive';
+
  
 
    <div>
-     <div>Device Test!</div>
+     {/* <div>Device Test!</div>
      <MediaQuery minDeviceWidth={1224} values={{ deviceWidth: 1600 }}>
        <div>You are a desktop or laptop</div>
        <MediaQuery minDeviceWidth={1824}>
@@ -150,7 +149,11 @@ import MediaQuery from 'react-responsive';
      </MediaQuery>
      <MediaQuery minResolution="2dppx">
        <div>You are retina</div>
+<<<<<<< HEAD
      </MediaQuery>
+=======
+     </MediaQuery> */}
+>>>>>>> hope
    </div>
  
                 <div className='pages'>
