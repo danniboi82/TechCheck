@@ -159,7 +159,7 @@ class productDetail extends Component {
                                 <ListItem style={productDetailStyles.listStyle}>Packaging : {this.state.packaging}</ListItem>
                                 <ListItem style={productDetailStyles.listStyle}>Serial Number : {this.state.serialNumber}</ListItem>
                                 <ListItem style={productDetailStyles.listStyle}>Prouduct Id :{this.state.productId}</ListItem>
-                                <ListItem style={productDetailStyles.listStyle}>Test Results : </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Verified : </ListItem>
                                 <ListItem style={productDetailStyles.listStyle}>Product Status : {this.state.status}</ListItem>
                             </List>
                         </Paper>
