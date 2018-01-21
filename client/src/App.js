@@ -15,7 +15,7 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import { UserProfile, UserProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
-
+import search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
 class App extends Component {
     state = {
@@ -182,6 +182,7 @@ class App extends Component {
                             <Route path='/reset/:id' component={resetPassword} />
                             <Route path='/confirmation/reset' component={confirmation} />
                             <Route path='/user/products/:id' component={UserProducts} />
+                            <Route path='/searchResults/:search' component={search}/>
                         </Switch>
                         <Footer />
                     </div>
