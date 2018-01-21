@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import SearchBar from 'material-ui-search-bar';
-import { Link } from 'react-router-dom';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
-import CheckOutPage from '../CheckOutPage/CheckOutPage';
-import RaisedButton from 'material-ui/RaisedButton';
-import axios from "axios";
 
 class Navbar extends Component {
 
@@ -63,11 +56,10 @@ onsubmit =()=>{
 }
   render() {
 
-    return (
-      
-      
-      <div>
+    
 
+    return (
+      <div>
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
             Please verify your email address. <br /><a href='https://www.google.com/gmail/about/#'> Gmail  </a>
@@ -79,11 +71,12 @@ onsubmit =()=>{
 
         
         <AppBar
-          title="TechCheck"
+          title={<img src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto', width: '80px', height : '80px' }} />}
           style={{ backgroundColor: "#2196F3", }}
           showMenuIconButton={false}
           iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
         >
+        
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick}
           />
@@ -92,9 +85,6 @@ onsubmit =()=>{
         {<SearchBar
         value={this.state.search}
         name='search'
-        
-        // closeIcon={false}
-        // searchIcon={true}
         spellCheck={true}
           //dataSource={this.state.search}
           onChange={this.onChange}

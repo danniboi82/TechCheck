@@ -5,14 +5,6 @@ import { Col, Container, Row } from 'react-grid-system';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 
-// const Container = styled.div`
-//   text-align: center;
-//   background-color: yellow;
-//   bottom: 0;
-//   left: 0;
-//   padding: 24px;
-//   color: rgba(0, 0, 0, 0.4);
-// `;
 
 const Copyright = styled.span`
   padding-right: 0.5em;
@@ -42,7 +34,7 @@ const footer = () => {
     <div style={{backgroundColor: '#009B77'}}>
       <Container >
         <Row className='FooterRowOne'>
-          <Col sm={4} style={{ display: 'block' }}>
+          <Col sm={4} style={{ display: 'inline-block' }}>
 
             <div><Link to='/'><FlatButton> Home </FlatButton></Link></div>
             <div> <Link to='/product_detail/3214e644-9c1c-48ca-baba-d699af75a1ea'><FlatButton> Product Details</FlatButton></Link> </div>
@@ -52,7 +44,7 @@ const footer = () => {
             <div><Link to='/check_out'><FlatButton>Check Out</FlatButton></Link></div>
           </Col>
           <Col sm={4}>
-            <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto' }} />
+            <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto', maxWidth: '100%' }} />
           </Col>
           <Col sm={4}>
             <div className="footer-icons">
@@ -63,7 +55,7 @@ const footer = () => {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row style={{padding: '15px 0px'}}>
           <Col sm={12}>
             <Copyright css="padding-right: 0.5em"><b>&copy; 2017</b></Copyright>
             <ExtLink href="/">TechCheck</ExtLink>

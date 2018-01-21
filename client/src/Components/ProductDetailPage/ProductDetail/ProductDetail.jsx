@@ -48,9 +48,9 @@ const productDetailStyles = {
             overflowY: 'auto',
         },
 
-        gridTile: {
-
-        }
+    },
+    listStyle:{
+        border: '1px solid white',
     }
 
 };
@@ -147,20 +147,20 @@ class productDetail extends Component {
                         <Subheader style={{ color: 'white', fontSize: '50px', padding: '30px' }}>{this.state.productName}</Subheader>
                         <Paper style={productDetailStyles.paperWrapper}>
                             <List>
-                                <ListItem>Price :${this.state.price} </ListItem>
-                                <ListItem>category: $1200</ListItem>
-                                <ListItem>Condition : {this.state.condition}</ListItem>
-                                <ListItem>Product Description : {this.state.productDescription}</ListItem>
-                                <ListItem>warranty : {this.state.warranty}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Price :${this.state.price} </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Category : </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Condition : {this.state.condition}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Product Description : {this.state.productDescription}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Warranty : {this.state.warranty}</ListItem>
                             </List>
                         </Paper>
                         <Paper style={productDetailStyles.paperWrapper}>
                             <List>
-                                <ListItem>Packaging : {this.state.packaging}</ListItem>
-                                <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
-                                <ListItem>Prouduct Id :{this.state.productId}</ListItem>
-                                <ListItem>Price : $1200</ListItem>
-                                <ListItem>Product Status : {this.state.status}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Packaging : {this.state.packaging}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Serial Number : {this.state.serialNumber}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Prouduct Id :{this.state.productId}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Test Results : </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Product Status : {this.state.status}</ListItem>
                             </List>
                         </Paper>
                     </div>

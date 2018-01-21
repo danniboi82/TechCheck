@@ -41,10 +41,10 @@ const catArray= [
     priceRange: '25-150',
   },
   {id: '6',
-    img: 'http://www.corsair.com/~/media/02C9A29302A447B89AF4BEBD0D3638BE.ashx?w=700',
-    name: 'Full Systems',
-    value:'FullSystem',
-    priceRange: '300-2000',
+    img: 'https://theitbros.com/wp-content/uploads/2015/11/amd_intel_processors.jpg',
+    name: 'Processors',
+    value:'Processors',
+    priceRange: '50-500',
   },
   {id: '7',
     img: 'https://venturebeat.com/wp-content/uploads/2017/06/omen_17_coreset_rearquarter.jpg?fit=578%2C491&strip=all',
@@ -57,12 +57,7 @@ const catArray= [
     name: 'Game Consoles',
     value:'Gaming Console',
     priceRange: '50-400',
-  },{
-  id: '9',
-    img: 'https://i.pinimg.com/736x/97/9b/ec/979beca61b0a01017aeabb94d6ddf5e5--console-gaming.jpg',
-    name: 'Processor',
-    value:'Processor',
-    priceRange: '50-500'
-  }
+  },
+
 ];
 export default catArray;

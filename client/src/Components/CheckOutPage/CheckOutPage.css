@@ -1,17 +1,10 @@
-.CheckOutPageDiv{
-    display: inline;
-    overflow: auto;
-    text-align: center;
+.CheckOutPage{
     padding-bottom: 35px;
 }
 
 .ProductPaper{
     height: 150px;
-    max-width: 80%;
-    display: flex;
-    overflow: auto;
-    margin: 5px auto;
-    text-align: left;
+
 }
 
 .ImageSection{
@@ -33,10 +26,10 @@
 }
 
 .PlaceOrderDiv{
-    padding: 50px 0;
-    border: 1px solid black;
-    width: 80%;
-    margin: 30px auto;
+    width: 100%;
+    height: 98%;
+    max-height: 100%;
+    margin: 15px auto;
     background-color: #838487;
 }
 

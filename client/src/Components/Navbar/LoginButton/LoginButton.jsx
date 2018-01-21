@@ -4,7 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import '../navbar.scss';
+
 import './LoginButton.css';
 import { Container, Col, Row } from 'react-grid-system';
 
@@ -162,12 +162,12 @@ class Login extends Component {
                             </Col>
                             <Col sm={6}>
                                 {this.state.noUser &&
-                                    <p className='noMatch'>There is no account associated with that email</p>}
+                                    <p>There is no account associated with that email</p>}
                                 {this.state.doesntMatch &&
-                                    <p className='noMatch' >Email or password dont match. Please try again.</p>
+                                    <p>Email or password dont match. Please try again.</p>
                                 }
                                 <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo"
-                                    style={{ position: 'relative', bottom: '10px', left: '25px' }} />
+                                    style={{ position: 'relative', bottom: '10px', left: '65px' }} />
                             </Col>
                         </Row>
                     </Dialog>
