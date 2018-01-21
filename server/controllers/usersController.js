@@ -1,14 +1,14 @@
-// import sendGridkey from '../../sendgrid.js'
+ import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-// import jwtSecret from '../../jwtSecret'
+import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 // || jwtSecret;
 // ||sendGridkey;
-const secret = process.env.jwt_secret 
+const secret = process.env.jwt_secret || jwtSecret 
 const saltRounds =10;
-const sengrido =process.env.sendgrid 
+const sengrido =process.env.sendgrid || sendGridkey
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {

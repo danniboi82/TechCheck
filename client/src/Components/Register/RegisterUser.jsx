@@ -61,6 +61,9 @@ const styles = {
     },
     passwordj: {
         opacity: 0.5,
+    },
+    h1: {
+        fontWeight: 300
     }
 };
 
@@ -253,14 +256,13 @@ this.setState({
     render() {
         return (
             <MuiThemeProvider>
-                <div >
-                    {/* {this.state.formErrors &&
-                    <h1  >{this.state.formErrors}</h1>} */}
+                <div styles={{margin:"auto"}}>
+                {<h1 style={styles.h1}>Create an Account!</h1>}
+                {<p>TechCheck makes it convenient and hassle-free users to exchange PC parts and electronics.</p>}
                 </div>
-                <div style={{ padding: '30px 0' }}>
+                <div style={{ padding: '20px 0' }}>
 
                     <div>
-
                         <TextField
                             name="email"
                             value={this.state.email}
