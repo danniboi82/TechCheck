@@ -1,14 +1,16 @@
-// import sendGridkey from '../../sendgrid.js'
+import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-// import jwtSecret from '../../jwtSecret'
+import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
+import moment from 'moment';
 // || jwtSecret;
 // ||sendGridkey;
-const secret = process.env.jwt_secret 
+
+const secret = process.env.jwt|| jwtSecret;
 const saltRounds =10;
-const sengrido =process.env.sendgrid 
+const sengrido =process.env.sendgrid ||sendGridkey;
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
@@ -189,8 +191,10 @@ address: dbModel.dataValues.address
     })
   },
   signOut: function (req, res) {
-    
- res.send('User signed out')
+
+// moment().format('2016-01-01 11:31:23 PM')
+  let i= moment(' 11:31:23 PM').minute(Number);
+ res.send(i)
   },
   create: function (req, res) {
   
@@ -352,7 +356,7 @@ console.log(req.params.id)
               auth: forgottenUser.userId,
               agent: req.headers['user-agent'],
               currentUser:{ forgottenUser },
-              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+              exp: 120, // Note: in seconds!
             }, secret);
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName

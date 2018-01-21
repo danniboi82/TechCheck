@@ -164,7 +164,7 @@ this.setState({
           subtitle={<span>Price Range<b>{tile.price}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={tile.userUploadImage1} alt='Searched Products'/>
+          <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>

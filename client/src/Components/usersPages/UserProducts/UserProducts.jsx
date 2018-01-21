@@ -6,6 +6,7 @@ import './UserProducts.css';
 import products1 from '../../Data/products-api';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+
 class userProducts extends Component {
 
     state = {
@@ -113,7 +114,7 @@ pages=(e)=>{
                     >
                         <div className='ImageDiv'>
 
-                            {/* <img className='ProductImage' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.userUploadImage1}`} alt="image1" /> */}
+                            <img className='ProductImage' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.userUploadImage1}`} alt="image1" />
                         </div>
                         <div className='ProductDescription'>
                             Name: {card.productName}
@@ -122,6 +123,35 @@ pages=(e)=>{
                             onClick={() => this.deleteProductHandler(id)} />
                     </Paper>
                 ))}
+
+
+ 
+
+   <div>
+     {/* <div>Device Test!</div>
+     <MediaQuery minDeviceWidth={1224} values={{ deviceWidth: 1600 }}>
+       <div>You are a desktop or laptop</div>
+       <MediaQuery minDeviceWidth={1824}>
+         <div>You also have a huge screen</div>
+       </MediaQuery>
+       <MediaQuery maxWidth={1224}>
+         <div>You are sized like a tablet or mobile phone though</div>
+       </MediaQuery>
+     </MediaQuery>
+     <MediaQuery maxDeviceWidth={1224}>
+       <div>You are a tablet or mobile phone</div>
+     </MediaQuery>
+     <MediaQuery orientation="portrait">
+       <div>You are portrait</div>
+     </MediaQuery>
+     <MediaQuery orientation="landscape">
+       <div>You are landscape</div>
+     </MediaQuery>
+     <MediaQuery minResolution="2dppx">
+       <div>You are retina</div>
+     </MediaQuery> */}
+   </div>
+ 
                 <div className='pages'>
                 <button onClick={this.pages} name='1'value={0} >1</button><button onClick={this.pages}name='2' value={15} >2</button> <button onClick={this.pages}name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button> 
                 
