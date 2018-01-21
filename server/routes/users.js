@@ -4,14 +4,14 @@ import aws from 'aws-sdk'
 import multer from 'multer'
 import multerS3 from 'multer-s3'
 
-// import s3Key from '../../awskey'
-// import s3Secret from '../../awssecret'
+ import s3Key from '../../awskey'
+ import s3Secret from '../../awssecret'
 //||s3Key
 //||s3Secret
 const router = express.Router();
 aws.config.update({
-    accessKeyId:process.env.s3_key,
-    secretAccessKey: process.env.s3_secret
+    accessKeyId:process.env.s3_key||s3Key,
+    secretAccessKey: process.env.s3_secret||s3Secret
   });
   const s3 = new aws.S3();
   const upload = multer({
@@ -33,8 +33,8 @@ aws.config.update({
   });
 router.get("/", users.findAll);
 router.get("/profile/:id", users.findById);
-router.post("/recover/:token", users.forgot);
-router.put("/change",users.recovery)
+router.post("/change", users.forgot);
+router.put("/recover/:token",users.recovery)
 router.post("/", users.create);
 router.post("/signIn", users.signIn);
 
