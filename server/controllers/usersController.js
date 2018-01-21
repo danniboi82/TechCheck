@@ -1,14 +1,14 @@
-import sendGridkey from '../../sendgrid.js'
+// import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-import jwtSecret from '../../jwtSecret'
+// import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
-
-
-const secret = process.env.jwt_secret || jwtSecret;
+// || jwtSecret;
+// ||sendGridkey;
+const secret = process.env.jwt 
 const saltRounds =10;
-const sengrido =process.env.sendgrid ||sendGridkey;
+const sengrido =process.env.sendgrid 
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
@@ -348,12 +348,12 @@ console.log(req.params.id)
           })
           .then(forgottenUser => {
           console.log(forgottenUser)
-            // const token = jwt.sign({
-            //   auth: forgottenUser.userId,
-            //   agent: req.headers['user-agent'],
-            //   currentUser:{ forgottenUser },
-            //   exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
-            // }, secret);
+            const token = jwt.sign({
+              auth: forgottenUser.userId,
+              agent: req.headers['user-agent'],
+              currentUser:{ forgottenUser },
+              exp: Math.floor(new Date().getTime() / 1000) , // Note: in seconds!
+            }, secret);
          
             const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
@@ -361,7 +361,7 @@ console.log(req.params.id)
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
-               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +forgottenUser.dataValues.id +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +token +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
             
             };
     
@@ -370,6 +370,10 @@ console.log(req.params.id)
             
           })
           .catch(err => res.status(422).json(err));
+      },
+      secrity: function (req, res) {
+        let change
+        
       },
       recovery: function (req, res) {
         // client.messages.create(
@@ -382,7 +386,29 @@ console.log(req.params.id)
         //     console.log(message.sid);
         //   }
         // );
+        let decoded
+        jwt.verify(req.body.userToken, secret, function(err, decoded) {      
+          if (err) {
+           
+            return res.json('NoAuth'); 
+          
+          } else {
+          
+           //if everything is good, save to request for use in other routes
+            req.decoded = decoded;    
+          console.log(decoded)
+             return decoded
+         //console.log(decoded.currentUser.currentUser.userId)
+        }
+      })
+             
+          if(decoded==null){
+res.send('not valid')
+          }else{
 
+         
+    
+    
         console.log('hi')
         console.log(req.body.newpass)
         
@@ -400,7 +426,9 @@ db.Users.findOne({
   where:{
     id:req.body.id
   }
+
 }).then(forgottenUser=>{
+
   console.log(forgottenUser)
   const name = forgottenUser.dataValues.firstName + ' ' + forgottenUser.dataValues.lastName
             const msg = {
@@ -414,14 +442,15 @@ db.Users.findOne({
     
             sgMail.send(msg);
             res.send('Sucsessfully changed password')
+       
+     
           })
-          
-        
+       
           })
-        
+       
           .catch(err => res.status(422).json(err));
         })
-        
+      }
       },
   remove: function (req, res) {
     db.Users.update({

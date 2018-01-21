@@ -19,7 +19,8 @@ const loggedIn = (props) => {
     
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >{console.log(props.userdata.userId)}
+  >
+  {/* {console.log(props.userdata.userId)} */}
 
     <MenuItem href={`/profile/${props.userdata.userId}`}
 

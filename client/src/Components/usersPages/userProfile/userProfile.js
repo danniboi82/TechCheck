@@ -75,9 +75,10 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
       console.log(dataPoints)
       if (dataPoints.data === 'noUser') {
         this.setState({
+          profilePic:undefined,
           noUser: true,
           name: '404',
-          notPRofile: notFound,
+          notPRofile: true,
           userId: '404',
           email: '404',
           active: '404',
@@ -113,9 +114,11 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
           {this.state.noUser &&
             <h1>404 No User Found</h1>
           }
-          {!this.state.edit?
-          <Avatar size={150} onChange={this.onChange} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic || this.state.notPRofile}`} />:<div><input type='file' ></input> <br/></div>}
          
+          {/* {!this.state.edit ? */}
+          {!this.state.notPRofile ?
+          <Avatar size={150} onChange={this.onChange} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.profilePic }`} />: <Avatar size={150} onChange={this.onChange} src={notFound} />}
+          {/* // {<div><input type='file' ></input> <br/></div>} */}
 
           <div className='UserInfo'>
 
@@ -131,11 +134,11 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
          {!this.state.edit?
             <div className='UserInfoDiv'><TextField  floatingLabelText="Phone Number" disabled={true} value={this.state.phoneNumber}/></div>:<div><TextField floatingLabelText="Phone Number" name='phoneNumber' onChange={this.onChange} defaultValue={this.state.phoneNumber}/> <br/></div>}
          
-          {!this.state.edit ?
-            <div className='UserInfoDiv'><TextField  floatingLabelText="User ID" disabled={true} value={this.state.userId}/></div>:<div><TextField floatingLabelText="User ID" disabled={true} name='userId' onChange={this.onChange} defaultValue={this.state.userId}/> <br/></div>}
+          {!this.state.edit &&
+            <div className='UserInfoDiv'><TextField  floatingLabelText="User ID" disabled={true} value={this.state.userId}/></div>}
              
-            {!this.state.edit ?
-            <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>:<div><TextField floatingLabelText="Member Since" disabled={true} name='memberSince' onChange={this.onChange} defaultValue={this.state.memberSince}/> <br/></div>}
+            {!this.state.edit &&
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>}
    {!this.state.edit ?
         
 <RaisedButton label="Edit Information" onClick={this.changedToEdit}Edit Profile />:<RaisedButton label="Submit Changes" onClick={this.onsubmit}change Profile/>}

@@ -79,11 +79,10 @@ class ProductSearch extends Component{
     limit:15
   }
   componentDidMount=()=>{
-
     console.log(this.props.match.params.category)
     axios({
       method:'post',
-     url: `/api/products/category`,
+     url: `/api/products/search`,
      data:{
       category:this.props.match.params.category,
       page:0,
@@ -106,7 +105,7 @@ class ProductSearch extends Component{
     console.log( this.state.page)
      axios({
          method:'post',
-        url: `/api/products/category`,
+        url: `/api/products/search`,
         data:{
             category:this.props.match.params.category,
             page:this.state.page,
@@ -164,7 +163,7 @@ this.setState({
           subtitle={<span>Price Range<b>{tile.price}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
+          <img src={tile.userUploadImage1} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>
