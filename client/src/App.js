@@ -14,8 +14,8 @@ import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage'
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
-import { UserProfile, userProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
-
+import { UserProfile, UserProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
+import search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
 class App extends Component {
     state = {
@@ -34,7 +34,7 @@ class App extends Component {
 
 
         if (sessionStorage.auth != null) {
-            console.log('auth')
+           // console.log('auth')
 
             axios({
                 method: 'post',
@@ -45,7 +45,7 @@ class App extends Component {
                 },
             }).then(user => {
                 if (user != null) {
-                    console.log(user)
+                    //console.log(user)
                     this.setState({
                         logged: true,
                         userDataObj: {
@@ -56,15 +56,15 @@ class App extends Component {
 
 
                     })
-                    console.log(this.state.theId);
+                    // console.log(this.state.userDataObj)
+                    // console.log(this.state.theId);
                 } else {
                     console.log('no token')
+                    console.log('here auth failed')
                 }
             })
         }
-        else {
-            console.log('here auth failed')
-        }
+       
 
     }
     handleLoggedChange = (event, logged) => {
@@ -114,15 +114,15 @@ class App extends Component {
                 />
             );
         }
-        console.log(this.state.theId);
+        //console.log(this.state.theId);
         let tmpid=this.state.theId;
       
         const RoutedProfilePage = (props) => {
-            console.log(tmpid);
+            //console.log(this.state.theId);
          
             return (
                 
-                <UserProfile theuserid={tmpid} component={UserProfile} {...props}
+                <UserProfile theuserid={this.state.theId} component={UserProfile} {...props}
 
                 />
             )
@@ -153,8 +153,11 @@ class App extends Component {
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-{console.log(this.state.userId)}
-                        <Navbar userdata={this.state.userDataObj}
+{/* // {console.log(this.state.userDataObj)} */}
+                        <Navbar 
+                        //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
+                        {...this.props}
+                        userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
                             loggedInput={this.userInputHandlerlogged}
@@ -170,7 +173,7 @@ class App extends Component {
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' render={RoutedCheckOutPage} />
                             <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
-                            <Route path='/search_results' component={SearchedPage} />
+                            <Route path='/search_results/:category' component={SearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />
                             <Route path='/profile/:id' render={RoutedProfilePage} />
@@ -178,7 +181,8 @@ class App extends Component {
                             <Route path='/sent' component={emailSent} />
                             <Route path='/reset/:id' component={resetPassword} />
                             <Route path='/confirmation/reset' component={confirmation} />
-                            <Route path='/user/products/:id' component={userProducts} />
+                            <Route path='/user/products/:id' component={UserProducts} />
+                            <Route path='/searchResults/:search' component={search}/>
                         </Switch>
                         <Footer />
                     </div>

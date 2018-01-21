@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchResults from './SearchResults/SearchResults'
+import SearchResults from './search'
 const searchedPage = (props) => {
     return (
         <div>
