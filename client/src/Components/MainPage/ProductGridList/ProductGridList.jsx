@@ -28,7 +28,7 @@ const dummyData = [
   { id: '1',
     img: 'https://cdn.mos.cms.futurecdn.net/QSjwpofL4v2VgLvWaJWAhH.jpg',
     title: 'Video Cards',
-    value:'VideoCard',
+    value:'Graphic Card',
     author: 500,
   },
   { id: '2',
