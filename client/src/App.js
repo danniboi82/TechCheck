@@ -33,6 +33,26 @@ class App extends Component {
     componentDidMount = () => {
 
 
+        if (localStorage.getItem('CartItem')) {
+            this.setState({ cartItem: localStorage.getItem('CartItem') });
+        }
+
+        if (localStorage.getItem('CartAmount')) {
+            this.setState({ cartAmount: localStorage.getItem('CartAmount') });
+        }
+    
+        if (localStorage.getItem('cartarray')) {
+           if ( localStorage.getItem('cartarray').length == 0 )
+             { 
+              this.setState({ cartarray: []});
+             } else
+             { 
+                var tmp = JSON.parse(localStorage.getItem('cartarray'));              
+                const cartarraytemp = []; //JSON.parse(null);
+                this.setState({ cartarray: tmp});
+             }
+            }
+
         if (sessionStorage.auth != null) {
            // console.log('auth')
 
