@@ -7,6 +7,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import { Row, Col } from 'react-grid-system';
+import Avatar from 'material-ui/Avatar/Avatar';
 
 
 const style = {
@@ -65,13 +66,14 @@ class CartModal extends Component {
                     <Row>
                     <Col sm={2} onClick={() => this.props.onDelete(step.price,  this.state)} > 
                    X
-        </Col>
+        </Col> 
                         <Col sm={5}>
                             {step.productName}
                         </Col>
                         <Col sm={5}>
-                            Price: {step.price}
+                            Price: {step.price} <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
                         </Col>
+                        
                     </Row>
                 </MenuItem>
             );
