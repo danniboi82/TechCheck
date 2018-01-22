@@ -82,7 +82,7 @@ onsubmit =()=>{
         >
         
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
-            onClick={this.props.onClick}
+            onClick={this.props.onClick} onDelete={this.props.onDelete}
           />
         </AppBar>
 

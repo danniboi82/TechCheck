@@ -38,8 +38,8 @@ class productDetail extends Component {
         products1.Product(this.props.match.params.id).then(data => {
             console.log(data)
             const photosImg = {
-                img: data.data.userUploadImage1,
-                title: data.data.productName,
+                img1: data.data.userUploadImage1,
+                
             }
 
             const imgs = [
