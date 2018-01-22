@@ -71,7 +71,7 @@ class CartModal extends Component {
                             {step.productName}
                         </Col>
                         <Col sm={5}>
-                            Price: {step.price} <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
+                            Price: {step.price} 
                         </Col>
                         
                     </Row>

@@ -87,7 +87,20 @@ class ProductSearch extends Component{
     products:[],
     pages:0,
     limit:15,
-    productId:''
+    productId:'',
+    userId: "",
+            productName: "",
+            serialNumber: "",
+            category: "",
+            price: "",
+            productDescription: "",
+            condition: "",
+            warranty: "",
+            packaging: "",
+            photos: [],
+            verified: "",
+            status: "",
+            createdAt: ""
   }
   componentDidMount=()=>{
     console.log(this.props.match.params.search)
@@ -144,13 +157,55 @@ productId:e.currentTarget.attributes.value.nodeValue
 getProductId2=(e)=>{
   this.setState({
 productId:e.currentTarget.attributes.value.nodeValue
-  },this.addToCart)
+  },this.getItemDate)
 }
+
+
 
 addToCart=(e)=>{
 
-  console.log(this.state.productId)
+  console.log(this.state.productId);
+  this.props.onClick(this.state.price, this.state);
+
 }
+
+getItemDate=(e)=>{
+  productsApi.Product(this.state.productId).then(data => {
+    console.log(data)
+    const photosImg = {
+        img1: data.data.userUploadImage1,
+        
+    }
+    const photosImg2 = {
+        img2: data.data.userUploadImage2,
+
+    }
+    const imgs = [
+        photosImg,
+        photosImg2
+    ]
+    this.setState({
+        photos: imgs,
+        productId: data.data.id,
+        userId: data.data.userId,
+        productName: data.data.productName,
+        serialNumber: data.data.serialNumber,
+        category: data.data.category,
+        price: data.data.price,
+        productDescription: data.data.productDescription,
+        condition: data.data.condition,
+        warranty: data.data.warranty,
+        packaging: data.data.packaging,
+        verified: data.data.verified,
+        status: data.data.status,
+        createdAt: data.data.createdAt
+    },this.addToCart)
+})
+console.log(this.state.productId)
+}
+
+
+
 limit=(e)=>{
 
 console.log(e.currentTarget.attributes.value.nodeValue)
