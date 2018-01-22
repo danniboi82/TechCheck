@@ -7,6 +7,7 @@ import axios from "axios";
 import validator from 'validator';
 
 import DatePicker from 'material-ui/DatePicker';
+import Paper from 'material-ui/Paper';
 
 
 // import FormErrors from '../../'
@@ -44,6 +45,15 @@ const password = (value, props, components) => {
         return <span className="error">Passwords are not equal.</span>
     }
 };
+
+const style = {
+    height: 100,
+    width: 100,
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block',
+  };
+  
 
 const styles = {
     button: {
@@ -141,9 +151,9 @@ class addUser extends React.Component {
                 passwordValid = value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$/);
                 fieldValidationErrors.password = passwordValid ? '' : 'Password is not secure enough';
                 break;
-                case 'phoneNumber':
-                phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
-                break;
+                // case 'phoneNumber':
+                // phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
+                // break;
             default:
                 break;
         }
@@ -256,7 +266,9 @@ this.setState({
     render() {
         return (
             <MuiThemeProvider>
+                
                 <div styles={{margin:"auto"}}>
+                <Paper style={style} zDepth={1} />
                 {<h1 style={styles.h1}>Create an Account!</h1>}
                 {<p>TechCheck makes it convenient and hassle-free users to exchange PC parts and electronics.</p>}
                 </div>
