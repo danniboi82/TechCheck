@@ -84,7 +84,7 @@ class productDetail extends Component {
                                         key={tile.img}
                                     >
                                         <div style={{margin: '10px', width: '430px', height: '270px', maxHeight: '100%', maxWidth: '93%'}}>
-                                            <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' style={{height: '100%', width: '100%', border: '1px solid red'}} />
+                                            <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img1}`} alt='productimage' style={{height: '100%', width: '100%', border: '1px solid red'}} />
                                         </div>
                                     </GridTile>
                                 ))}

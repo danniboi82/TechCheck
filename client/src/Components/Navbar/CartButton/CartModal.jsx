@@ -64,16 +64,16 @@ class CartModal extends Component {
             return (
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
-                    <Col sm={2} onClick={() => this.props.onDelete(step.price,  this.state)} > 
-                   X
-        </Col> 
-                        <Col sm={5}>
-                            {step.productName}
+                        <Col sm={4}>
+                        <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
+                    
                         </Col>
-                        <Col sm={5}>
-                            Price: {step.price} <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
+                        <Col sm={4}>
+                            Price: {step.price} 
                         </Col>
-                        
+                        <Col sm={4} onClick={() => this.props.onDelete(step.price,  this.state)} > 
+                            X
+                        </Col> 
                     </Row>
                 </MenuItem>
             );
@@ -111,10 +111,20 @@ class CartModal extends Component {
                         style={{width: '50%'}}
                     >
                         <Menu>
-                            <div style={{ textAlign: 'center' }}>
-                                <img src={logo} alt="shopping cart" style={{ position: 'relative', top: '7px', left: '3px' }} />  <span style={{ position: 'relative', bottom: '7px', left: '-19px', color: 'white' }}> {this.props.cartitem}</span>  |
-                            Amount : ${this.props.cartamount}
-                            </div>
+                            <Row>
+                                <Col sm={6}>
+                                <div style={{ textAlign: 'center', borderRight: '1px solid grey'}}>
+                                <img src={logo} alt="shopping cart" style={{ position: 'relative', top: '1px', left: '3px' }} />  
+                                <span style={{ position: 'relative', bottom: '12px', left: '-19px', color: 'white' }}> {this.props.cartitem}</span> 
+                                </div>
+
+                                </Col>
+                                <Col sm={6}>
+                                <div style={{ textAlign: 'center' }}>
+                                Amount : ${this.props.cartamount}
+                                </div>
+                                </Col>
+                            </Row> 
                             <Divider />
                             <div className='BoughtProducts'>
                                 {items}
