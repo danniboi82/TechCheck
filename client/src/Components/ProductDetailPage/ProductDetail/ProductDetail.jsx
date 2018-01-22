@@ -161,12 +161,12 @@ class productDetail extends Component {
                 </div>
 
                 <div style={{ paddingBottom: '60px' }}>
-                    <Link to='/'><FlatButton
+                    <FlatButton
                         style={productDetailStyles.purchaseButton}
-                        label='Purchase'
+                        label='Add to Cart'
                         primary={true}
                         onClick={() => this.props.onClick(this.state.price,  this.state)} />
-                    </Link>
+                    
                 </div>
             </div>
         );
