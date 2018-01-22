@@ -9,9 +9,8 @@ import Link from 'react-router-dom';
 const loggedIn = (props) => {
   let {logout, ...newProps} = props;
   props = newProps;
-  // console.log(props)
-  return (
 
+  return (
   <IconMenu
     {...props}
     iconButtonElement={
