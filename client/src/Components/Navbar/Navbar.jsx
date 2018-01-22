@@ -61,22 +61,11 @@ onsubmit =()=>{
 
     return (
       <div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> david2
         {/* {console.log(this.props
 )} */}
 
 {console.log(this.props.userdata)}
-<<<<<<< HEAD
-=======
->>>>>>> e2594d244996e790d07602689880648d11ba57a5
-=======
-
-
->>>>>>> david2
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
             Please verify your email address. <br />
