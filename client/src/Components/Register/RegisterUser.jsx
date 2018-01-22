@@ -7,6 +7,7 @@ import axios from "axios";
 import validator from 'validator';
 
 import DatePicker from 'material-ui/DatePicker';
+import Paper from 'material-ui/Paper';
 
 
 // import FormErrors from '../../'
@@ -45,6 +46,15 @@ const password = (value, props, components) => {
     }
 };
 
+const style = {
+    height: 100,
+    width: 100,
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block',
+  };
+  
+
 const styles = {
     button: {
         margin: 12,
@@ -61,6 +71,9 @@ const styles = {
     },
     passwordj: {
         opacity: 0.5,
+    },
+    h1: {
+        fontWeight: 300
     }
 };
 
@@ -138,9 +151,9 @@ class addUser extends React.Component {
                 passwordValid = value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$/);
                 fieldValidationErrors.password = passwordValid ? '' : 'Password is not secure enough';
                 break;
-                case 'phoneNumber':
-                phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
-                break;
+                // case 'phoneNumber':
+                // phoneNumberValid=value.match('^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$')
+                // break;
             default:
                 break;
         }
@@ -253,14 +266,15 @@ this.setState({
     render() {
         return (
             <MuiThemeProvider>
-                <div >
-                    {/* {this.state.formErrors &&
-                    <h1  >{this.state.formErrors}</h1>} */}
+                
+                <div styles={{margin:"auto"}}>
+                <Paper style={style} zDepth={1} />
+                {<h1 style={styles.h1}>Create an Account!</h1>}
+                {<p>TechCheck makes it convenient and hassle-free users to exchange PC parts and electronics.</p>}
                 </div>
-                <div style={{ padding: '30px 0' }}>
+                <div style={{ padding: '20px 0' }}>
 
                     <div>
-
                         <TextField
                             name="email"
                             value={this.state.email}
