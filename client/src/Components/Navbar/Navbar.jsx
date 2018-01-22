@@ -71,10 +71,13 @@ onsubmit =()=>{
         {/* {console.log(this.props
 )} */}
 
-
+{console.log(this.props.userdata)}
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
-            Please verify your email address. <br /><a href='https://www.google.com/gmail/about/#'> Gmail  </a>
+            Please verify your email address. <br />
+            
+            {
+             < a href='https://www.google.com/gmail/about/#'> Gmail  </a>}
             <a href='https://login.yahoo.com/?.src=ym&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2F'> Yahoo  </a>
             <a href='https://my.screenname.aol.com/_cqr/login/login.psp?sitedomain=sns.mail.aol.com&seamless=novl&lang=en&locale=US&authLev=0&siteState=uv%3AAOL%7Crt%3ASTD%7Cat%3ASNS%7Clc%3Aen_US%7Cld%3Amail.aol.com%7Csnt%3AScreenName%7Csid%3A75be8f73-edfd-4559-8c55-945b9c9b2f4f%7Cqp%3A%7C&offerId=newmail-en-us-v2'> Aol </a>
             <a href='https://www.icloud.com/#mail'> iCloud </a>
