@@ -113,6 +113,26 @@ class ProductSearch extends Component {
 
 
   }
+  productDetail=()=>{
+    console.log(this.state.productId)
+    window.location=`/product_detail/${this.state.productId}`
+  }
+  getProductId=(e)=>{
+    this.setState({
+  productId:e.currentTarget.attributes.value.nodeValue
+    }, this.productDetail)
+   
+  }
+  getProductId2=(e)=>{
+    this.setState({
+  productId:e.currentTarget.attributes.value.nodeValue
+    },this.addToCart)
+  }
+  
+  addToCart=(e)=>{
+  
+    console.log(this.state.productId)
+  }
   render() {
 
     return (
@@ -134,10 +154,11 @@ class ProductSearch extends Component {
               price={tile.price
               }
               subtitle={<span>Price Range<b>{tile.price}</b></span>}
-              actionIcon={<IconButton><CartIcon/></IconButton>}
+              actionIcon={<IconButton><CartIcon value={tile.id} onClick={this.getProductId2}/></IconButton>}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >
-              <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
+              <img value={tile.id}
+          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
             </GridTile>
           ))}<br />
           <div className='pages'>
