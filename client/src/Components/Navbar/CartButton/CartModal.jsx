@@ -97,8 +97,8 @@ class CartModal extends Component {
 
                         {console.log(step.ph)}
                             Price: {step.price} 
-                            {this.state.loading &&
-                            <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>}
+                            {/* {this.state.loading &&
+                            <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>} */}
 
                         </Col>
                         
