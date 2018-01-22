@@ -13,13 +13,13 @@ class checkOutPage extends Component {
         cartamount: 0,
         cartArray: [],
         cartitem: '',
-        noProducts:true
+        noProducts:false,
        
             
     }
     componentDidMount = () => {
         console.log(this.props.cartarray)
-        if(this.props.cartamount ==0){
+        if(this.props.cartamount !=0){
 this.setState({
     noProducts:false
 })
@@ -90,8 +90,8 @@ this.setState({
                             <Row>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                  
-                                       Amount :$ { !this.state.noProducts? 
-                                        this.props.cartamount :0}
+                                       Amount :$  
+                                       { this.props.cartamount }
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                     Tax: ${Math.floor((9 / 100) * this.props.cartamount)}
