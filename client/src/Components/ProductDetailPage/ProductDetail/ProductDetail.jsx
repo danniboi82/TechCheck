@@ -6,9 +6,15 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { List, ListItem } from 'material-ui/List';
 import { BrowserRouter, Link, NavLink, Switch } from 'react-router-dom';
 import products1 from '../../Data/products-api'
+
+
 const productDetailStyles = {
     h1: {
-        color: 'white',
+        backgroundColor: '#4C6A92', 
+        margin: '0px auto', 
+        padding: '25px 0', 
+        borderTop: '1px solid white', 
+        color: 'white' 
     },
 
     purchaseButton: {
@@ -42,9 +48,9 @@ const productDetailStyles = {
             overflowY: 'auto',
         },
 
-        gridTile: {
-
-        }
+    },
+    listStyle:{
+        border: '1px solid white',
     }
 
 };
@@ -141,32 +147,32 @@ class productDetail extends Component {
                         <Subheader style={{ color: 'white', fontSize: '50px', padding: '30px' }}>{this.state.productName}</Subheader>
                         <Paper style={productDetailStyles.paperWrapper}>
                             <List>
-                                <ListItem>Price :${this.state.price} </ListItem>
-                                <ListItem>category: $1200</ListItem>
-                                <ListItem>Condition : {this.state.condition}</ListItem>
-                                <ListItem>Product Description : {this.state.productDescription}</ListItem>
-                                <ListItem>warranty : {this.state.warranty}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Price :${this.state.price} </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Category : </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Condition : {this.state.condition}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Product Description : {this.state.productDescription}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Warranty : {this.state.warranty}</ListItem>
                             </List>
                         </Paper>
                         <Paper style={productDetailStyles.paperWrapper}>
                             <List>
-                                <ListItem>Packaging : {this.state.packaging}</ListItem>
-                                <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
-                                <ListItem>Prouduct Id :{this.state.productId}</ListItem>
-                                <ListItem>Price : $1200</ListItem>
-                                <ListItem>Product Status : {this.state.status}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Packaging : {this.state.packaging}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Serial Number : {this.state.serialNumber}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Prouduct Id :{this.state.productId}</ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Verified : </ListItem>
+                                <ListItem style={productDetailStyles.listStyle}>Product Status : {this.state.status}</ListItem>
                             </List>
                         </Paper>
                     </div>
                 </div>
 
                 <div style={{ paddingBottom: '60px' }}>
-                    <Link to='/'><FlatButton
+                    <FlatButton
                         style={productDetailStyles.purchaseButton}
-                        label='Purchase'
+                        label='Add to Cart'
                         primary={true}
                         onClick={() => this.props.onClick(this.state.price,  this.state)} />
-                    </Link>
+                    
                 </div>
             </div>
         );

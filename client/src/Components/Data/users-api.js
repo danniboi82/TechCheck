@@ -9,7 +9,7 @@ const usersApi = {
 
   delete: id => axios.delete(`/api/users/${id}`),
   userProfile:id => axios.get(`/api/users/profile/${id}`),
-reset:email=> axios.post(`/api/users/recover`,{email}),
+reset:email=> axios.post(`/api/users/change`,{email}),
 signIn:(email,pass)=> axios({
   method: 'post',
   url: '/api/users/signIn',

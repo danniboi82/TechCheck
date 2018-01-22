@@ -3,6 +3,8 @@ import FlatButton from 'material-ui/FlatButton';
 import './CheckOutPage.css';
 import Paper from 'material-ui/Paper'
 import PayPalButton from './PayPalButton/PayPalButton';
+import { Row, Col } from 'react-grid-system';
+import Divider from 'material-ui/Divider';
 
 
 
@@ -72,34 +74,67 @@ class checkOutPage extends Component {
 
 
     render() {
-
-        console.log(this.props.cartamount)
         return (
-            <div className='CheckOutPageDiv'>
+            <div className='CheckOutPage'>
                 <div>
-                    <h1>CHECKOUT PAGE</h1>
-                </div>
-                {this.state.dummyData.map((card, id) => (
-                    <Paper
-                        zDepth={5}
-                        className='ProductPaper'
-                        key={card.id}
-                    >
-                        <div className='ImageDiv'>
-                            <img className='ProductImage' src={card.img} alt="" />
-                        </div>
-                        <div className='ProductDescription'>
-                            Description: {card.title}
-                        </div>
-                        <FlatButton label='Remove'
-                            onClick={() => this.deleteProductHandler(id)} />
-                    </Paper>
-                ))}
-                <div className='PlaceOrderDiv'>
-                    <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount}/>
-                    <FlatButton style={{ backgroundColor: 'blue', margin: '25px' }} label='Place Order' />
+                    <h1 style={{ backgroundColor: '#005960', margin: '0px', padding: '25px 0', borderTop: '1px solid white', color: 'white' }}>CHECKOUT</h1>
                 </div>
 
+                <Row>
+                    <Col sm={9}>
+                        {this.state.dummyData.map((card, id) => (
+                            <Paper
+                                zDepth={5}
+                                className='ProductPaper'
+                                key={card.id}
+                            >
+                                <div className='ImageSection'>
+                                    <img className='ProductPic' src={card.img} alt="" />
+                                </div>
+                                <div className='DescribeProduct'>
+                                    Description: {card.title}
+                                    <Divider style={{ margin: '15px 0' }} />
+                                    Price : {card.author}
+                                    <Divider style={{ margin: '15px 0' }} />
+                                </div>
+                                <FlatButton
+                                    label='Remove'
+                                    onClick={() => this.deleteProductHandler(id)}
+                                    style={
+                                        {
+                                            backgroundColor: '#DC4C46',
+                                            position: 'relative',
+                                            bottom: '-21%',
+                                            right: '0px',
+                                            marginRight: '15px',
+                                            textAlign: 'center'
+                                        }
+                                    }
+                                />
+                            </Paper>
+                        ))}
+                    </Col>
+                    <Col sm={3}>
+                        <Paper zDepth={5} className='PlaceOrderDiv'>
+                            <Row>
+                                <Col sm={12} style={{ textAlign: 'center', padding: '20px 0'}}>
+                                    Amount :
+                                 </Col>
+                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0'}}>                                  
+                                    Tax : 
+                                 </Col>
+                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0'}}>
+                                    Total Amount :
+                                 </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12}>
+                                    <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} />
+                                </Col>
+                            </Row>
+                        </Paper>
+                    </Col>
+                </Row>
             </div>
         )
     }
