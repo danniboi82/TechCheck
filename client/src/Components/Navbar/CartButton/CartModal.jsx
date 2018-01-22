@@ -18,7 +18,30 @@ const style = {
 class CartModal extends Component {
     state = {
         open: false,
+        loading:false
     };
+    componentDidMount=()=>{
+        if (this.props.cartarray.length >1){
+            this.setState({
+                loading:true
+            })
+        }else{
+            this.setState({
+                loading:false
+            })
+        }
+    }
+    componentWillReceiveProps=()=>{
+        if (this.props.cartarray.length >1){
+            this.setState({
+                loading:true
+            })
+        }else{
+            this.setState({
+                loading:false
+            })
+        }
+    }
     handleClick = (event) => {
         // This prevents ghost click.
         event.preventDefault();
@@ -65,8 +88,7 @@ class CartModal extends Component {
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
                         <Col sm={4}>
-                        <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
-                    
+                        <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>                  
                         </Col>
                         <Col sm={4}>
                             Price: {step.price} 

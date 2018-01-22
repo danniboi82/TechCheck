@@ -48,7 +48,23 @@ class ProductSearch extends Component {
   state = {
     products: [],
     pages: 0,
-    limit: 15
+    limit: 15,
+    productId: "",
+            userId: "",
+            productName: "",
+            serialNumber: "",
+            category: "",
+            price: "",
+            productDescription: "",
+            condition: "",
+            warranty: "",
+            packaging: "",
+            photos: [],
+
+            verified: "",
+            status: "",
+            createdAt: ""
+          
   }
   componentDidMount = () => {
 
@@ -126,13 +142,48 @@ class ProductSearch extends Component {
   getProductId2=(e)=>{
     this.setState({
   productId:e.currentTarget.attributes.value.nodeValue
-    },this.addToCart)
+    },this.getItemDate)
   }
   
-  addToCart=(e)=>{
-  
-    console.log(this.state.productId)
+  addToCart=()=>{
+    this.props.onClick(this.state.price, this.state);
   }
+  
+  getItemDate=(e)=>{
+    productsApi.Product(this.state.productId).then(data => {
+      console.log(data)
+      const photosImg = {
+          img1: data.data.userUploadImage1,
+          
+      }
+      const photosImg2 = {
+          img2: data.data.userUploadImage2,
+
+      }
+      const imgs = [
+          photosImg,
+          photosImg2
+      ]
+      this.setState({
+          photos: imgs,
+          productId: data.data.id,
+          userId: data.data.userId,
+          productName: data.data.productName,
+          serialNumber: data.data.serialNumber,
+          category: data.data.category,
+          price: data.data.price,
+          productDescription: data.data.productDescription,
+          condition: data.data.condition,
+          warranty: data.data.warranty,
+          packaging: data.data.packaging,
+          verified: data.data.verified,
+          status: data.data.status,
+          createdAt: data.data.createdAt
+      },this.addToCart)
+  })
+  console.log(this.state.productId)
+}
+  
   render() {
 
     return (

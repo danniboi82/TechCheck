@@ -15,7 +15,7 @@ import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
 import { UserProfile, UserProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
-import search from '../src/Components/SearchedPage/SearchResults/search'
+import Search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
 class App extends Component {
     state = {
@@ -105,7 +105,7 @@ class App extends Component {
         let cartamount = this.state.cartAmount + i;
         let newcartarray = this.state.cartarray.concat(j);
         this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-        alert('Item ' + j.productName + ' added to shopping cart!');
+       
 
         localStorage.setItem('CartItem', cartitem);
         localStorage.setItem('CartAmount', cartamount);
@@ -177,9 +177,35 @@ class App extends Component {
                     cartitem={this.state.cartItem}
                     cartamount={this.state.cartAmount}
                     cartarray={this.state.cartarray}
+                    handleDelete={this.handleDelete}
                 />
             )
         }
+
+        const RoutedSearchedPage = (props) => {
+            return ( 
+                <SearchedPage
+                    component={CheckOutPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                    onClick={this.handleClick} {...props }
+                />
+            )
+        }
+
+        const RoutedSearch = (props) => {
+            return ( 
+                <Search
+                    component={CheckOutPage}
+                    cartitem={this.state.cartItem}
+                    cartamount={this.state.cartAmount}
+                    cartarray={this.state.cartarray}
+                    onClick={this.handleClick} {...props }
+                />
+            )
+        }
+
         return (
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
@@ -199,13 +225,14 @@ class App extends Component {
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} 
                             onDelete={this.handleDelete} />
+
                         
                         <Switch>
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
                             <Route path='/check_out' render={RoutedCheckOutPage} />
                             <Route path='/product_detail/:id' render={RoutedProductDetailPage} />
-                            <Route path='/search_results/:category' component={SearchedPage} />
+                            <Route path='/search_results/:category' render={RoutedSearchedPage} />
                             <Route path='/registration' component={RegisterUser} />
                             <Route path='/sell_product/:id' component={SellProduct} />
                             <Route path='/profile/:id' render={RoutedProfilePage} />
@@ -214,7 +241,7 @@ class App extends Component {
                             <Route path='/reset/:id' component={resetPassword} />
                             <Route path='/confirmation/reset' component={confirmation} />
                             <Route path='/user/products/:id' component={UserProducts} />
-                            <Route path='/searchResults/:search' component={search}/>
+                            <Route path='/searchResults/:search' render={RoutedSearch}/>
                         </Switch>
                         <Footer />
                     </div>
