@@ -99,6 +99,16 @@ class ProductSearch extends Component{
 })
 })
 }
+productDetail=()=>{
+  console.log(this.state.productId)
+  window.location=`/product_detail/${this.state.productId}`
+}
+getProductId=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  }, this.productDetail)
+ 
+}
     // userId:this.props.match.params.id,
            
     // productsApi.catagorySearch(this.props.match.params.category)
@@ -161,6 +171,8 @@ this.setState({
           title={tile.productName}
           price={tile.price
           }
+          value={tile.id}
+          onClick={this.getProductId}
           subtitle={<span>Price Range<b>{tile.price}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
