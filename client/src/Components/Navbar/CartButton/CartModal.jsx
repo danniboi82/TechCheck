@@ -63,10 +63,9 @@ class CartModal extends Component {
             return (
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
-                        <Col sm={6} style={{ overflowY: 'auto',}}>
+                        <Col sm={6}>
                             {step.productName}
                         </Col>
-                        
                         <Col sm={6}>
                             Price: {step.price}
                         </Col>
@@ -81,7 +80,7 @@ class CartModal extends Component {
                 <FlatButton
                     label="Check Out"
                     primary={true}
-                    keyboardFocused={true}                
+                    keyboardFocused={true}     
                 />
             </Link>,
         ];
@@ -93,7 +92,9 @@ class CartModal extends Component {
                         <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-20.5px', color: 'white' }}> {this.props.cartitem}</span>
                     </FlatButton>
                 </div>
-                <div>
+                <Row >
+                    <Col sm={12} >
+                    <div>
                     <Popover
                         actions={actions}
                         open={this.state.open}
@@ -102,6 +103,7 @@ class CartModal extends Component {
                         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                         onRequestClose={this.handleRequestClose}
                         animation={PopoverAnimationVertical}
+                        style={{width: '50%'}}
                     >
                         <Menu>
                             <div style={{ textAlign: 'center' }}>
@@ -109,8 +111,7 @@ class CartModal extends Component {
                             Amount : ${this.props.cartamount}
                             </div>
                             <Divider />
-                            <div className='BoughtProducts' style={{width: '30%', overflow: 'auto'}}
->
+                            <div className='BoughtProducts'>
                                 {items}
                             </div>
                         </Menu>
@@ -119,6 +120,8 @@ class CartModal extends Component {
                         </div>
                     </Popover>
                 </div>
+                    </Col>
+                </Row>
             </div>
 
         );
