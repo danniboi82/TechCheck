@@ -29,32 +29,30 @@ class App extends Component {
         dataSource: ''
     };
 
-    
+
     componentDidMount = () => {
 
-
+    
         if (localStorage.getItem('CartItem')) {
-            this.setState({ cartItem: localStorage.getItem('CartItem') });
+            this.setState({ cartItem: parseInt(localStorage.getItem('CartItem')) });
         }
 
         if (localStorage.getItem('CartAmount')) {
-            this.setState({ cartAmount: localStorage.getItem('CartAmount') });
+            this.setState({ cartAmount: parseInt(localStorage.getItem('CartAmount')) });
         }
-    
+
         if (localStorage.getItem('cartarray')) {
-           if ( localStorage.getItem('cartarray').length == 0 )
-             { 
-              this.setState({ cartarray: []});
-             } else
-             { 
-                var tmp = JSON.parse(localStorage.getItem('cartarray'));              
-                const cartarraytemp = []; //JSON.parse(null);
-                this.setState({ cartarray: tmp});
-             }
+            if (localStorage.getItem('cartarray').length == 0) {
+                this.setState({ cartarray: [] });
+            } else {
+                const tmp = JSON.parse(localStorage.getItem('cartarray'));
+               // const tmp = []; //JSON.parse(null);
+                this.setState({ cartarray: tmp });
             }
+        }
 
         if (sessionStorage.auth != null) {
-           // console.log('auth')
+            // console.log('auth')
 
             axios({
                 method: 'post',
@@ -107,18 +105,29 @@ class App extends Component {
         let cartamount = this.state.cartAmount + i;
         let newcartarray = this.state.cartarray.concat(j);
         this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-        alert('Item ' + j.productName + ' added to shopping cart!')
+        alert('Item ' + j.productName + ' added to shopping cart!');
+
+        localStorage.setItem('CartItem', cartitem);
+        localStorage.setItem('CartAmount', cartamount);
+        localStorage.setItem('cartarray', JSON.stringify(newcartarray));
+
     };
 
-    handleDelete = (k) => {
+    handleDelete = (amount, k) => {
         let newcartarray = this.state.cartarray.slice();
         let cartitemindex = newcartarray.indexOf(k);
-        let cartamount = this.state.cartAmount - k.author;
+        let cartamount = this.state.cartAmount-parseInt(amount);
+
 
         newcartarray.splice(cartitemindex, 1);
         let cartitem = this.state.cartItem - 1;
-
+       
         this.setState({ cartarray: newcartarray, cartItem: cartitem, cartAmount: cartamount });
+   
+        localStorage.setItem('CartItem', cartitem);
+        localStorage.setItem('CartAmount', cartamount);
+        localStorage.setItem('cartarray', JSON.stringify(newcartarray));
+   
     };
 
 
@@ -135,12 +144,12 @@ class App extends Component {
                 />
             );
         }
-        //console.log(this.state.theId);
-        let tmpid=this.state.theId;
-      
+            //console.log(this.state.theId);
+            let tmpid=this.state.theId;
+
         const RoutedProfilePage = (props) => {
             //console.log(this.state.theId);
-         
+
             return (
                 
                 <UserProfile theuserid={this.state.theId} component={UserProfile} {...props}
@@ -187,7 +196,8 @@ class App extends Component {
                             logoutFunction={this.state.logged ? this.logOutHandler : null}
                             cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
-                            cartarray={this.state.cartarray} />
+                            cartarray={this.state.cartarray} 
+                            onDelete={this.handleDelete} />
                         
                         <Switch>
                             <Route exact path='/' render={RoutedMainPage} />
