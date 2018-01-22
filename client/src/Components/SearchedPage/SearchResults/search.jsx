@@ -76,7 +76,8 @@ class ProductSearch extends Component{
   state={
     products:[],
     pages:0,
-    limit:15
+    limit:15,
+    productId:''
   }
   componentDidMount=()=>{
     console.log(this.props.match.params.search)
@@ -120,6 +121,16 @@ this.setState({
 
      })
 }
+productDetail=()=>{
+  console.log(this.state.productId)
+  window.location=`/product_detail/${this.state.productId}`
+}
+getProductId=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  }, this.productDetail)
+ 
+}
 limit=(e)=>{
 
 console.log(e.currentTarget.attributes.value.nodeValue)
@@ -158,12 +169,14 @@ this.setState({
         <GridTile
           key={tile.id}
           title={tile.productName}
+          value={tile.id}
+          onClick={this.getProductId}
           price={tile.price
           }
-          subtitle={<span>Price Range<b>{tile.price}</b></span>}
+          subtitle={<span>Price <b>{tile.price}</b></span>}
           actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
         >
-          <img src={tile.userUploadImage1} alt='Searched Products'/>
+          <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>
