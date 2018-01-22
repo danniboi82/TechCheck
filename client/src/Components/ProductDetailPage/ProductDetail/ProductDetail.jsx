@@ -84,7 +84,7 @@ class productDetail extends Component {
                                         key={tile.img}
                                     >
                                         <div style={{margin: '10px', width: '430px', height: '270px', maxHeight: '100%', maxWidth: '93%'}}>
-                                            <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' style={{height: '100%', width: '100%'}} />
+                                            <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' style={{height: '100%', width: '100%', border: '1px solid red'}} />
                                         </div>
                                     </GridTile>
                                 ))}
@@ -104,18 +104,18 @@ class productDetail extends Component {
                         <Row style={{margin: '10px 0px'}}>
                             <Col sm={6}>                 
                                 <List>
-                                    <ListItem style={{border: '1px solid white'}}>Price :${this.state.price} </ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Category : </ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Condition : {this.state.condition}</ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Warranty : {this.state.warranty}</ListItem>
+                                    <ListItem>Price :${this.state.price} </ListItem>
+                                    <ListItem>Category : </ListItem>
+                                    <ListItem>Condition : {this.state.condition}</ListItem>
+                                    <ListItem>Warranty : {this.state.warranty}</ListItem>
                                 </List>                   
                             </Col>
                             <Col sm={6}>
                                 <List>
-                                    <ListItem style={{border: '1px solid white'}}>Packaging : {this.state.packaging}</ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Serial Number : {this.state.serialNumber}</ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Verified : </ListItem>
-                                    <ListItem style={{border: '1px solid white'}}>Product Status : {this.state.status}</ListItem>
+                                    <ListItem>Packaging : {this.state.packaging}</ListItem>
+                                    <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
+                                    <ListItem>Verified : </ListItem>
+                                    <ListItem>Product Status : {this.state.status}</ListItem>
                                 </List>                     
                             </Col>                       
                         </Row>

@@ -63,9 +63,10 @@ class CartModal extends Component {
             return (
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
-                        <Col sm={6}>
+                        <Col sm={6} style={{ overflowY: 'auto',}}>
                             {step.productName}
                         </Col>
+                        
                         <Col sm={6}>
                             Price: {step.price}
                         </Col>
@@ -80,8 +81,7 @@ class CartModal extends Component {
                 <FlatButton
                     label="Check Out"
                     primary={true}
-                    keyboardFocused={true}
-                    
+                    keyboardFocused={true}                
                 />
             </Link>,
         ];
@@ -109,7 +109,8 @@ class CartModal extends Component {
                             Amount : ${this.props.cartamount}
                             </div>
                             <Divider />
-                            <div className='BoughtProducts'>
+                            <div className='BoughtProducts' style={{width: '30%', overflow: 'auto'}}
+>
                                 {items}
                             </div>
                         </Menu>
