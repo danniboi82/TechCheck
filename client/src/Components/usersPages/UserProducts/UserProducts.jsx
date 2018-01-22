@@ -120,7 +120,8 @@ class userProducts extends Component {
                             Name: {card.productName}
                         </div>
                         <FlatButton label='Remove'
-                            onClick={() => this.deleteProductHandler(id)} />
+                            onClick={() => this.deleteProductHandler(id)}
+                            style={{backgroundColor: '#ff6961'}} />
                     </Paper>
                 ))}
 

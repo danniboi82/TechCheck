@@ -1,5 +1,4 @@
 .CheckOutPageDiv{
-    border : 101px solid bronze;
     color: red;
     display: inline;
     overflow: auto;
@@ -18,19 +17,18 @@
 
 .ImageDiv{
     height: 95%;
-    width: 30%;
-    border: 1px solid red;
+    width: 35%;
 }
 
 .ProductImage{
-    height: 100%;
-    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .ProductDescription{
-    padding-left: 30px;
+    margin: 15px 0;
+    text-align: left;
     width: 65%;
-    border: 1px solid gold;
 }
 
 .PlaceOrderDiv{

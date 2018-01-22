@@ -151,8 +151,8 @@ class ProductSearch extends Component {
             <GridTile
               key={tile.id}
               title={tile.productName}
-              price={tile.price
-              }
+              price={tile.price}
+              style={{maxHeight: '100%', maxWidth: '100%', border: '1px solid grey', fontSize: '10px'}}
               subtitle={<span>Price Range<b>{tile.price}</b></span>}
               actionIcon={<IconButton><CartIcon value={tile.id} onClick={this.getProductId2}/></IconButton>}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"

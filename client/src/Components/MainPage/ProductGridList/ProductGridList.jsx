@@ -53,16 +53,11 @@ class productGridList extends Component {
     this.setState({
       category: cat
     }, this.search)
-
-
-
-
-
   }
+
   render() {
 
     return (
-
 
       <div style={styles.root}>
         <GridList
@@ -77,11 +72,9 @@ class productGridList extends Component {
               key={tile.img}
               value={tile.value}
               onClick={this.searchCat}
-
               title={tile.name}
               subtitle={<span>Price Range: $<b>{tile.priceRange}</b></span>}
-              actionIcon={<IconButton><StarBorder color="white" /></IconButton>
-              }
+              titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >
               <img src={tile.img} value={tile.name} alt='categorys' />
             </GridTile>
