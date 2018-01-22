@@ -61,7 +61,7 @@ this.setState({
                                 <div className='ImageSection'>
                                     <img className='ProductPic' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.photos[0].img1}`} alt="" />
                                 </div>
-                                <div className='DescribeProduct'>
+                                <div className='DescribeProduct' style={{fontSize: '10px'}}>
                                     Name: {card.productName}
                                     <Divider style={{ margin: '15px 0' }} />
                                     Price : {card.price}

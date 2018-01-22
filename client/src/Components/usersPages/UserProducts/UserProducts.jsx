@@ -6,6 +6,7 @@ import './UserProducts.css';
 import products1 from '../../Data/products-api';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import Divider from 'material-ui/Divider';
 
 class userProducts extends Component {
 
@@ -100,9 +101,11 @@ class userProducts extends Component {
         return (
             <div className='CheckOutPageDiv'>
                 <div>
-                    <h1>User Products</h1>
+                    <h1 style={{backgroundColor: '#FFF176', color: 'grey', margin: '0px auto', padding: '20px 0px'}}>Posted Products</h1>
                     <br />
-                    <p>Results per page</p>
+                </div>
+                <div>
+                <p>Results per page</p>
                     <button onClick={this.limit} value={15}>15</button><button onClick={this.limit} value={30}>30</button>
                 </div>
                 {/* {console.log('HELLO', this.state.userProducts)} */}
@@ -120,7 +123,8 @@ class userProducts extends Component {
                             Name: {card.productName}
                         </div>
                         <FlatButton label='Remove'
-                            onClick={() => this.deleteProductHandler(id)} />
+                            onClick={() => this.deleteProductHandler(id)}
+                            style={{backgroundColor: '#ff6961'}} />
                     </Paper>
                 ))}
 

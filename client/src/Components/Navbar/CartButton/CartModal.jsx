@@ -87,21 +87,15 @@ class CartModal extends Component {
             return (
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
-                    <Col sm={2} onClick={() => this.props.onDelete(step.price,  this.state)} > 
-                   X
-        </Col> 
-                        <Col sm={5}>
-                            {step.productName}
+                        <Col sm={4}>
+                        <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>                  
                         </Col>
-                        <Col sm={5}>
-
-                        {console.log(step.ph)}
+                        <Col sm={4}>
                             Price: {step.price} 
-                            {/* {this.state.loading &&
-                            <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>} */}
-
                         </Col>
-                        
+                        <Col sm={4} onClick={() => this.props.onDelete(step.price,  this.state)} > 
+                            X
+                        </Col> 
                     </Row>
                 </MenuItem>
             );
@@ -113,8 +107,7 @@ class CartModal extends Component {
                 <FlatButton
                     label="Check Out"
                     primary={true}
-                    keyboardFocused={true}
-                    
+                    keyboardFocused={true}     
                 />
             </Link>,
         ];
@@ -126,7 +119,9 @@ class CartModal extends Component {
                         <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-20.5px', color: 'white' }}> {this.props.cartitem}</span>
                     </FlatButton>
                 </div>
-                <div>
+                <Row >
+                    <Col sm={12} >
+                    <div>
                     <Popover
                         actions={actions}
                         open={this.state.open}
@@ -135,12 +130,23 @@ class CartModal extends Component {
                         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                         onRequestClose={this.handleRequestClose}
                         animation={PopoverAnimationVertical}
+                        style={{width: '50%'}}
                     >
                         <Menu>
-                            <div style={{ textAlign: 'center' }}>
-                                <img src={logo} alt="shopping cart" style={{ position: 'relative', top: '7px', left: '3px' }} />  <span style={{ position: 'relative', bottom: '7px', left: '-19px', color: 'white' }}> {this.props.cartitem}</span>  |
-                            Amount : ${this.props.cartamount}
-                            </div>
+                            <Row>
+                                <Col sm={6}>
+                                <div style={{ textAlign: 'center', borderRight: '1px solid grey'}}>
+                                <img src={logo} alt="shopping cart" style={{ position: 'relative', top: '1px', left: '3px' }} />  
+                                <span style={{ position: 'relative', bottom: '12px', left: '-19px', color: 'white' }}> {this.props.cartitem}</span> 
+                                </div>
+
+                                </Col>
+                                <Col sm={6}>
+                                <div style={{ textAlign: 'center' }}>
+                                Amount : ${this.props.cartamount}
+                                </div>
+                                </Col>
+                            </Row> 
                             <Divider />
                             <div className='BoughtProducts'>
                                 {items}
@@ -151,6 +157,8 @@ class CartModal extends Component {
                         </div>
                     </Popover>
                 </div>
+                    </Col>
+                </Row>
             </div>
 
         );
