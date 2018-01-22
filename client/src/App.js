@@ -177,6 +177,7 @@ class App extends Component {
                     cartitem={this.state.cartItem}
                     cartamount={this.state.cartAmount}
                     cartarray={this.state.cartarray}
+                    handleDelete={this.handleDelete}
                 />
             )
         }
