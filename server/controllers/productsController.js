@@ -207,7 +207,7 @@ console.log('hrll',newo)
           offset: 0,
           limit:30,
           where: {
-            category: req.body.category,
+            category: req.body.search,
             
           }
         }).then(products=>{

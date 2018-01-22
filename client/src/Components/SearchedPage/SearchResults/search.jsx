@@ -84,7 +84,7 @@ class ProductSearch extends Component{
       method:'post',
      url: `/api/products/search`,
      data:{
-      search:this.props.match.params.category,
+      search:this.props.match.params.search,
       page:0,
       limit:15
 
