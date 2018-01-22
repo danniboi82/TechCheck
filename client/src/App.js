@@ -132,6 +132,7 @@ class App extends Component {
 
 
     render() {
+    
 
         /* below Routed.... components are created to pass down props to routed component */
         const RoutedMainPage = (props) => {
