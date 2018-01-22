@@ -63,10 +63,13 @@ class CartModal extends Component {
             return (
                 <MenuItem style={{ fontSize: '10px', textAlign: 'center' }}>
                     <Row>
-                        <Col sm={6}>
+                    <Col sm={2} onClick={() => this.props.onDelete(step.price,  this.state)} > 
+                   X
+        </Col>
+                        <Col sm={5}>
                             {step.productName}
                         </Col>
-                        <Col sm={6}>
+                        <Col sm={5}>
                             Price: {step.price}
                         </Col>
                     </Row>
