@@ -131,6 +131,16 @@ productId:e.currentTarget.attributes.value.nodeValue
   }, this.productDetail)
  
 }
+getProductId2=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  },this.addToCart)
+}
+
+addToCart=(e)=>{
+
+  console.log(this.state.productId)
+}
 limit=(e)=>{
 
 console.log(e.currentTarget.attributes.value.nodeValue)
@@ -169,14 +179,15 @@ this.setState({
         <GridTile
           key={tile.id}
           title={tile.productName}
-          value={tile.id}
-          onClick={this.getProductId}
+        
           price={tile.price
           }
           subtitle={<span>Price <b>{tile.price}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          actionIcon={<button value={tile.id} onClick={this.getProductId2}>add to cart</button >}
         >
-          <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
+        {/* <IconButton><StarBorder color="white" /></IconButton> */}
+          <img  value={tile.id}
+          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>

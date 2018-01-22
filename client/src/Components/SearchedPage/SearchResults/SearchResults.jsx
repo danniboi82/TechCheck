@@ -5,6 +5,7 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import productsApi from '../../Data/products-api'
 import axios from "axios";
+import FlatButton from 'material-ui/FlatButton';
 const styles = {
   root: {
     display: 'flex',
@@ -109,6 +110,16 @@ productId:e.currentTarget.attributes.value.nodeValue
   }, this.productDetail)
  
 }
+getProductId2=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  },this.addToCart)
+}
+
+addToCart=(e)=>{
+
+  console.log(this.state.productId)
+}
     // userId:this.props.match.params.id,
            
     // productsApi.catagorySearch(this.props.match.params.category)
@@ -141,6 +152,7 @@ console.log(e.currentTarget.attributes.value.nodeValue)
   
     
 }
+
 pages=(e)=>{
 
 
@@ -171,12 +183,13 @@ this.setState({
           title={tile.productName}
           price={tile.price
           }
-          value={tile.id}
-          onClick={this.getProductId}
+       
           subtitle={<span>Price Range<b>{tile.price}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          actionIcon={<button value={tile.id} onClick={this.getProductId2}>add to cart</button >}
         >
-          <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
+      {/* <StarBorder color="white" /> */}
+          <img    value={tile.id}
+          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>
