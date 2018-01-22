@@ -76,7 +76,8 @@ class ProductSearch extends Component{
   state={
     products:[],
     pages:0,
-    limit:15
+    limit:15,
+    productId:''
   }
   componentDidMount=()=>{
     console.log(this.props.match.params.search)
@@ -84,7 +85,7 @@ class ProductSearch extends Component{
       method:'post',
      url: `/api/products/search`,
      data:{
-      search:this.props.match.params.category,
+      search:this.props.match.params.search,
       page:0,
       limit:15
 
@@ -119,6 +120,26 @@ this.setState({
 },console.log(this.state.products))
 
      })
+}
+productDetail=()=>{
+  console.log(this.state.productId)
+  window.location=`/product_detail/${this.state.productId}`
+}
+getProductId=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  }, this.productDetail)
+ 
+}
+getProductId2=(e)=>{
+  this.setState({
+productId:e.currentTarget.attributes.value.nodeValue
+  },this.addToCart)
+}
+
+addToCart=(e)=>{
+
+  console.log(this.state.productId)
 }
 limit=(e)=>{
 
@@ -158,12 +179,15 @@ this.setState({
         <GridTile
           key={tile.id}
           title={tile.productName}
+        
           price={tile.price
           }
-          subtitle={<span>Price Range<b>{tile.price}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          subtitle={<span>Price <b>{tile.price}</b></span>}
+          actionIcon={<button value={tile.id} onClick={this.getProductId2}>add to cart</button >}
         >
-          <img src={tile.userUploadImage1} alt='Searched Products'/>
+        {/* <IconButton><StarBorder color="white" /></IconButton> */}
+          <img  value={tile.id}
+          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
         </GridTile>
       ))}<br/>
         <div className='pages'>
