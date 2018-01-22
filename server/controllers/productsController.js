@@ -187,25 +187,42 @@ console.log('hrll',newo)
   },
   search:function(req,res){
     console.log(req.body)
-        let offset=15
-     let limit=15
-     offset =parseInt(req.body.page)
-    limit=parseInt(req.body.limit)
-    console.log('helloits',typeof limit)
-    function changingLimit (){
-      let newo
-    if(limit==30){
-     newo = offset += 15
-    
-    }
-    return newo
-    }changingLimit()
-    let newOffset=changingLimit();
-    console.log('hrll',newOffset)
+          
+ let offset=0
+ let limit=15
+ offset =parseInt(req.body.page)
+limit=parseInt(req.body.limit)
+console.log('helloits',limit)
+let trueorfalse=false
+
+  const offsetArray=[15,30,45,60]
+ 
+console.log(offset)
+  for(let i =0;i<4;i++){
+if(offsetArray[i]===offset){
+ trueorfalse=true
+}
+  }
+  
+
+console.log(trueorfalse)
+
+
+  let newo=offset
+
+
+
+
+    if(limit===30&&trueorfalse===true){
+ newo = offset += 15
+
+}
+
+    console.log('hrll',newo)
        
         db.Products.findAll({
-          offset: 0,
-          limit:30,
+          offset: newo,
+          limit:limit,
           where: {
             category: req.body.search,
             

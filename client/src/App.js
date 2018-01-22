@@ -49,6 +49,7 @@ class App extends Component {
                     this.setState({
                         logged: true,
                         userDataObj: {
+                            email:user.data.email,
                             profilePic: user.data.profilePic, userId: user.data.id, firstName: user.data.firstName,
                             lastName: user.data.lastName, active: user.data.active, verified: user.data.verified
                         },

@@ -39,48 +39,7 @@ const styles = {
   }
 };
 
-const dummyData = [
-  {
-    img: 'https://cdn.mos.cms.futurecdn.net/QSjwpofL4v2VgLvWaJWAhH.jpg',
-    title: 'Video Card',
-    author: '$10~500',
-  },
-  {
-    img: 'https://a1.amlimg.com/MjJjODViYzNjMDFhYWFmODc2MmQzMjg5ZWQ0MDkyZGFivKkjqS15m5jyjDw7G-15aHR0cDovL21lZGlhLmFkc2ltZy5jb20vNTM4OWY0NzA0NjE1NzI2YTBjOGNjMmVmN2I3OTZkZWQ3NzMwYTJhYWVkOTgwYTI3YmRiNmM0NjY4NGNhOWJiZS5qcGd8fHx8fHw3MDB4NDYyfGh0dHA6Ly93d3cuYWR2ZXJ0cy5pZS9zdGF0aWMvaS93YXRlcm1hcmsucG5nfHx8.jpg',
-    title: 'Mother Boards',
-    author: '$10~200',
-  },
-  {
-    img: 'https://images.techhive.com/images/article/2013/06/e3_2013_pc_gaming_slideshow_15_amd_rig-100041976-orig.jpg',
-    title: 'Desktops',
-    author: '$150~2000',
-  },
-  {
-    img: 'http://hexus.net/media/uploaded/2016/1/02ad96e3-9802-47cf-bb97-93e4e7185e16.png',
-    title: 'Peripherals',
-    author: '$5~300',
-  },
-  {
-    img: 'http://img.hexus.net/v2/qotw/gamingmice.jpg',
-    title: 'Gaming Mouse',
-    author: '$5~50',
-  },
-  {
-    img: 'http://www.corsair.com/~/media/02C9A29302A447B89AF4BEBD0D3638BE.ashx?w=700',
-    title: 'Full Systems',
-    author: '$200~3500',
-  },
-  {
-    img: 'https://venturebeat.com/wp-content/uploads/2017/06/omen_17_coreset_rearquarter.jpg?fit=578%2C491&strip=all',
-    title: 'Laptops',
-    author: '$200~4000',
-  },
-  {
-    img: 'https://i.pinimg.com/736x/97/9b/ec/979beca61b0a01017aeabb94d6ddf5e5--console-gaming.jpg',
-    title: 'Game Consoles',
-    author: '$25~400',
-  },
-];
+
 
 /**
  * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
@@ -154,6 +113,26 @@ class ProductSearch extends Component {
 
 
   }
+  productDetail=()=>{
+    console.log(this.state.productId)
+    window.location=`/product_detail/${this.state.productId}`
+  }
+  getProductId=(e)=>{
+    this.setState({
+  productId:e.currentTarget.attributes.value.nodeValue
+    }, this.productDetail)
+   
+  }
+  getProductId2=(e)=>{
+    this.setState({
+  productId:e.currentTarget.attributes.value.nodeValue
+    },this.addToCart)
+  }
+  
+  addToCart=(e)=>{
+  
+    console.log(this.state.productId)
+  }
   render() {
 
     return (
@@ -175,10 +154,11 @@ class ProductSearch extends Component {
               price={tile.price
               }
               subtitle={<span>Price Range<b>{tile.price}</b></span>}
-              actionIcon={<IconButton><CartIcon/></IconButton>}
+              actionIcon={<IconButton><CartIcon value={tile.id} onClick={this.getProductId2}/></IconButton>}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >
-              <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
+              <img value={tile.id}
+          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
             </GridTile>
           ))}<br />
           <div className='pages'>
