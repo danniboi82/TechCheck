@@ -61,14 +61,6 @@ onsubmit =()=>{
 
     return (
       <div>
-
-<<<<<<< Updated upstream
-        {/* {console.log(this.props
-)} */}
-
-{console.log(this.props.userdata)}
-=======
->>>>>>> Stashed changes
         {!this.props.userdata.verified && this.props.logged &&
           <div className='verify'>
             Please verify your email address. <br />
