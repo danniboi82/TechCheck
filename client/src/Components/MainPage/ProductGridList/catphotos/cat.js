@@ -77,12 +77,7 @@ const catArray= [
     value:'Gaming Peripheral',
     priceRange: '10-600',
   },
-  // {id: '5',
-  //   img: 'http://img.hexus.net/v2/qotw/gamingmice.jpg',
-  //   name: 'Gaming Mouse',
-  //   value:'GamingMouse',
-  //   priceRange: '25-150',
-  // },
+
   {id: '10',
     img: Laptop,
     name: 'Laptops',
@@ -94,6 +89,6 @@ const catArray= [
     name: 'Game Consoles',
     value:'Gaming Console',
     priceRange: '50-400',
-  }
+  },
 ];
 export default catArray;
