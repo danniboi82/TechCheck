@@ -105,7 +105,7 @@ class App extends Component {
         let cartamount = this.state.cartAmount + i;
         let newcartarray = this.state.cartarray.concat(j);
         this.setState({ cartItem: cartitem, cartAmount: cartamount, cartarray: newcartarray });
-        alert('Item ' + j.productName + ' added to shopping cart!');
+       
 
         localStorage.setItem('CartItem', cartitem);
         localStorage.setItem('CartAmount', cartamount);
