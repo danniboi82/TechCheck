@@ -135,7 +135,7 @@ class productDetail extends Component {
                                 style={productDetailStyles.grid.gridTile}
                                 key={tile.img}
                             >
-                                <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img}`} alt='productimage' />
+                                <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.img1}`} alt='productimage' />
                                 {/* <img src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${this.state.userUploadImage2}`} alt='productimage' /> */}
                                 {/* <img src={tile.img} alt='productimage' /> */}
                             </GridTile>

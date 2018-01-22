@@ -18,7 +18,30 @@ const style = {
 class CartModal extends Component {
     state = {
         open: false,
+        loading:false
     };
+    componentDidMount=()=>{
+        if (this.props.cartarray.length >1){
+            this.setState({
+                loading:true
+            })
+        }else{
+            this.setState({
+                loading:false
+            })
+        }
+    }
+    componentWillReceiveProps=()=>{
+        if (this.props.cartarray.length >1){
+            this.setState({
+                loading:true
+            })
+        }else{
+            this.setState({
+                loading:false
+            })
+        }
+    }
     handleClick = (event) => {
         // This prevents ghost click.
         event.preventDefault();
@@ -71,7 +94,10 @@ class CartModal extends Component {
                             {step.productName}
                         </Col>
                         <Col sm={5}>
-                            Price: {step.price} <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>
+                        {console.log(step.ph)}
+                            Price: {step.price} 
+                            {this.state.loading &&
+                            <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>}
                         </Col>
                         
                     </Row>
