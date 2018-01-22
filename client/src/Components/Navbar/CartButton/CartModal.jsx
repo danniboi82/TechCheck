@@ -94,10 +94,12 @@ class CartModal extends Component {
                             {step.productName}
                         </Col>
                         <Col sm={5}>
+
                         {console.log(step.ph)}
                             Price: {step.price} 
                             {this.state.loading &&
                             <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`}/>}
+
                         </Col>
                         
                     </Row>
