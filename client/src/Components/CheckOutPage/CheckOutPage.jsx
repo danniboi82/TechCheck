@@ -70,7 +70,7 @@ this.setState({
                                 {/* () => this.deleteProductHandler(id) */}
                                 <FlatButton
                                     label='Remove'
-                                    onClick={this.props.handleDelete}
+                                    onClick={() => this.props.handleDelete(card.price,  this.props)}
                                     style={
                                         {
                                             backgroundColor: '#DC4C46',
