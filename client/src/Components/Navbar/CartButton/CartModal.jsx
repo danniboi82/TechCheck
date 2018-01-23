@@ -130,7 +130,7 @@ class CartModal extends Component {
                         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                         onRequestClose={this.handleRequestClose}
                         animation={PopoverAnimationVertical}
-                        style={{width: '50%'}}
+                        style={{maxWidth: '50%'}}
                     >
                         <Menu>
                             <Row>
@@ -146,8 +146,10 @@ class CartModal extends Component {
                                 Amount : ${this.props.cartamount}
                                 </div>
                                 </Col>
+                                <Divider />
+
                             </Row> 
-                            <Divider />
+                            
                             <div className='BoughtProducts'>
                                 {items}
                             </div>
