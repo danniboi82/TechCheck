@@ -13,8 +13,9 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: '100%',
-    height: '100%',
+
+    maxWidth: '100%',
+    maxHeight: '100%',
     overflowY: 'auto',
   },
   subheader: {
@@ -60,11 +61,13 @@ class productGridList extends Component {
     return (
 
       <div style={styles.root}>
+        <Subheader style={styles.subheader}>Categories </Subheader>
+
         <GridList
           cellHeight={180}
           style={styles.gridList}
+          col={4}
         >
-          <Subheader style={styles.subheader}>Categories </Subheader>
           {/* //<br/><h3>Click a category to search by category.</h3> */}
           {catArray.map((tile) => (
             <GridTile

@@ -12,4 +12,11 @@
 .Header-p {
     font-size: 50px;
     font-style: bold;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 765px){
+    .Header-p{
+        font-size: 25px;
+    }
 }
