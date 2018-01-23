@@ -14,10 +14,13 @@ class checkOutPage extends Component {
         cartArray: [],
         cartitem: '',
         noProducts:false,
+        loggedIn:false
        
             
     }
     componentDidMount = () => {
+ 
+        
         console.log(this.props.cartarray)
         if(this.props.cartamount !=0){
 this.setState({
@@ -27,6 +30,11 @@ this.setState({
     }
 
     componentWillReceiveProps = () => {
+        if(this.props.thisUser!=null){
+            this.setState({
+                loggedIn:true
+            })
+        }
         let tax = (9 / 100) * this.props.cartamount
     }
 
@@ -102,7 +110,8 @@ this.setState({
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                    <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} />
+                                {this.state.loggedIn ?
+                                  <p>'PLease Log In To make a purchases' </p> : <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>}
                                 </Col>
                             </Row>
                         </Paper>

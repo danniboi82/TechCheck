@@ -6489,9 +6489,9 @@ react-grid-system@^3.1.2:
     lodash "^4.17.4"
     prop-types "^15.6.0"
 
-react-paypal-express-checkout@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-paypal-express-checkout/-/react-paypal-express-checkout-1.0.3.tgz#56a04625f4b4b315026fcf540b331de2eee8a580"
+react-pp-tc@:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-pp-tc/-/react-pp-tc-1.0.0.tgz#933835cd034dd4d9ef60171ebfd3d87f243b6e0a"
   dependencies:
     babel-runtime "^6.6.1"
     prop-types "^15.5.10"
