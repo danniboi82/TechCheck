@@ -29,7 +29,7 @@ export default class PayPalButton extends Component {
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
         
         const client = {
-            sandbox:    'AbBObKXWXd868x3p37xXih8dVqhhWMuQenDb18nuvMjar1mIyP4PzY18gqV40h8GpFZf-GnHeEAPA3qF',
+            sandbox:    'AS22L9LSQEHf5qIrXJb1GzdfAuoTJU0hur17e7LXfHBsrZrMxyJVZhzr8NIKjYVAa9wmf8DP839GHVWp',
             production: 'YOUR-PRODUCTION-APP-ID',
         }
 
