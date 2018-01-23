@@ -1,14 +1,14 @@
  //import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-//import jwtSecret from '../../jwtSecret'
+import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 import moment from 'moment';
 // || jwtSecret;
 
 // ||sendGridkey;
-const secret = process.env.jwt
+const secret = process.env.jwt|| jwtSecret
 const saltRounds =10;
 const sengrido =process.env.sendgrid 
 sgMail.setApiKey(sengrido);

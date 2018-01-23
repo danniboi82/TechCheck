@@ -17,6 +17,7 @@ import SellProduct from './Components/Sell/SellProduct';
 import { UserProfile, UserProducts, verification, reset, resetPassword, emailSent, confirmation } from './Components/usersPages/index'
 import Search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
+import Receipt from '../src/Components/CheckOutPage/Receipt'
 class App extends Component {
     state = {
         cartItem: 0,
@@ -243,6 +244,7 @@ class App extends Component {
                             <Route path='/confirmation/reset' component={confirmation} />
                             <Route path='/user/products/:id' component={UserProducts} />
                             <Route path='/searchResults/:search' render={RoutedSearch}/>
+                            <Route path='/receipt/:order' component={Receipt}/>
                         </Switch>
                         <Footer />
                     </div>
