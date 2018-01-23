@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { Container, Row, Col } from 'react-grid-system';
+import './MissionTabs.css';
 
 const styles = {
 
@@ -35,7 +36,7 @@ export default class MissionTabs extends React.Component {
     return (
       // <div style={{marginLeft: 'auto',
       // marginRight: 'auto'}}>
-      <Container>
+      <div className='MissionStyle'>
         <Row>
           <Col sm={12}>
             <div className='wrapper' style={{ width: '100%', maxWidth: '100%', margin: 'auto', height: '400px' }}>
@@ -47,7 +48,7 @@ export default class MissionTabs extends React.Component {
                 style={{ background: '#FFFFFF' }}
                 contentContainerStyle={{ background: '#FFF', margin: 'auto' }} >
 
-                <Tab label="Our Purpose" value="a" style={styles.default_tab}>
+                <Tab className='TabStyle' label="Our Purpose" value="a" style={styles.default_tab}>
                   <div>
                     <p style={{
                       paddingTop: 50,
@@ -90,7 +91,7 @@ export default class MissionTabs extends React.Component {
 
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   }
 }
