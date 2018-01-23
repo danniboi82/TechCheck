@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import productsApi from '../../Data/products-api'
 import axios from "axios";
-import { greenA200 } from 'material-ui/styles/colors';
 import SvgIcon from 'material-ui/SvgIcon';
 
 const CartIcon = (props) => (
