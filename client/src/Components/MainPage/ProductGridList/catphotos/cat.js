@@ -65,12 +65,7 @@ const catArray= [
   value:'Tower',
   priceRange: '50-500',
   },
-  { id: '8',
-    img: PC,
-    name: 'Desktop Computers',
-    value:'Desktop',
-    priceRange: '100-1000',
-  },
+
   {id: '9',
     img: GamingPeripheral,
     name: 'Gaming Peripherals Mice, Keyboards, Headsets',

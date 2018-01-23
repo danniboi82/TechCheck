@@ -19,14 +19,16 @@ class checkOutPage extends Component {
             
     }
     componentDidMount = () => {
- console.log(this.props.thisUser
-)
+
+ 
+        
 //         console.log(this.props.cartarray)
-//         if(this.props.cartamount !=0){
+//         if(this.props.cartamount !==0){
 // this.setState({
 //     noProducts:false
 // })
 //         }
+
     }
 // componentDidUpdate=()=>{
    
@@ -71,7 +73,7 @@ class checkOutPage extends Component {
                                 <div className='ImageSection'>
                                     <img className='ProductPic' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.photos[0].img1}`} alt="" />
                                 </div>
-                                <div className='DescribeProduct' style={{fontSize: '10px'}}>
+                                <div className='DescribeProduct' style={{fontSize: '15px'}}>
                                     Name: {card.productName}
                                     <Divider style={{ margin: '15px 0' }} />
                                     Price : {card.price}

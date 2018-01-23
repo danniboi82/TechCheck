@@ -86,7 +86,7 @@ class Login extends Component {
                         modal={false}
                         open={this.state.open}
                         onRequestClose={this.handleClose}
-                        style={{ margin: 'auto' }}
+                        style={{ margin: 'auto', maxHeight: '100%'}}
                     >
 
                         <Row>
@@ -117,20 +117,19 @@ class Login extends Component {
                                 <br />
                                 <br />
 
-                                <div className='SignInDiv' style={{ paddingLeft: '25px' }}>
+                                <div className='SignInDiv'>
                                     <Row>
-                                        <Col sm={6}>
+                                        <Col sm={12}>
                                             <FlatButton
-                                                style={{ backgroundColor: 'white', maxWidth: '50px' }}
+                                                style={{ backgroundColor: 'white', width: '255px', maxWidth:'100%'  }}
                                                 label="Submit"
                                                 primary={true}
                                                 keyboardFocused={true}
                                                 onClick={this.onSubmit}
                                             />
-                                        </Col>
-                                        <Col sm={6}>
+                                       
                                             <FlatButton
-                                                style={{ backgroundColor: '#DD4124' }}
+                                                style={{ backgroundColor: '#DD4124', width: '255px', maxWidth:'100%'  }}
                                                 label="Cancel"
                                                 primary={true}
                                                 onClick={this.handleClose}
@@ -140,19 +139,19 @@ class Login extends Component {
                                 </div>
 
 
-                                <div className='RegistrationDiv' style={{ paddingLeft: '25px', paddingTop: '15px' }}>
+                                <div className='RegistrationDiv' style={{ paddingTop: '15px' }}>
                                     <Row>
-                                        <Col sm={6}>
+                                        <Col sm={12}>
                                             <Link to='/registration'
                                                 onClick={this.handleClose}
+                                                style={{ maxWidth: '100%', marginRight: '10px'}}
                                             >
                                                 Registration
                                             </Link>
-                                        </Col>
-                                        <br />
-                                        <Col sm={6}>
+
                                             <Link to='/acount/recovery'
                                                 onClick={this.handleClose}
+                                                style={{ maxWidth: '100%' }}
                                             >
                                                 Forgot Password?
                                             </Link>
@@ -166,8 +165,7 @@ class Login extends Component {
                                 {this.state.doesntMatch &&
                                     <p>Email or password dont match. Please try again.</p>
                                 }
-                                <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo"
-                                    style={{ position: 'relative', bottom: '10px', left: '65px' }} />
+                                <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo"/>
                             </Col>
                         </Row>
                     </Dialog>
