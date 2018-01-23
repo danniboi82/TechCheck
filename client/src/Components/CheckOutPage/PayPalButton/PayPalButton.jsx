@@ -24,18 +24,22 @@ console.log(this.props)
         }
         let total1 = ((9 / 100) * this.props.cartamount) + this.props.cartamount
                 const tmp = JSON.parse(localStorage.getItem('cartarray'));
+
+         console.log( )
               const  receipt=[];
                 for(let i=0;i<tmp.length;i++){
-let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].proudctId,tmp[i].price,total1)
+let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].productId,tmp[i].price,total1)
 receipt.push(prod)
                 }
                 console.log(receipt)
 axios({
     method:'post',
     url:'/api/purchases/create',
-    body:
-        receipt
+    data:{array:
+        receipt}
     
+}).then(fun=>{
+    window.location='/receipt'
 })
             
  

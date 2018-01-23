@@ -28,13 +28,15 @@ this.setState({
 })
         }
     }
-
-    componentWillReceiveProps = () => {
+// componentDidUpdate=()=>{
+   
+    componentDidReceiveProps = () => {
         if(this.props.thisUser!=null){
             this.setState({
                 loggedIn:true
             })
         }
+    
         let tax = (9 / 100) * this.props.cartamount
     }
 
