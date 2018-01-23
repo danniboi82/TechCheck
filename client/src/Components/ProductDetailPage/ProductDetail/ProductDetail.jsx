@@ -28,7 +28,8 @@ class productDetail extends Component {
             photos: [],
             verified: "",
             status: "",
-            createdAt: ""
+            createdAt: "",
+           
         }
     }
     

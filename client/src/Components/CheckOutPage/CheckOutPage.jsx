@@ -13,13 +13,16 @@ class checkOutPage extends Component {
         cartamount: 0,
         cartArray: [],
         cartitem: '',
-        noProducts:true
+        noProducts:false,
+        loggedIn:false
        
             
     }
     componentDidMount = () => {
+ 
+        
         console.log(this.props.cartarray)
-        if(this.props.cartamount ==0){
+        if(this.props.cartamount !=0){
 this.setState({
     noProducts:false
 })
@@ -27,6 +30,11 @@ this.setState({
     }
 
     componentWillReceiveProps = () => {
+        if(this.props.thisUser!=null){
+            this.setState({
+                loggedIn:true
+            })
+        }
         let tax = (9 / 100) * this.props.cartamount
     }
 
@@ -70,7 +78,7 @@ this.setState({
                                 {/* () => this.deleteProductHandler(id) */}
                                 <FlatButton
                                     label='Remove'
-                                    onClick={this.props.handleDelete}
+                                    onClick={() => this.props.handleDelete(card.price,  this.props)}
                                     style={
                                         {
                                             backgroundColor: '#DC4C46',
@@ -90,8 +98,8 @@ this.setState({
                             <Row>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                  
-                                       Amount :$ { !this.state.noProducts? 
-                                        this.props.cartamount :0}
+                                       Amount :$  
+                                       { this.props.cartamount }
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                     Tax: ${Math.floor((9 / 100) * this.props.cartamount)}
@@ -102,7 +110,8 @@ this.setState({
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                    <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} />
+                                {this.state.loggedIn ?
+                                  <p>'PLease Log In To make a purchases' </p> : <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>}
                                 </Col>
                             </Row>
                         </Paper>

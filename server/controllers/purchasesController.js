@@ -13,17 +13,17 @@ const controller = {
           .catch(err => res.status(422).json(err));
       },
       create: (req, res) => {
+console.log('hey')
+console.log(req.body)
 
-
-
-        db.Purchases.bulkCreate(
+        // db.Purchases.bulkCreate(
             
          
-        )
-          .then(dbModel => {
-            console.log(dbModel)
-          })
-          .catch(err => res.status(422).json(err));
+        // )
+        //   .then(dbModel => {
+        //     console.log(dbModel)
+        //   })
+          // .catch(err => res.status(422).json(err));
       },
 }
 

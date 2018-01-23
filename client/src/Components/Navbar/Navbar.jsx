@@ -43,7 +43,9 @@ onsubmit =()=>{
   // console.log(this.props
   // )
  }
-
+goHome=()=>{
+  window.location='/'
+}
  componentWillReceiveProps=()=>{
    
   // console.log(this.props
@@ -75,7 +77,7 @@ onsubmit =()=>{
 
         
         <AppBar
-          title={<img src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto', width: '80px', height : '80px', marginLeft: '150px' }} />}
+          title={<img onClick={this.goHome} src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto', width: '80px', height : '80px', marginLeft: '150px' }} />}
           style={{ backgroundColor: "#2196F3", }}
           showMenuIconButton={false}
           iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}

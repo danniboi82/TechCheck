@@ -1,4 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
+
+    const Op = sequelize.Op;
+
     var Products = sequelize.define("Products", {
         id: {
             primaryKey: true,
