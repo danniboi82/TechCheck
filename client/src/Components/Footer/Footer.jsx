@@ -34,17 +34,14 @@ const footer = () => {
     <div style={{backgroundColor: '#009B77'}}>
       <Container >
         <Row className='FooterRowOne'>
-          <Col sm={4} style={{ display: 'inline-block' }}>
+          <Col sm={4} style={{ display: 'inline-block', margin: 'auto'}}>
 
-            <div><Link to='/'><FlatButton> Home </FlatButton></Link></div>
-            <div> <Link to='/product_detail/3214e644-9c1c-48ca-baba-d699af75a1ea'><FlatButton> Product Details</FlatButton></Link> </div>
-            <div> <Link to='/sell_product'><FlatButton>Sell Product</FlatButton></Link> </div>
+            <div><Link to='/'><FlatButton> Home </FlatButton></Link></div>          
             <div><Link to='/registration'><FlatButton>  Registration</FlatButton> </Link> </div>
-            <div><Link to='/api/users/profile/'><FlatButton >user Profile</FlatButton></Link></div>
             <div><Link to='/check_out'><FlatButton>Check Out</FlatButton></Link></div>
           </Col>
           <Col sm={4}>
-            <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo" style={{ margin: 'auto', maxWidth: '100%' }} />
+            <img src="https://i.imgur.com/heRuT1H.png" alt="TClogo" style={{ margin: '35px auto auto auto', maxWidth: '100%' }} />
           </Col>
           <Col sm={4}>
             <div className="footer-icons">

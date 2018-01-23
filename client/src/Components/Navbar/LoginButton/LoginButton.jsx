@@ -165,7 +165,7 @@ class Login extends Component {
                                 {this.state.doesntMatch &&
                                     <p>Email or password dont match. Please try again.</p>
                                 }
-                                <img src="https://i.imgur.com/89X4t5A.png" alt="TClogo"/>
+                                <img src="https://i.imgur.com/heRuT1H.png" alt="TClogo"/>
                             </Col>
                         </Row>
                     </Dialog>
