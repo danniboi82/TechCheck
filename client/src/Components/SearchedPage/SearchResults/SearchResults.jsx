@@ -20,21 +20,17 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    border: '1px solid grey',
     justifyContent: 'space-around',
     width: '100%',
+
   },
   gridList: {
     width: '90%',
     height: '100%',
     overflowY: 'auto',
   },
-  subheader: {
-    fontSize: '50px',
-    color: 'black',
-    padding: '50px 0',
-    backgroundColor: 'red',
-    textAlign: 'center'
-  }
+
 };
 
 
@@ -186,7 +182,6 @@ class ProductSearch extends Component {
 
     return (
       <div style={styles.root}>
-        <Subheader style={styles.subheader}>Search Results</Subheader>
         <p>Results per page:</p>
         <button onClick={this.limit} value={15}>15</button><button onClick={this.limit} value={30}>30</button>
         <GridList

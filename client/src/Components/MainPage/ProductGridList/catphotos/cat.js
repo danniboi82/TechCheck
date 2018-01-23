@@ -1,20 +1,7 @@
-// Processor - 
-// Laptop- 
-// Hard Drive - 
-// Tower - 
-// Graphic Card -
-// Gaming Peripheral
-// Gaming Console
-// Power Supply - 
-// RAM - 
-// PC - 
-// MotherBoard - 
-
 import GraphicsCard from './graphicscard.jpg'
 import GamingPeripheral from './gamingperipheral.png'
 import Laptop from './laptop.jpg'
 import Motherboard from './motherboard.jpg'
-import PC from './pc.jpg'
 import Processor from './processor.jpg'
 import PSU from './psu.png'
 import RAM from './ram.jpg'

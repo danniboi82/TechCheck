@@ -10,7 +10,7 @@ import MainPage from './Components/MainPage/MainPage';
 import Footer from './Components/Footer/Footer';
 import SearchedPage from './Components/SearchedPage/SearchedPage';
 import ProductDetailPage from './Components/ProductDetailPage/ProductDetailPage';
-//import ProductDetailPage from '../src/Components/ProductDetailPage/ProductDetail/ProductDetail'
+import {Container} from 'react-grid-system';
 import CheckOutPage from './Components/CheckOutPage/CheckOutPage';
 import RegisterUser from './Components/Register/RegisterUser';
 import SellProduct from './Components/Sell/SellProduct';
@@ -209,6 +209,7 @@ class App extends Component {
         }
 
         return (
+            <Container>
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
@@ -250,7 +251,7 @@ class App extends Component {
                     </div>
                 </MuiThemeProvider>
             </BrowserRouter>
-
+            </Container>
         );
     }
 }

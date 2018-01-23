@@ -137,8 +137,8 @@ class CartModal extends Component {
                                 actions={actions}
                                 open={this.state.open}
                                 anchorEl={this.state.anchorEl}
-                                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                                 onRequestClose={this.handleRequestClose}
                                 animation={PopoverAnimationVertical}
                                 style={{ maxWidth: '50%' }}
