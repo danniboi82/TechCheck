@@ -125,6 +125,7 @@ warranty:dbModel.dataValues.warranty,
 packaging:dbModel.dataValues.packaging,
 userUploadImage1:dbModel.dataValues.userUploadImage1,
 userUploadImage2:dbModel.dataValues.userUploadImage2,
+status:dbModel.dataValues.status,
 verified:dbModel.dataValues.verified,
 createdAt:createdOn
 

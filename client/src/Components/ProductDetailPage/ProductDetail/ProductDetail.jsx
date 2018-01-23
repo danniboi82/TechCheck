@@ -26,7 +26,7 @@ class productDetail extends Component {
             warranty: "",
             packaging: "",
             photos: [],
-            verified: "",
+            verified: false,
             status: "",
             createdAt: "",
            
@@ -46,6 +46,17 @@ class productDetail extends Component {
             const imgs = [
                 photosImg,
             ]
+            console.log(data.data.verified)
+            let used;
+            if(data.data.condition=='old'){
+used='Used'
+            }
+            let true1;
+            if(data.data.verified==true){
+true1='True'
+            }else{
+                true1='False'
+            }
             this.setState({
                 photos: imgs,
                 productId: data.data.id,
@@ -55,17 +66,17 @@ class productDetail extends Component {
                 category: data.data.category,
                 price: data.data.price,
                 productDescription: data.data.productDescription,
-                condition: data.data.condition,
+                condition:used|| data.data.condition,
                 warranty: data.data.warranty,
                 packaging: data.data.packaging,
-                verified: data.data.verified,
+                verified: true1||data.data.verified,
                 status: data.data.status,
                 createdAt: data.data.createdAt
             })
         })
     }
     render() {
-        console.log(this.state.photos);
+        console.log(this.state.verified);
         console.log(this.props);
         return (
             <div>
@@ -106,7 +117,7 @@ class productDetail extends Component {
                             <Col sm={6}>                 
                                 <List>
                                     <ListItem>Price :${this.state.price} </ListItem>
-                                    <ListItem>Category : </ListItem>
+                                    <ListItem>Category : {this.state.category}</ListItem>
                                     <ListItem>Condition : {this.state.condition}</ListItem>
                                     <ListItem>Warranty : {this.state.warranty}</ListItem>
                                 </List>                   
@@ -115,7 +126,7 @@ class productDetail extends Component {
                                 <List>
                                     <ListItem>Packaging : {this.state.packaging}</ListItem>
                                     <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
-                                    <ListItem>Verified : </ListItem>
+                                    <ListItem>Verified : {this.state.verified}</ListItem>
                                     <ListItem>Product Status : {this.state.status}</ListItem>
                                 </List>                     
                             </Col>                       

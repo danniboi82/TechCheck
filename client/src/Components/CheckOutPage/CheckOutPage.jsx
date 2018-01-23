@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper'
 import PayPalButton from './PayPalButton/PayPalButton';
 import { Row, Col } from 'react-grid-system';
 import Divider from 'material-ui/Divider';
-
+import Receipt from './Receipt'
 
 
 class checkOutPage extends Component {
@@ -19,18 +19,18 @@ class checkOutPage extends Component {
             
     }
     componentDidMount = () => {
- 
-        
-        console.log(this.props.cartarray)
-        if(this.props.cartamount !=0){
-this.setState({
-    noProducts:false
-})
-        }
+ console.log(this.props.thisUser
+)
+//         console.log(this.props.cartarray)
+//         if(this.props.cartamount !=0){
+// this.setState({
+//     noProducts:false
+// })
+//         }
     }
 // componentDidUpdate=()=>{
    
-    componentDidReceiveProps = () => {
+    componentWillReceiveProps = () => {
         if(this.props.thisUser!=null){
             this.setState({
                 loggedIn:true
@@ -112,7 +112,7 @@ this.setState({
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                {this.state.loggedIn ?
+                                {!this.state.loggedIn ?
                                   <p>'PLease Log In To make a purchases' </p> : <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>}
                                 </Col>
                             </Row>
