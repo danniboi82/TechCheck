@@ -3,9 +3,10 @@ import db from"../models"
  import s3Key from '../../awskey'
  import s3Secret from '../../awssecret'
 import aws from 'aws-sdk'
-
+import sequelize from 'sequelize'
 import multer from 'multer'
 import multerS3 from 'multer-s3'
+const Op = sequelize.Op;
 // ||s3Secret
 // ||s3Key
 aws.config.update({
@@ -187,49 +188,52 @@ console.log('hrll',newo)
   },
   search:function(req,res){
     console.log(req.body)
-          
- let offset=0
+    let offset=15
  let limit=15
- offset =parseInt(req.body.page)
-limit=parseInt(req.body.limit)
-console.log('helloits',limit)
-let trueorfalse=false
-
-  const offsetArray=[15,30,45,60]
- 
-console.log(offset)
-  for(let i =0;i<4;i++){
-if(offsetArray[i]===offset){
- trueorfalse=true
-}
-  }
-  
-
-console.log(trueorfalse)
-
-
-  let newo=offset
-
-
-
-
-    if(limit===30&&trueorfalse===true){
- newo = offset += 15
-
-}
-
-    console.log('hrll',newo)
-       
+    offset =parseInt(req.body.page)
+    limit=parseInt(req.body.limit)
+   let category=req.body.search
+   let catarray=category.split("");
+    console.log(catarray)
+   let catsearch='%'
+    for (let i=0;i<catarray.length;i++)
+    {
+     let catsearch = catsearch+catarray[i]+'%';
+      console.log(catsearch) 
+    }
+    console.log(catsearch)
+    console.log('helloits',typeof limit)
+    function changingLimit (){
+      let newo
+    if(limit==30){
+     newo = offset += 15
+    
+    }
+    return newo
+    }changingLimit()
+    let newOffset=changingLimit();
+    console.log('hrll',newOffset)
+  //   {productDescription: 
+  //     {[Op.like] : catsearch}
+  // }
         db.Products.findAll({
-          offset: newo,
-          limit:limit,
+          offset: 0,
+          limit:30,
           where: {
-            category: req.body.search,
+            [Op.or]:[
+            {productName: 
+                {[Op.like] : catsearch}    
+            },
+            {category: 
+                {[Op.like] : catsearch}
+            },
             
-          }
+        ]
+        }
         }).then(products=>{
           res.send(products)
         })
+      
       },
   create: function(req, res) {
     console.log(req.body)

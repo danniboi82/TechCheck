@@ -60,7 +60,7 @@ class Login extends Component {
                     console.log(res)
                     sessionStorage.setItem('auth', res.data)
                     self.handleClose()
-                    window.location = '/'
+                    window.location.reload(true);
                 }
             }).catch(function (error) {
                 console.log(error);

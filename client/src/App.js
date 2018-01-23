@@ -178,6 +178,7 @@ class App extends Component {
                     cartamount={this.state.cartAmount}
                     cartarray={this.state.cartarray}
                     handleDelete={this.handleDelete}
+                    thisUser={this.state.userDataObj}
                 />
             )
         }

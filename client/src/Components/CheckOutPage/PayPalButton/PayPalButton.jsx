@@ -1,12 +1,45 @@
 import React, {Component} from 'react';
-import PaypalExpressBtn from 'react-paypal-express-checkout';
-
+import PaypalExpressBtn from 'react-pp-tc';
+import axios from 'axios'
  
 export default class PayPalButton extends Component {
     render() {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
-            		console.log("The payment was succeeded!", payment);
+console.log(this.props)
+            function S4() {
+                return (((1+Math.random())*0x10000)|0).toString(16).substring(1); 
+            }
+             
+            // then to call it, plus stitch in '4' in the third group
+          const  guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+ 
+          function Prod(order, sell, buy, id,price,fPrice) {
+            this.orderNum = order;
+            this.sellerId = sell;
+            this.buyerId = buy;
+            this.proudctId = id;
+            this.itemPrice=price;
+            this.finalPrice=fPrice;
+        }
+        let total1 = ((9 / 100) * this.props.cartamount) + this.props.cartamount
+                const tmp = JSON.parse(localStorage.getItem('cartarray'));
+              const  receipt=[];
+                for(let i=0;i<tmp.length;i++){
+let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].proudctId,tmp[i].price,total1)
+receipt.push(prod)
+                }
+                console.log(receipt)
+axios({
+    method:'post',
+    url:'/api/purchases/create',
+    body:
+        receipt
+    
+})
+            
+ 
+            		console.log("The payment was succeeded!", tmp);
             		// You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
         }		
         
@@ -29,13 +62,13 @@ export default class PayPalButton extends Component {
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
         
         const client = {
-            sandbox:    'AS22L9LSQEHf5qIrXJb1GzdfAuoTJU0hur17e7LXfHBsrZrMxyJVZhzr8NIKjYVAa9wmf8DP839GHVWp',
+            sandbox:    'AbBObKXWXd868x3p37xXih8dVqhhWMuQenDb18nuvMjar1mIyP4PzY18gqV40h8GpFZf-GnHeEAPA3qF',
             production: 'YOUR-PRODUCTION-APP-ID',
         }
 
         return (
             <PaypalExpressBtn 
-             env={env} client={client} currency={currency} total={total} />
+             env={env} client={client} currency={currency} onSuccess={onSuccess} total={total} />
         );
     }
 }    
