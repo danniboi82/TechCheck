@@ -1,16 +1,16 @@
- import sendGridkey from '../../sendgrid.js'
+ //import sendGridkey from '../../sendgrid.js'
 import db from "../models"
 import bcrypt from'bcrypt'
-import jwtSecret from '../../jwtSecret'
+//import jwtSecret from '../../jwtSecret'
 import sgMail from '@sendgrid/mail'
 import jwt, { verify } from 'jsonwebtoken'
 import moment from 'moment';
 // || jwtSecret;
 
 // ||sendGridkey;
-const secret = process.env.jwt || jwtSecret 
+const secret = process.env.jwt
 const saltRounds =10;
-const sengrido =process.env.sendgrid || sendGridkey
+const sengrido =process.env.sendgrid 
 sgMail.setApiKey(sengrido);
 // Defining methods for the booksController process.env.sendgrid ||
 const controller = {
@@ -242,7 +242,7 @@ else{
             from: 'TechCheck@donotreply.com',
             subject: 'Reqister Your Email With TechChecks ',
             text: 'click me ',
-             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +newUser.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
+             html: name +' <br> <a href='+'https://techcheck.herokuapp.com/api/users/verification/' +newUser.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
           };
   
           sgMail.send(msg);
@@ -275,7 +275,7 @@ function detectNewEmail ()  {
             from: 'TechCheck@donotreply.com',
             subject: 'Reqister Your Email With TechChecks ',
             text: 'click me ',
-             html: name +' <br> <a href='+'http://localhost:3000/api/users/verification/' +user.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
+             html: name +' <br> <a href='+'https://techcheck.herokuapp.com/api/users/verification/' +user.dataValues.id +'><strong> <button>Please Click This Link to Register Your Email</button></a></strong>',
           };
   
          // sgMail.send(msg);
@@ -365,7 +365,7 @@ console.log(req.params.id)
               from: 'TechCheck@donotreply.com',
               subject: 'TechCheck Account Recovery',
               text: 'click me ',
-               html: name + ' <br> <a href='+'http://localhost:3000/reset/' +token +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
+               html: name + ' <br> <a href='+'https://techcheck.herokuapp.com/reset/' +token +'><strong><button style="color:blue">Reset Password</button></a></strong><br>Note:This link will expire in one hour',
             
             };
     
