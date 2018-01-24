@@ -38,6 +38,7 @@ sessionStorage.setItem('iduser',this.props.thisUser.userId)
                 for(let i=0;i<tmp.length;i++){
 let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].productId,tmp[i].price,total1)
 receipt.push(prod)
+//"react-pp-tc": "^1.1.1",
                 }
                 console.log(receipt)
                 // sessionStorage.setItem('items',sessionStorage.setItem(receipt))
