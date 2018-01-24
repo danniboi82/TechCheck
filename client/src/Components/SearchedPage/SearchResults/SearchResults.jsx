@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
 import productsApi from '../../Data/products-api'
 import axios from "axios";
 import SvgIcon from 'material-ui/SvgIcon';
@@ -23,7 +22,7 @@ const styles = {
     border: '1px solid grey',
     justifyContent: 'space-around',
     width: '100%',
-
+    padding: '20px auto',
   },
   gridList: {
     width: '90%',

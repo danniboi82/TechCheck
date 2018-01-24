@@ -124,17 +124,25 @@ true1='True'
                             <Col sm={6}>                 
                                 <List>
                                     <ListItem>Price :${this.state.price} </ListItem>
+                                    <Divider/>
                                     <ListItem>Category : {this.state.category}</ListItem>
+                                    <Divider/>
                                     <ListItem>Condition : {this.state.condition}</ListItem>
+                                    <Divider/>
                                     <ListItem>Warranty : {this.state.warranty}</ListItem>
+                                    <Divider/>
                                 </List>                   
                             </Col>
                             <Col sm={6}>
                                 <List>
                                     <ListItem>Packaging : {this.state.packaging}</ListItem>
+                                    <Divider/>
                                     <ListItem>Serial Number : {this.state.serialNumber}</ListItem>
+                                    <Divider/>
                                     <ListItem>Verified : {this.state.verified}</ListItem>
+                                    <Divider/>
                                     <ListItem>Product Status : {this.state.status}</ListItem>
+                                    <Divider/>
                                 </List>                     
                             </Col>                       
                         </Row>
