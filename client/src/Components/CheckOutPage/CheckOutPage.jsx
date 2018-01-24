@@ -114,8 +114,8 @@ class checkOutPage extends Component {
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                {!this.state.loggedIn ?
-                                  <p>'PLease Log In To make a purchases' </p> : <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>}
+                              
+                                  <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>
                                 </Col>
                             </Row>
                         </Paper>
