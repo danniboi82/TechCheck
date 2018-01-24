@@ -38,34 +38,51 @@ class Receipt extends Component {
     products:[],
     orderNum:'',
     totalAmount:0,
-    productId:''
+    productId:'',
+    userId:''
+
 
   }
   componentDidMount=()=>{
-   
-    const total=
-this.setState({
-  orderNum:this.props.match.params.order,
-  totalAmount:localStorage.getItem('total')
-
-})
-
-
-    const tmp = JSON.parse(localStorage.getItem('cartarray'));
-    console.log(tmp)
-
+  
     
-    // axios({
+ 
+    
+ 
+   
+this.setState({
+  userId:sessionStorage.getItem('iduser'),
+  orderNum:this.props.match.params.order,
+  totalAmount:localStorage.getItem('total'),
+  products:JSON.parse(localStorage.getItem('cartarray'))
 
-    //   method:'post',
-    //   url:'/api/purchases',
-    //   data:{id:
-    //   this.props.match.params.order}
-
-    // }).then(data=>{
-    //   console.log(data)
-    // })
+},this.email)
+    
+    
+      //  localStorage.removeItem('cartitem')
+      //  localStorage.removeItem('cartarray')
+      
+ 
     console.log(this.props)
+  }
+  email=()=>{
+    axios({
+
+      method:'post',
+      url:'/api/purchases/email',
+      data:{
+        userId:this.state.userId,
+        orderNum1:this.state.orderNum,
+        products1:this.state.products
+       
+      }
+   
+
+    }).then(data=>{
+      console.log(data)
+ 
+     })
+    // localStorage.clear()
   }
   getProductId2=(e)=>{
     this.setState({
@@ -81,27 +98,7 @@ this.setState({
    
   }
   render() {
-    const tmp = JSON.parse(localStorage.getItem('cartarray'))
-    const userId= sessionStorage.getItem('iduser')
-    axios({
-
-      method:'post',
-      url:'/api/purchases/email',
-      data:{
-        userId:userId,
-        orderNum:this.state.orderNum
-      }
     
-
-    }).then(data=>{
-      console.log(data)
-      localStorage.removeItem('carAmount')
-      localStorage.removeItem('cartitem')
-      localStorage.removeItem('cartarray')
-      
-      localStorage.removeItem('total')
-    })
-  
    
  
     
@@ -117,7 +114,7 @@ this.setState({
           cols={4}
           padding={10}
         >
-{tmp.map((tile) => (
+{this.state.products.map((tile) => (
  
 
   <GridTile

@@ -194,14 +194,9 @@ console.log('hrll',newo)
     offset =parseInt(req.body.page)
     limit=parseInt(req.body.limit)
    let category=req.body.search
-   let catarray=category.split("");
-    console.log(catarray)
-   let catsearch='%'
-    for (let i=0;i<catarray.length;i++)
-    {
-     let catsearch = catsearch+catarray[i]+'%';
-      console.log(catsearch) 
-    }
+   
+
+    let catsearch='%'+category+'%'
     console.log(catsearch)
     console.log('helloits',typeof limit)
     function changingLimit (){
@@ -222,12 +217,12 @@ console.log('hrll',newo)
           limit:30,
           where: {
             [Op.or]:[
-            {productName: 
+            {category: 
                 {[Op.like] : catsearch}    
             },
-            {category: 
-                {[Op.like] : catsearch}
-            },
+            // {productName: 
+            //     {[Op.like] : catsearch}
+            
             
         ]
         }
