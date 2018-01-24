@@ -273,7 +273,7 @@ this.setState({
                             onChange={this.handleDOB} />
                         <br />
 {!this.state.passRequire &&
-<p>Passwords must contain at least 6 characters.One letter,one number, and a speical character.</p>}
+<p>Passwords must contain at least 6 characters.One letter,one number, and a special character.</p>}
 
                         <TextField
 
