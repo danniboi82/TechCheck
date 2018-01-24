@@ -103,13 +103,13 @@ class checkOutPage extends Component {
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                  
                                        Amount :$  
-                                       { this.props.cartamount }
+                                       { (this.props.cartamount).toFixed(2) }
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
-                                    Tax: ${Math.floor((9 / 100) * this.props.cartamount)}
+                                    Tax: ${((9 / 100) * this.props.cartamount).toFixed(2)}
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
-                                    Total Amount:${((9 / 100) * this.props.cartamount) + this.props.cartamount}
+                                    Total Amount:${(((9 / 100) * this.props.cartamount) + this.props.cartamount).toFixed(2)}
                                 </Col>
                             </Row>
                             <Row>

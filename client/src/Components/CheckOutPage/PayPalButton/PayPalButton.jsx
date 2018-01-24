@@ -32,6 +32,7 @@ console.log(this.props)
 localStorage.setItem('total',total1)
 sessionStorage.setItem('iduser',this.props.thisUser.userId)
 
+
          console.log( )
               const  receipt=[];
                 for(let i=0;i<tmp.length;i++){
@@ -39,6 +40,7 @@ let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].productId
 receipt.push(prod)
                 }
                 console.log(receipt)
+                // sessionStorage.setItem('items',sessionStorage.setItem(receipt))
 axios({
     method:'post',
     url:'/api/purchases/create',
@@ -70,7 +72,7 @@ axios({
             
         let env = 'sandbox'; // you can set here to 'production' for production
         let currency = 'USD'; // or you can set this value from your props or state  
-        let total = ((9 / 100) * this.props.cartamount) + this.props.cartamount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+        let total = (((9 / 100) * this.props.cartamount) + this.props.cartamount).toFixed(2); // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
         
         const client = {
