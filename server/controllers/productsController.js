@@ -1,7 +1,7 @@
 
 import db from"../models"
- //import s3Key from '../../awskey'
- //import s3Secret from '../../awssecret'
+ import s3Key from '../../awskey'
+ import s3Secret from '../../awssecret'
 import aws from 'aws-sdk'
 import sequelize from 'sequelize'
 import multer from 'multer'
@@ -10,8 +10,8 @@ const Op = sequelize.Op;
 // ||s3Secret
 // ||s3Key
 aws.config.update({
-  accessKeyId:process.env.s3_key,
-  secretAccessKey: process.env.s3_secret
+  accessKeyId:process.env.s3_key||s3Key,
+  secretAccessKey: process.env.s3_secret||s3Secret
 });
 const s3 = new aws.S3();
 const upload = multer({
@@ -125,6 +125,7 @@ warranty:dbModel.dataValues.warranty,
 packaging:dbModel.dataValues.packaging,
 userUploadImage1:dbModel.dataValues.userUploadImage1,
 userUploadImage2:dbModel.dataValues.userUploadImage2,
+status:dbModel.dataValues.status,
 verified:dbModel.dataValues.verified,
 createdAt:createdOn
 
@@ -193,14 +194,9 @@ console.log('hrll',newo)
     offset =parseInt(req.body.page)
     limit=parseInt(req.body.limit)
    let category=req.body.search
-   let catarray=category.split("");
-    console.log(catarray)
-   let catsearch='%'
-    for (let i=0;i<catarray.length;i++)
-    {
-     let catsearch = catsearch+catarray[i]+'%';
-      console.log(catsearch) 
-    }
+   
+
+    let catsearch='%'+category+'%'
     console.log(catsearch)
     console.log('helloits',typeof limit)
     function changingLimit (){
@@ -221,12 +217,12 @@ console.log('hrll',newo)
           limit:30,
           where: {
             [Op.or]:[
-            {productName: 
+            {category: 
                 {[Op.like] : catsearch}    
             },
-            {category: 
-                {[Op.like] : catsearch}
-            },
+            // {productName: 
+            //     {[Op.like] : catsearch}
+            
             
         ]
         }

@@ -5,7 +5,7 @@ import ProductDetail from './ProductDetail/ProductDetail';
 const productDetailPage = (props) => {
     console.log(props);
     return (
-        <div>
+        <div style={{border: '1px solid black'}}>
             
             <ProductDetail {...props}/>
         </div>

@@ -6,8 +6,9 @@ import multerS3 from 'multer-s3'
 const router = express.Router();
 
 
-router.get("/", purchases.findId);
+router.post("/", purchases.findId);
  router.post("/create", purchases.create);
+ router.post("/email", purchases.email);
 // router.post("/change", users.forgot);
 // router.put("/recover/:token",users.recovery)
 // router.post("/", users.create);

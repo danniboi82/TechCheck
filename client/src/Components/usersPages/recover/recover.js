@@ -1,12 +1,9 @@
 import React, {Component } from 'react';
 import users from '../../Data/users-api'
-import { Route,Redirect  } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import axios from "axios";  
+
 class recover extends Component{
 state = {
   email:''

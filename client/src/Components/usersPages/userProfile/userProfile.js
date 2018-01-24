@@ -110,7 +110,9 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
       // <Link to={`/edit/user/${this.state.userId}`}> 
       <div className="Profile">
     
-        <Paper >
+        <Paper className='Paper'>
+        <h3 style={{margin:'0 auto', padding: '15px 0'}}>User Profile</h3>
+
           {this.state.noUser &&
             <h1>404 No User Found</h1>
           }
@@ -123,7 +125,7 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
           <div className='UserInfo'>
 
 {!this.state.edit ? 
-            <div className='UserInfoDiv'><TextField  floatingLabelText="Name" disabled={true} value={this.state.name}/></div>: <div><TextField floatingLabelText="Name" name='name' onChange={this.onChange} defaultValue={this.state.name}/> <br/></div>}
+            <div className='UserInfoDiv'><TextField  floatingLabelText="Name" disabled={true} value={this.state.name}/></div>: <div><TextField floatingLabelText="Name" name='name' onChange={this.onChange} defaultValue={this.state.name} inputStyle={{padding: '25px'}}/> <br/></div>}
           
            {!this.state.edit ? 
             <div className='UserInfoDiv'><TextField  floatingLabelText="Email" disabled={true} value={this.state.email}/></div>: <div><TextField floatingLabelText="Email" name='email' onChange={this.onChange} defaultValue={this.state.email}/> <br/></div>}
@@ -138,11 +140,18 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
             <div className='UserInfoDiv'><TextField  floatingLabelText="User ID" disabled={true} value={this.state.userId}/></div>}
              
             {!this.state.edit &&
-            <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>}
-   {!this.state.edit ?
-        
-<RaisedButton label="Edit Information" onClick={this.changedToEdit}Edit Profile />:<RaisedButton label="Submit Changes" onClick={this.onsubmit}change Profile/>}
+              <div className='UserInfoDiv'><TextField  floatingLabelText="Member Since" disabled={true} value={this.state.memberSince}/></div>}
 
+              <div style={{padding: '20px auto'}}>
+                {!this.state.edit ?
+                  <RaisedButton 
+                    label="Edit Information" 
+                    onClick={this.changedToEdit}Edit Profile
+                    backgroundColor= '#607D8B'/>
+                  :<RaisedButton label="Submit Changes" 
+                    onClick={this.onsubmit}change Profile
+                    backgroundColor= '#607D8B'/>}
+                </div>
           </div>
         </Paper>
 

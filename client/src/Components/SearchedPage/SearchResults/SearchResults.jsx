@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
 import productsApi from '../../Data/products-api'
 import axios from "axios";
 import SvgIcon from 'material-ui/SvgIcon';
@@ -20,21 +19,17 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    border: '1px solid grey',
     justifyContent: 'space-around',
     width: '100%',
+    padding: '20px auto',
   },
   gridList: {
     width: '90%',
     height: '100%',
     overflowY: 'auto',
   },
-  subheader: {
-    fontSize: '50px',
-    color: 'black',
-    padding: '50px 0',
-    backgroundColor: 'red',
-    textAlign: 'center'
-  }
+
 };
 
 
@@ -186,7 +181,6 @@ class ProductSearch extends Component {
 
     return (
       <div style={styles.root}>
-        <Subheader style={styles.subheader}>Search Results</Subheader>
         <p>Results per page:</p>
         <button onClick={this.limit} value={15}>15</button><button onClick={this.limit} value={30}>30</button>
         <GridList
@@ -202,7 +196,7 @@ class ProductSearch extends Component {
               title={tile.productName}
               price={tile.price}
               style={{maxHeight: '100%', maxWidth: '100%', border: '1px solid grey', fontSize: '10px'}}
-              subtitle={<span>Price Range<b>{tile.price}</b></span>}
+              subtitle={<span>Price <b>{tile.price}</b></span>}
               actionIcon={<IconButton><CartIcon value={tile.id} onClick={this.getProductId2}/></IconButton>}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >

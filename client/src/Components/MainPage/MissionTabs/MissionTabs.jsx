@@ -3,19 +3,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { Container, Row, Col } from 'react-grid-system';
 import './MissionTabs.css';
 
-const styles = {
 
-  default_tab: {
-    color: "#2196F3",
-    backgroundColor: "#ffffff",
-    fontWeight: 400,
-    width: 500,
-
-
-  },
-
-
-};
 
 export default class MissionTabs extends React.Component {
 
@@ -34,8 +22,6 @@ export default class MissionTabs extends React.Component {
 
   render() {
     return (
-      // <div style={{marginLeft: 'auto',
-      // marginRight: 'auto'}}>
       <div className='MissionStyle'>
         <Row>
           <Col sm={12}>
@@ -44,11 +30,9 @@ export default class MissionTabs extends React.Component {
                 styles={{ float: 'none' }}
                 value={this.state.value}
                 onChange={this.handleChange}
-                // tabItemContainerStyle={{width: '800px', margin: 'auto'}}
-                style={{ background: '#FFFFFF' }}
-                contentContainerStyle={{ background: '#FFF', margin: 'auto' }} >
+                contentContainerStyle={{margin: 'auto' }} >
 
-                <Tab className='TabStyle' label="Our Purpose" value="a" style={styles.default_tab}>
+                <Tab label="Our Purpose" value="a" className='TabStyle' >
                   <div>
                     <p style={{
                       paddingTop: 50,
@@ -61,7 +45,7 @@ export default class MissionTabs extends React.Component {
             </p>
                   </div>
                 </Tab>
-                <Tab label="Convenience and Trust" value="b" style={styles.default_tab}>
+                <Tab label="Convenience and Trust" value="b" className='TabStyle'>
                   <div>
                     <p style={{
                       paddingTop: 50,
@@ -74,7 +58,7 @@ export default class MissionTabs extends React.Component {
             </p>
                   </div>
                 </Tab>
-                <Tab label="Competitive Pricing" value="c" style={styles.default_tab}>
+                <Tab label="Competitive Pricing" value="c" className='TabStyle'>
                   <div>
                     <p style={{
                       paddingTop: 50,

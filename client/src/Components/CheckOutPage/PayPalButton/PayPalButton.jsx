@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import PaypalExpressBtn from 'react-pp-tc';
 import axios from 'axios'
- 
+
 export default class PayPalButton extends Component {
+    state={
+        orderNum:''
+    }
     render() {
         const onSuccess = (payment) => {
             // Congratulation, it came here means everything's fine!
@@ -13,7 +16,9 @@ console.log(this.props)
              
             // then to call it, plus stitch in '4' in the third group
           const  guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0,3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
- 
+ this.setState({
+     orderNum:guid
+ })
           function Prod(order, sell, buy, id,price,fPrice) {
             this.orderNum = order;
             this.sellerId = sell;
@@ -24,6 +29,9 @@ console.log(this.props)
         }
         let total1 = ((9 / 100) * this.props.cartamount) + this.props.cartamount
                 const tmp = JSON.parse(localStorage.getItem('cartarray'));
+localStorage.setItem('total',total1)
+sessionStorage.setItem('iduser',this.props.thisUser.userId)
+
 
          console.log( )
               const  receipt=[];
@@ -32,14 +40,16 @@ let prod=new Prod(guid,tmp[i].userId,this.props.thisUser.userId,tmp[i].productId
 receipt.push(prod)
                 }
                 console.log(receipt)
+                // sessionStorage.setItem('items',sessionStorage.setItem(receipt))
 axios({
     method:'post',
     url:'/api/purchases/create',
     data:{array:
-        receipt}
+        receipt,userId:this.props.userId}
     
 }).then(fun=>{
-    window.location='/receipt'
+    console.log(fun)
+    window.location=`/receipt/${this.state.orderNum}`
 })
             
  
@@ -62,7 +72,7 @@ axios({
             
         let env = 'sandbox'; // you can set here to 'production' for production
         let currency = 'USD'; // or you can set this value from your props or state  
-        let total = ((9 / 100) * this.props.cartamount) + this.props.cartamount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+        let total = (((9 / 100) * this.props.cartamount) + this.props.cartamount).toFixed(2); // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
         // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
         
         const client = {
@@ -71,8 +81,11 @@ axios({
         }
 
         return (
+          
+            
             <PaypalExpressBtn 
              env={env} client={client} currency={currency} onSuccess={onSuccess} total={total} />
+            
         );
     }
 }    

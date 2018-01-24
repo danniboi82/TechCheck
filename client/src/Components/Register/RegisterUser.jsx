@@ -1,5 +1,5 @@
 // import React from 'react';
-import React, { Component } from 'react';
+import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -7,11 +7,8 @@ import axios from "axios";
 import validator from 'validator';
 
 import DatePicker from 'material-ui/DatePicker';
-import Paper from 'material-ui/Paper';
 
 
-// import FormErrors from '../../'
-import { FormErrors } from '../../';
 
 const required = (value) => {
     if (!value.toString().trim().length) {
@@ -26,25 +23,7 @@ const email = (value) => {
     }
 };
 
-const lt = (value, props) => {
-    // get the maxLength from component's props
-    if (!value.toString().trim().length > props.maxLength) {
-        // Return jsx
-        return <span className="error">The value exceeded {props.maxLength} symbols.</span>
-    }
-};
 
-const password = (value, props, components) => {
-    // NOTE: Tricky place. The 'value' argument is always current component's value.
-    // So in case we're 'changing' let's say 'password' component - we'll compare it's value with 'confirm' value.
-    // But if we're changing 'confirm' component - the condition will always be true
-    // If we need to always compare own values - replace 'value' with components.password[0].value and make some magic with error rendering.
-    if (value !== components['confirm'][0].value) { // components['password'][0].value !== components['confirm'][0].value
-        // 'confirm' - name of input
-        // components['confirm'] - array of same-name components because of checkboxes and radios
-        return <span className="error">Passwords are not equal.</span>
-    }
-};
 
 const style = {
     height: 100,
@@ -78,24 +57,6 @@ const styles = {
 };
 
 
-const userRegistrationStyles = {
-    h1: {
-        color: 'white',
-    },
-
-    buttonDiv: {
-        backgroundColor: 'white',
-        fontSize: '20px'
-    },
-
-    wrapper: {
-        backgroundColor: 'black',
-        textAlign: 'center',
-    },
-}
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-
-
 
 class addUser extends React.Component {
     constructor(props) {
@@ -126,14 +87,11 @@ class addUser extends React.Component {
 
 
         }
-        // const passwordRegex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
     }
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let passwordValid = this.state.passwordValid;
-        let phoneNumberValid=this.state.phoneNumber
         // let firstNameValid = this.state.firstNameValid;
         // let lastNameValid = this.state.lastNameValid;
         // let addressValid = this.state.addressValid;
@@ -268,7 +226,7 @@ this.setState({
             <MuiThemeProvider>
                 
                 <div styles={{margin:"auto"}}>
-                <Paper style={style} zDepth={1} />
+           
                 {<h1 style={styles.h1}>Create an Account!</h1>}
                 {<p>TechCheck makes it convenient and hassle-free users to exchange PC parts and electronics.</p>}
                 </div>
@@ -315,7 +273,7 @@ this.setState({
                             onChange={this.handleDOB} />
                         <br />
 {!this.state.passRequire &&
-<p>Passwords must contain at least 6 characters.One letter,one number, and a speical character.</p>}
+<p>Passwords must contain at least 6 characters.One letter,one number, and a special character.</p>}
 
                         <TextField
 

@@ -1,13 +1,9 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-import Checkbox from 'material-ui/Checkbox';
 import axios from "axios";
 
 const sellProductStyles = {
@@ -49,7 +45,6 @@ const sellProductStyles = {
     }
 };
 
-const formData = new FormData();
 class addProduct extends React.Component {
     constructor(props) {
         super(props);

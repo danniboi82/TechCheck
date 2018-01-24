@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper'
 import PayPalButton from './PayPalButton/PayPalButton';
 import { Row, Col } from 'react-grid-system';
 import Divider from 'material-ui/Divider';
-
+import Receipt from './Receipt'
 
 
 class checkOutPage extends Component {
@@ -19,18 +19,20 @@ class checkOutPage extends Component {
             
     }
     componentDidMount = () => {
+
  
         
-        console.log(this.props.cartarray)
-        if(this.props.cartamount !==0){
-this.setState({
-    noProducts:false
-})
-        }
+//         console.log(this.props.cartarray)
+//         if(this.props.cartamount !==0){
+// this.setState({
+//     noProducts:false
+// })
+//         }
+
     }
 // componentDidUpdate=()=>{
    
-    componentDidReceiveProps = () => {
+    componentWillReceiveProps = () => {
         if(this.props.thisUser!=null){
             this.setState({
                 loggedIn:true
@@ -101,19 +103,19 @@ this.setState({
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
                                  
                                        Amount :$  
-                                       { this.props.cartamount }
+                                       { (this.props.cartamount).toFixed(2) }
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
-                                    Tax: ${Math.floor((9 / 100) * this.props.cartamount)}
+                                    Tax: ${((9 / 100) * this.props.cartamount).toFixed(2)}
                                 </Col>
                                 <Col sm={12} style={{ textAlign: 'center', padding: '20px 0' }}>
-                                    Total Amount:${((9 / 100) * this.props.cartamount) + this.props.cartamount}
+                                    Total Amount:${(((9 / 100) * this.props.cartamount) + this.props.cartamount).toFixed(2)}
                                 </Col>
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                {this.state.loggedIn ?
-                                  <p>'PLease Log In To make a purchases' </p> : <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>}
+                              
+                                  <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/>
                                 </Col>
                             </Row>
                         </Paper>

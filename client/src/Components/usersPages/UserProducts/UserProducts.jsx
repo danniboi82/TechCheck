@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import products from '../../Data/products-api'
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import './UserProducts.css';
-import products1 from '../../Data/products-api';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import Divider from 'material-ui/Divider';
 
 class userProducts extends Component {
 
