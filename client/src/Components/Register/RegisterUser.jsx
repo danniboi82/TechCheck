@@ -7,7 +7,7 @@ import axios from "axios";
 import validator from 'validator';
 
 import DatePicker from 'material-ui/DatePicker';
-import Paper from 'material-ui/Paper';
+
 
 
 const required = (value) => {
@@ -226,7 +226,7 @@ this.setState({
             <MuiThemeProvider>
                 
                 <div styles={{margin:"auto"}}>
-                <Paper style={style} zDepth={1} />
+           
                 {<h1 style={styles.h1}>Create an Account!</h1>}
                 {<p>TechCheck makes it convenient and hassle-free users to exchange PC parts and electronics.</p>}
                 </div>
