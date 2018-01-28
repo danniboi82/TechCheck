@@ -66,7 +66,7 @@ console.log(req.body.products1[i].products[i].userId)
          html: name +'<strong>Thank you for buying with Tech Check. Your order is being processed. You will receive an update once the sellers item is at our facility for testing  <br/></strong>',
       };
 
-    //  sgMail.send(msg);
+      sgMail.send(msg);
       
       }).then(fun=>{
         for(let i=0;i<req.body.products1.length;i++){

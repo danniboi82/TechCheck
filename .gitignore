@@ -26,6 +26,6 @@ twillio.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+react-paypal-express-checkout.zip
 #DONT IGNORE YARN.LOCK, THIS IS NEEDED FOR HEROKU
 !yarn.lock
