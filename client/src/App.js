@@ -128,9 +128,14 @@ class App extends Component {
         localStorage.setItem('CartItem', cartitem);
         localStorage.setItem('CartAmount', cartamount);
         localStorage.setItem('cartarray', JSON.stringify(newcartarray));
+         if(localStorage.getItem('CartItem')=='0'){
+            localStorage.clear()
+            this.setState({
+                cartAmount:0
+            })
+        }
    
     };
-
 
     render() {
     
@@ -172,14 +177,18 @@ class App extends Component {
         }
 
         const RoutedCheckOutPage = (props) => {
+            
             return ( 
                 <CheckOutPage
+                logged={this.state.logged}
                     component={CheckOutPage}
                     cartitem={this.state.cartItem}
                     cartamount={this.state.cartAmount}
                     cartarray={this.state.cartarray}
                     handleDelete={this.handleDelete}
                     thisUser={this.state.userDataObj}
+                    {...props}
+                    
                 />
             )
         }
@@ -203,7 +212,9 @@ class App extends Component {
                     cartitem={this.state.cartItem}
                     cartamount={this.state.cartAmount}
                     cartarray={this.state.cartarray}
-                    onClick={this.handleClick} {...props }
+                    onClick={this.handleClick}
+                    
+                    handleDelete={this.handleDelete} {...props }
                 />
             )
         }
@@ -213,10 +224,11 @@ class App extends Component {
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
+                    
 {/* // {console.log(this.state.userDataObj)} */}
                         <Navbar 
                         //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
-                        {...this.props}
+                        
                         userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
@@ -227,7 +239,9 @@ class App extends Component {
                             cartitem={this.state.cartItem}
                             cartamount={this.state.cartAmount}
                             cartarray={this.state.cartarray} 
-                            onDelete={this.handleDelete} />
+                            onDelete={this.handleDelete}
+                            {...this.props}
+                             />
 
                         
                         <Switch>

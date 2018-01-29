@@ -67,7 +67,7 @@ this.setState({
 
 },this.email)
     
-    
+localStorage.clear()
       //  localStorage.removeItem('cartitem')
       //  localStorage.removeItem('cartarray')
       
@@ -91,7 +91,7 @@ this.setState({
       console.log(data)
  
      })
-    localStorage.clear()
+    
   }
   getProductId2=(e)=>{
     this.setState({

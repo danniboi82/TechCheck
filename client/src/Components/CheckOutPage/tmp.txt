@@ -10,15 +10,46 @@ import Divider from 'material-ui/Divider';
 
 class checkOutPage extends Component {
     state = {
-     
-      
+        cartamount: 0,
+        cartArray: [],
+        cartitem: 0,
+        noProducts:false,
+        loggedIn:false
        
             
     }
+    componentDidMount = (props) => {
 
- 
+ if (this.props.thisUser==null){
+this.setState({
+    loggedIn:false
+})
+ }
+        
+//    console.log(this.props)
+// //         if(this.props.cartamount !==0){
+// // this.setState({
+// //     noProducts:false
+// // })
+// //         }
 
-   
+  }
+
+    componentWillReceiveProps = (props) => {
+        console.log('hey',props.thisUser)
+        
+        if(props.thisUser!=null){
+          this.setState({
+              loggedIn:true
+          })
+      }else if(props.thisUser!==null){
+          this.setState({
+              loggedIn:true
+          })
+        }
+    
+        console.log(this.state.loggedIn)
+    }
 
     deleteProductHandler = (id) => {
         const ogProductList = this.props.cartArray;
@@ -27,24 +58,23 @@ class checkOutPage extends Component {
         this.setState({
             dummyData: updatedProductList
         })
-        
+        console.log(this.state.dummyData);
     }
 
 
 
     render() {
-   
-   let payPal=null;
- if(this.props.logged===true&&this.props.cartitem>=1){
- payPal= <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/> }
- else if(this.props.logged==true&&this.props.cartitem==0){
-    payPal=<p>Please add items to your shooping cart to check out</p>;
- }else if(this.props.logged==false){
-    payPal=  <p>Please log in to make a purchase</p>
+   let cart=null;
+ if(this.state.loggedIn===true&&this.state.cartitem>1){
+ cart= <PayPalButton style={{ padding: '15px' }} cartamount={this.props.cartamount} {...this.props}/> }
+ else if(this.state.loggedIn==true&&this.state.cartitem==0){
+     cart='Please add items to your shooping cart to check out';
+ }else{
+   cart=  <p>Please log in to make a purchase</p>
  }
         return (
             <div className='CheckOutPage'>
-              
+               {/* {console.log(this.props)} */}
                 <div>
                     <h1 style={{ backgroundColor: '#005960', margin: '0px', padding: '25px 0', borderTop: '1px solid white', color: 'white' }}>CHECKOUT</h1>
                 </div>
@@ -53,13 +83,12 @@ class checkOutPage extends Component {
                     <Col sm={9}>
                   
                         {this.props.cartarray.map((card, id) => (
-                         
                             <Paper
                                 zDepth={5}
                                 className='ProductPaper'
-                                key={card.productId}
+                                key={card.id}
                             >
-                                 { console.log(card)}
+                               
                                 <div className='ImageSection'>
                                     <img className='ProductPic' src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${card.photos[0].img1}`} alt="" />
                                 </div>
@@ -69,7 +98,7 @@ class checkOutPage extends Component {
                                     Price : {card.price}
                                     <Divider style={{ margin: '15px 0' }} />
                                 </div>
-                              
+                                {/* () => this.deleteProductHandler(id) */}
                                 <FlatButton
                                     label='Remove'
                                     onClick={() => this.props.handleDelete(card.price,  this.props)}
@@ -107,7 +136,7 @@ class checkOutPage extends Component {
                             </Row>
                             <Row>
                                 <Col sm={12}>
-                                {payPal}
+                                {cart}
                              
                                 </Col>
                             </Row>

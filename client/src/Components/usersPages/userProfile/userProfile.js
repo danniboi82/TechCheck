@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import users from '../../Data/users-api'
-//import { Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
+
 import Paper from 'material-ui/Paper';
 import './userProfile.css';
 import Avatar from 'material-ui/Avatar';
@@ -67,12 +67,10 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
       
     }
   }
-  componentDidMount = () => {
-    console.log('this is my test')
-    console.log(this.props)
-
-    users.userProfile(this.props.match.params.id).then(dataPoints => {
-      console.log(dataPoints)
+  componentWillReceiveProps=(props)=>{
+   
+    users.userProfile(props.theuserid).then(dataPoints => {
+      
       if (dataPoints.data === 'noUser') {
         this.setState({
           profilePic:undefined,
@@ -102,13 +100,13 @@ data: {userId:this.state.userId,firstName:this.state.firstName,lastName:this.sta
         })
       }
     });
-
   }
+ 
 
   render() {
     return (
-      // <Link to={`/edit/user/${this.state.userId}`}> 
-      <div className="Profile">
+   
+      <div className="profile">
     
         <Paper className='Paper'>
         <h3 style={{margin:'0 auto', padding: '15px 0'}}>User Profile</h3>
