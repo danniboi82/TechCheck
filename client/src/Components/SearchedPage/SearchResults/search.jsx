@@ -1,11 +1,12 @@
-import React,{Component} from 'react';
-import {GridList, GridTile} from 'material-ui/GridList';
+import React, { Component } from 'react';
+import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import productsApi from '../../Data/products-api'
 import axios from "axios";
 import SvgIcon from 'material-ui/SvgIcon';
+import Snackbar from 'material-ui/Snackbar';
 
 const CartIcon = (props) => (
   <SvgIcon {...props}>
@@ -32,109 +33,118 @@ const styles = {
 
 };
 
-class ProductSearch extends Component{
-  state={
-    products:[],
-    pages:0,
-    limit:15,
-    productId:'',
+class ProductSearch extends Component {
+  state = {
+    products: [],
+    pages: 0,
+    limit: 15,
+    productId: '',
     userId: "",
-            productName: "",
-            serialNumber: "",
-            category: "",
-            price: "",
-            productDescription: "",
-            condition: "",
-            warranty: "",
-            packaging: "",
-            photos: [],
-            verified: "",
-            status: "",
-            createdAt: ""
+    productName: "",
+    serialNumber: "",
+    category: "",
+    price: "",
+    productDescription: "",
+    condition: "",
+    warranty: "",
+    packaging: "",
+    photos: [],
+    verified: "",
+    status: "",
+    createdAt: "",
+    autoHideDuration: 4000,
+      message: 'Item added to your cart',
+      open: false,
+      
   }
-  componentDidMount=()=>{
-    console.log(this.props.match.params.search)
+  componentDidMount = () => {
+    console.log(this.props)
     axios({
-      method:'post',
-     url: `/api/products/search`,
-     data:{
-      search:this.props.match.params.search,
-      page:0,
-      limit:15
+      method: 'post',
+      url: `/api/products/search`,
+      data: {
+        search: this.props.match.params.search,
+        page: 0,
+        limit: 15
 
-     }
-  })
-.then(products=>{
-  console.log(products)
-  this.setState({
-    products: products.data,
-    
-})
-})
-}
-    // userId:this.props.match.params.id,
-           
-    // productsApi.catagorySearch(this.props.match.params.category)
-  console=()=>{
-    console.log( this.state.page)
-     axios({
-         method:'post',
-        url: `/api/products/search`,
-        data:{
-            search:this.props.match.params.category,
-            page:this.state.page,
-            limit:this.state.limit
+      }
+    })
+      .then(products => {
+        console.log(products)
+        this.setState({
+          products: products.data,
 
-        }
-     }).then(next=>{
-console.log(next)
-this.setState({
- products: next.data
-},console.log(this.state.products))
+        })
+      })
+  }
+  // userId:this.props.match.params.id,
 
-     })
-}
-productDetail=()=>{
-  console.log(this.state.productId)
-  window.location=`/product_detail/${this.state.productId}`
-}
-getProductId=(e)=>{
-  this.setState({
-productId:e.currentTarget.attributes.value.nodeValue
-  }, this.productDetail)
- 
-}
-getProductId2=(e)=>{
-  this.setState({
-productId:e.currentTarget.attributes.value.nodeValue
-  },this.getItemDate)
-}
+  // productsApi.catagorySearch(this.props.match.params.category)
+  console = () => {
+    console.log(this.state.page)
+    axios({
+      method: 'post',
+      url: `/api/products/search`,
+      data: {
+        search: this.props.match.params.category,
+        page: this.state.page,
+        limit: this.state.limit
+
+      }
+    }).then(next => {
+      console.log(next)
+      this.setState({
+        products: next.data
+      }, console.log(this.state.products))
+
+    })
+  }
+  productDetail = () => {
+    console.log(this.state.productId)
+    window.location = `/product_detail/${this.state.productId}`
+  }
+  getProductId = (e) => {
+    this.setState({
+      productId: e.currentTarget.attributes.value.nodeValue
+    }, this.productDetail)
+
+  }
+  getProductId2 = (e) => {
+   
+    this.setState({
+      productId: e.currentTarget.attributes.value.nodeValue,
+      open: true,
+      priceDelete:e.currentTarget.attributes.price.nodeValue
+    }, this.getItemDate)
+  }
 
 
 
-addToCart=(e)=>{
+  addToCart = (e) => {
 
-  console.log(this.state.productId);
-  this.props.onClick(this.state.price, this.state);
+    console.log(this.state.productId);
+    this.props.onClick(this.state.price, this.state);
+    this.setState({
+     
+    });
+  }
 
-}
-
-getItemDate=(e)=>{
-  productsApi.Product(this.state.productId).then(data => {
-    console.log(data)
-    const photosImg = {
+  getItemDate = (e) => {
+    productsApi.Product(this.state.productId).then(data => {
+      console.log(data)
+      const photosImg = {
         img1: data.data.userUploadImage1,
-        
-    }
-    const photosImg2 = {
+
+      }
+      const photosImg2 = {
         img2: data.data.userUploadImage2,
 
-    }
-    const imgs = [
+      }
+      const imgs = [
         photosImg,
         photosImg2
-    ]
-    this.setState({
+      ]
+      this.setState({
         photos: imgs,
         productId: data.data.id,
         userId: data.data.userId,
@@ -148,68 +158,107 @@ getItemDate=(e)=>{
         packaging: data.data.packaging,
         verified: data.data.verified,
         status: data.data.status,
-        createdAt: data.data.createdAt
-    },this.addToCart)
-})
-console.log(this.state.productId)
-}
-
-
-
-limit=(e)=>{
-
-console.log(e.currentTarget.attributes.value.nodeValue)
-    this.setState({
+        createdAt: data.data.createdAt,
         
-        limit:e.currentTarget.attributes.value.nodeValue
-    },this.console)
-  
-    
-}
-pages=(e)=>{
-
-
-this.setState({
-    page:e.currentTarget.attributes.value.nodeValue,
- 
-},this.console)
-
-
-}
-  render(){
-
-  return (
-  <div style={styles.root}>
-   <p>Results per page:</p>
-                <button onClick={this.limit} value={15}>15</button><button onClick={this.limit}value={30}>30</button>
-    <GridList
-      cellHeight={180}
-      style={styles.gridList}
-      cols={4}
-      padding={10}
-    >
-     
-      {this.state.products.map((tile) => (
-        <GridTile
-          key={tile.id}
-          title={tile.productName}
-          style={{ border: '1px solid gray'}}
-          price={tile.price}
-          subtitle={<span>Price <b>{tile.price}</b></span>}
-          actionIcon={<IconButton><CartIcon value={tile.id} onClick={this.getProductId2}/></IconButton>}
-        >
-        {/* <IconButton><StarBorder color="white" /></IconButton> */}
-          <img  value={tile.id}
-          onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products'/>
-        </GridTile>
-      ))}<br/>
-        <div className='pages'>
-                <button onClick={this.pages} name='1'value={0} >1</button><button onClick={this.pages}name='2' value={15} >2</button> <button onClick={this.pages}name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button> 
-                </div>
-    </GridList>
-  </div>
-  )
-}
+      }, this.addToCart)
+    })
+    console.log(this.state.productId)
   }
+
+
+
+  limit = (e) => {
+
+    console.log(e.currentTarget.attributes.value.nodeValue)
+    this.setState({
+
+      limit: e.currentTarget.attributes.value.nodeValue
+    }, this.console)
+
+
+  }
+  pages = (e) => {
+
+
+    this.setState({
+      page: e.currentTarget.attributes.value.nodeValue,
+
+    }, this.console)
+
+
+  }
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+  getPrice=(e)=>{
+   
+  }
+  handleActionClick1 = () => {
+    this.setState({
+      open: false,
+    });
+    this.props.handleDelete(this.state.priceDelete)
+  this.setState({
+    priceDelete:''
+  })
+  //  alert('Item removed from your cart.');
+  };
+
+  handleChangeDuration = (event) => {
+    const value = event.target.value;
+    this.setState({
+      autoHideDuration: value.length > 0 ? parseInt(value) : 0,
+    });
+  }
+  render() {
+
+    return (
+      <div style={styles.root}>
+        <p>Results per page:</p>
+        <button onClick={this.limit} value={15}>15</button><button onClick={this.limit} value={30}>30</button>
+        <GridList
+          cellHeight={180}
+          style={styles.gridList}
+          cols={4}
+          padding={10}
+        >
+
+          {this.state.products.map((tile) => (
+           
+            <GridTile
+              key={tile.id}
+              title={tile.productName}
+              style={{ border: '1px solid gray' }}
+              price={tile.price}
+              subtitle={<span>Price <b>{tile.price}</b></span>}
+              actionIcon={<IconButton><CartIcon  price={tile.price} value={tile.id} onClick={this.getProductId2} /></IconButton>}
+            >
+            { console.log(tile)}
+              {/* <IconButton><StarBorder color="white" /></IconButton> */}
+              <img value={tile.id}
+                onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
+            </GridTile>
+          ))}
+         <br />
+          <div className='pages'>
+            <button onClick={this.pages} name='1' value={0} >1</button><button onClick={this.pages} name='2' value={15} >2</button> <button onClick={this.pages} name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button>
+          </div>
+
+        </GridList>
+        <Snackbar
+          open={this.state.open}
+          message={this.state.message}
+          action="undo"
+           autoHideDuration={this.state.autoHideDuration}
+           
+           onActionClick={this.handleActionClick1}
+           onRequestClose={this.handleRequestClose}
+        />
+      </div>
+    )
+  }
+}
 
 export default ProductSearch;
