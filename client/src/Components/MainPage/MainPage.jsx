@@ -13,7 +13,7 @@ render(){
 
         return (
             <div>
-            <div className='drawer' style={{height:400}}>
+            {/* <div className='drawer' style={{height:400}}>
           
           <List>
       
@@ -34,14 +34,14 @@ render(){
          
          
      
-       </div>
+       </div> */}
             <div style={{ border: '1px solid black'}}>    
              
        
  
       
                     
-                <Header  /><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <Header  />
                 <MissionTabs style={{marginLeft: 'auto',
         marginRight: 'auto'}} />
                 <ProductGridList  dummyData={this.dummyData} />
