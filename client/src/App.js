@@ -18,6 +18,9 @@ import { UserProfile, UserProducts, verification, reset, resetPassword, emailSen
 import Search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
 import Receipt from '../src/Components/CheckOutPage/Receipt'
+import {List, ListItem} from 'material-ui/List';
+import MobileTearSheet from '.'
+import Divider from 'material-ui/Divider';
 class App extends Component {
     state = {
         cartItem: 0,
@@ -133,6 +136,12 @@ class App extends Component {
             this.setState({
                 cartAmount:0
             })
+        }else if(localStorage.getItem('CartItem')<0){
+            this.setState({
+                cartItem: 0,
+                cartAmount: 0,
+                cartarray: [],
+            })
         }
    
     };
@@ -220,7 +229,8 @@ class App extends Component {
         }
 
         return (
-            <Container>
+            <Container fluid={true} >
+           
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >

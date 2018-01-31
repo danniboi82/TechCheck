@@ -142,19 +142,21 @@ class Login extends Component {
                                 <div className='RegistrationDiv' style={{ paddingTop: '15px' }}>
                                     <Row>
                                         <Col sm={12}>
-                                            <Link to='/registration'
+                                            {/* <Link to='/registration'
                                                 onClick={this.handleClose}
                                                 style={{ maxWidth: '100%', marginRight: '10px'}}
-                                            >
-                                                Registration
-                                            </Link>
+                                            > */}
+                                            <FlatButton href='/registration'  onClick={this.handleClose} style={{ backgroundColor: 'blue', width: '255px', maxWidth:'100%'  }}>
+                                                Registration</FlatButton>
+                                            {/* </Link> */}
 
-                                            <Link to='/acount/recovery'
+                                            {/* <Link to='/acount/recovery'
                                                 onClick={this.handleClose}
                                                 style={{ maxWidth: '100%' }}
-                                            >
-                                                Forgot Password?
-                                            </Link>
+                                            > */}
+                                            <FlatButton href='/acount/recovery'onClick={this.handleClose} style={{ backgroundColor: 'green', width: '255px', maxWidth:'100%'  }}>
+                                                Forgot Password</FlatButton>
+                                        
                                         </Col>
                                     </Row>
                                 </div>
