@@ -229,7 +229,7 @@ class App extends Component {
         }
 
         return (
-            <Container fluid={true} >
+            <Container fluid={false} >
            
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
