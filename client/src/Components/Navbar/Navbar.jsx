@@ -4,6 +4,7 @@ import SearchBar from 'material-ui-search-bar';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
+import CategoryBar from './CategoryBar/CategoryBar';
 
 class Navbar extends Component {
 
@@ -11,38 +12,17 @@ class Navbar extends Component {
     dataSource: '',
     search: '',
     userEmail: ''
-    //   logged: false,
-    //   userInput: '',
-    //   userDataObj: {},
-    //   // profilePic:'',
-    //   // userId:'',
-    //   // email:'',
-    //   // firstName:'',
-    //   // lastName:'',
-    //   // phoneNumber:'',
-    //   verified: false,
-    //   // createdAt:'',
-    //   // active:false
   };
 
-  // componentDidMount = (props) => {
-  //   console.log(this.props)
-  //   if(this.props.logged==true){
-  //     this.setState({
-  //       logged:true
-  //     })
-  //   }
-
-  //console.log(sessionStorage.auth)
-
-  // }
   onsubmit = () => {
     console.log(this.state.search)
     window.location = `/searchResults/${this.state.search}`
   }
+
   componentDidMount = () => {
 
   }
+
   goHome = () => {
     window.location = '/'
   }
@@ -53,21 +33,23 @@ class Navbar extends Component {
     try {
       email = props.userdata.email.split('@')
     } catch (error) {
+      console.log("error");
     }
     try {
       this.setState({
         userEmail:  email[1].toLowerCase()
       })
     } catch (error) {
+      console.log("error");
     }
   }
 
   onChange = (e) => {
-
     this.setState({
       search: e
     });
   }
+
   render(componentWillReceiveProps) {
 
     let email = null;
@@ -132,6 +114,7 @@ class Navbar extends Component {
             color: 'black'
           }}
         />}
+        <CategoryBar/>
       </div>
     );
   }

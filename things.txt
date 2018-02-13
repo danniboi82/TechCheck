@@ -1,0 +1,68 @@
+PayPal Sandbox 
+email : danoh82-facilitator@gmail.com
+pass: 1q2w3e4r
+email : danoh82-buyer@gmail.com
+pass : 1q2w3e4r5t
+email : techcheck@gmail.com
+pass : techcheck
+
+
+
+Note: 
+product image links to indiviudal product on product detail page 
+porducts in cart need to be reflected on checkoutpage and inventory should be deducted after purchase 
+purchase confirmation page 
+shipping ??? (not yet)  info 
+
+
+Seller 
+1. Register -> Login -> Post item -> Show item on List -> remove item from inventory
+
+Buyer
+1. Register 2. Log-in 3. Search (recently posted item) 4. Select 5. Product Description/Details page  6. Purchase 7. Add to cart (check cart output) 8. pay with paypal
+
+
+current challenges => 
+Integrating product database into website
+
+site log-in 
+user: techcheck12345@gmail.com
+pass: check12! 
+
+==================================
+Somethings to think about : 
+==================================
+
+- improve sign in process
+- create rating system 
+- create hardware verification/validation system 
+- google analytics
+
+Business Model
+- "CHECK QUALITY OF USED Computer hardware before resale ie. provide consumer confidence" 
+1."User provides SKU and photos" do initial QC 
+SKU API
+2. Item gets posted on Website and user is notified to ship when item is sold
+3. "if Performance test fails What happens" 
+If fails then seller pays for all shipping costs 
+Photos different for products
+Shipping (esd) packaging 
+
+User authentication process
+- how?? have user risk more than 100$ for first sell 
+need original packaging 
+
+
+-  competitive pricing : api's 
+- Quality Check (find someone to make test software)
+- 
+
+Payment 
+
+Shipping
+
+hardware evaluation : 
+monitors
+cpu
+gpu
+ram

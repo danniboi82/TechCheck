@@ -27,34 +27,26 @@ const styles = {
 };
 
 
-//   <img src={tile.img} onClick={() => props.onClick(tile.author, tile)} />
-/**
- * A simple example of a scrollable `GridList` containing a [Subheader](/#/components/subheader).
- */
-
-
-
 class productGridList extends Component {
   constructor(props) {
     super(props)
     this.state = {
       category: ''
 
-    }
-    // this.searchCat = this.searchCat.bind(this);
-  }
+    };
+  };
+
   search = () => {
     console.log(this.state.category)
     window.location = `/search_results/${this.state.category}`
-  }
+  };
+
   searchCat = (event) => {
     let cat = event.currentTarget.attributes.value.nodeValue
-
-    // const { target: { value } } = event;
     this.setState({
       category: cat
     }, this.search)
-  }
+  };
 
   render() {
 
@@ -68,13 +60,13 @@ class productGridList extends Component {
           style={styles.gridList}
           col={4}
         >
-          {/* //<br/><h3>Click a category to search by category.</h3> */}
           {catArray.map((tile) => (
             <GridTile
               name={tile.name}
               key={tile.img}
               value={tile.value}
               onClick={this.searchCat}
+              style={{cursor: 'pointer'}}
               title={tile.name}
               subtitle={<span>Price Range: $<b>{tile.priceRange}</b></span>}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"

@@ -10,7 +10,7 @@ class mainPage extends Component {
 render(){
 
         return (
-            <div style={{ border: '1px solid black'}}>              
+            <div >              
                 <Header  />
                 <MissionTabs style={{marginLeft: 'auto',
         marginRight: 'auto'}} />

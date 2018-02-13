@@ -220,16 +220,12 @@ class App extends Component {
         }
 
         return (
-            <Container>
+            
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-                    
-{/* // {console.log(this.state.userDataObj)} */}
-                        <Navbar 
-                        //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
-                        
-                        userdata={this.state.userDataObj}
+                        <Navbar                         
+                            userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
                             loggedInput={this.userInputHandlerlogged}
@@ -242,8 +238,6 @@ class App extends Component {
                             onDelete={this.handleDelete}
                             {...this.props}
                              />
-
-                        
                         <Switch>
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
@@ -265,7 +259,7 @@ class App extends Component {
                     </div>
                 </MuiThemeProvider>
             </BrowserRouter>
-            </Container>
+            
         );
     }
 }
