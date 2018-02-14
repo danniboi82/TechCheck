@@ -59,7 +59,7 @@ class checkOutPage extends Component {
                                 <div className='DescribeProduct' style={{ fontSize: '15px' }}>
                                     Name: {card.productName}
                                     <Divider style={{ margin: '15px 0' }} />
-                                    Price : {card.price}
+                                    Price : $ {card.price}
                                     <Divider style={{ margin: '15px 0' }} />
                                 </div>
 

@@ -232,7 +232,7 @@ class ProductSearch extends Component {
               title={tile.productName}
               style={{ border: '1px solid gray' }}
               price={tile.price}
-              subtitle={<span>Price <b>{tile.price}</b></span>}
+              subtitle={<span>Price <b>$ {tile.price}</b></span>}
               actionIcon={<IconButton><CartIcon  price={tile.price} value={tile.id} onClick={this.getProductId2} /></IconButton>}
             >
             { console.log(tile)}

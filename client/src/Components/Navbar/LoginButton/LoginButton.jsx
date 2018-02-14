@@ -76,7 +76,11 @@ class Login extends Component {
         return (
             <div>
                 <div className='LogInSection'>
-                    <FlatButton {...this.props} label="Login" onClick={this.handleOpen} />
+                    <FlatButton {...this.props} 
+                        label="Login / Register" 
+                        onClick={this.handleOpen} 
+                        style={{color: 'white', fontWeight: 'bold', position: 'relative', top: '5px'}}
+                    />
                 </div>
                 <Container>
                     <Dialog
@@ -144,14 +148,14 @@ class Login extends Component {
                                         <Col sm={12}>
                                             <Link to='/registration'
                                                 onClick={this.handleClose}
-                                                style={{ maxWidth: '100%', marginRight: '10px'}}
+                                                style={{ maxWidth: '100%', marginRight: '40px', color: 'white'}}
                                             >
                                                 Registration
                                             </Link>
 
                                             <Link to='/acount/recovery'
                                                 onClick={this.handleClose}
-                                                style={{ maxWidth: '100%' }}
+                                                style={{ maxWidth: '100%', color: 'white' }}
                                             >
                                                 Forgot Password?
                                             </Link>

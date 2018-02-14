@@ -120,7 +120,7 @@ class CartModal extends Component {
                         </Col>
                         <Col sm={6}>
                             <div style={{ position: 'relative', top: '4px', right: '12px' }}>
-                                Price: {step.price}
+                                Price: $ {step.price}
                             </div>
                         </Col>{}
                         <Col sm={2} onClick={() => this.props.onDelete(step.price, this.state)}  >
@@ -147,7 +147,8 @@ class CartModal extends Component {
                                     message='Please add an item to cart!'
                                     autoHideDuration={4000}
                                     onRequestClose={this.snackbarHandleClose}
-                                    contentStyle={{color: 'red', fontWeight: 'bold'}}
+                                    style={{fontWeight: 'bold', border: '1px solid black'}}
+                                    contentStyle={{color: 'red'}}
                                 />
 
         return (
