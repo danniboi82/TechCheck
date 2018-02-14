@@ -53,9 +53,9 @@ class ProductSearch extends Component {
     status: "",
     createdAt: "",
     autoHideDuration: 4000,
-      message: 'Item added to your cart',
-      open: false,
-      
+    message: 'Item added to your cart',
+    open: false,
+
   }
   componentDidMount = () => {
     console.log(this.props)
@@ -110,11 +110,11 @@ class ProductSearch extends Component {
 
   }
   getProductId2 = (e) => {
-   
+
     this.setState({
       productId: e.currentTarget.attributes.value.nodeValue,
       open: true,
-      priceDelete:e.currentTarget.attributes.price.nodeValue
+      priceDelete: e.currentTarget.attributes.price.nodeValue
     }, this.getItemDate)
   }
 
@@ -125,7 +125,7 @@ class ProductSearch extends Component {
     console.log(this.state.productId);
     this.props.onClick(this.state.price, this.state);
     this.setState({
-     
+
     });
   }
 
@@ -159,7 +159,7 @@ class ProductSearch extends Component {
         verified: data.data.verified,
         status: data.data.status,
         createdAt: data.data.createdAt,
-        
+
       }, this.addToCart)
     })
     console.log(this.state.productId)
@@ -192,18 +192,18 @@ class ProductSearch extends Component {
       open: false,
     });
   };
-  getPrice=(e)=>{
-   
+  getPrice = (e) => {
+
   }
   handleActionClick1 = () => {
     this.setState({
       open: false,
     });
     this.props.handleDelete(this.state.priceDelete)
-  this.setState({
-    priceDelete:''
-  })
-  //  alert('Item removed from your cart.');
+    this.setState({
+      priceDelete: ''
+    })
+    //  alert('Item removed from your cart.');
   };
 
   handleChangeDuration = (event) => {
@@ -226,22 +226,22 @@ class ProductSearch extends Component {
         >
 
           {this.state.products.map((tile) => (
-           
+
             <GridTile
               key={tile.id}
               title={tile.productName}
               style={{ border: '1px solid gray' }}
               price={tile.price}
               subtitle={<span>Price <b>$ {tile.price}</b></span>}
-              actionIcon={<IconButton><CartIcon  price={tile.price} value={tile.id} onClick={this.getProductId2} /></IconButton>}
+              actionIcon={<IconButton><CartIcon price={tile.price} value={tile.id} onClick={this.getProductId2} /></IconButton>}
             >
-            { console.log(tile)}
+              {console.log(tile)}
               {/* <IconButton><StarBorder color="white" /></IconButton> */}
               <img value={tile.id}
                 onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
             </GridTile>
           ))}
-         <br />
+          <br />
           <div className='pages'>
             <button onClick={this.pages} name='1' value={0} >1</button><button onClick={this.pages} name='2' value={15} >2</button> <button onClick={this.pages} name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button>
           </div>
@@ -251,10 +251,10 @@ class ProductSearch extends Component {
           open={this.state.open}
           message={this.state.message}
           action="undo"
-           autoHideDuration={this.state.autoHideDuration}
-           
-           onActionClick={this.handleActionClick1}
-           onRequestClose={this.handleRequestClose}
+          autoHideDuration={this.state.autoHideDuration}
+
+          onActionClick={this.handleActionClick1}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     )
