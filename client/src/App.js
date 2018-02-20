@@ -18,9 +18,6 @@ import { UserProfile, UserProducts, verification, reset, resetPassword, emailSen
 import Search from '../src/Components/SearchedPage/SearchResults/search'
 import axios from "axios";
 import Receipt from '../src/Components/CheckOutPage/Receipt'
-import {List, ListItem} from 'material-ui/List';
-import MobileTearSheet from '.'
-import Divider from 'material-ui/Divider';
 class App extends Component {
     state = {
         cartItem: 0,
@@ -136,12 +133,6 @@ class App extends Component {
             this.setState({
                 cartAmount:0
             })
-        }else if(localStorage.getItem('CartItem')<0){
-            this.setState({
-                cartItem: 0,
-                cartAmount: 0,
-                cartarray: [],
-            })
         }
    
     };
@@ -229,17 +220,12 @@ class App extends Component {
         }
 
         return (
-            <Container fluid={false} >
-           
+            
             <BrowserRouter>
                 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)} >
                     <div className="App" >
-                    
-{/* // {console.log(this.state.userDataObj)} */}
-                        <Navbar 
-                        //  ref={(this.state.userDataObj) => { this.state.userDataObj = ; }}
-                        
-                        userdata={this.state.userDataObj}
+                        <Navbar                         
+                            userdata={this.state.userDataObj}
                             dataSource={this.state.dataSource}
                             userInput={this.state.userInput}
                             loggedInput={this.userInputHandlerlogged}
@@ -252,8 +238,6 @@ class App extends Component {
                             onDelete={this.handleDelete}
                             {...this.props}
                              />
-
-                        
                         <Switch>
                             <Route exact path='/' render={RoutedMainPage} />
                             <Route exact path='/api/users/verification/:id' component={verification} />
@@ -275,7 +259,7 @@ class App extends Component {
                     </div>
                 </MuiThemeProvider>
             </BrowserRouter>
-            </Container>
+            
         );
     }
 }

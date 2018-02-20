@@ -4,50 +4,25 @@ import SearchBar from 'material-ui-search-bar';
 import LoggedInButton from './LoggedInButton/LoggedInButton';
 import LoginButton from './LoginButton/LoginButton';
 import CartModal from './CartButton/CartModal';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import MobileTearSheet from './mobiletear/mobiletearsheet'
-import './navbar.scss'
-import {List, ListItem} from 'material-ui/List';
-import FlatButton from 'material-ui/FlatButton/FlatButton';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import graphicscard from './catphotos/graphicscard.jpg'
+import CategoryBar from './CategoryBar/CategoryBar';
+
 class Navbar extends Component {
 
   state = {
     dataSource: '',
     search: '',
-    userEmail: '',
-    open:false
-   
+    userEmail: ''
   };
 
-  componentDidMount = (props) => {
- 
-     this.setState({
-       open:true
-     })
-  }
-
-
-  handleToggle = () => this.setState({open: !this.state.open});
-  handleclose=()=>{
-      this.setState({
-          open:false
-      })
-  }
   onsubmit = () => {
     console.log(this.state.search)
     window.location = `/searchResults/${this.state.search}`
   }
+
   componentDidMount = () => {
 
   }
+
   goHome = () => {
     window.location = '/'
   }
@@ -58,21 +33,23 @@ class Navbar extends Component {
     try {
       email = props.userdata.email.split('@')
     } catch (error) {
+      console.log("error");
     }
     try {
       this.setState({
         userEmail:  email[1].toLowerCase()
       })
     } catch (error) {
+      console.log("error");
     }
   }
 
   onChange = (e) => {
-
     this.setState({
       search: e
     });
   }
+
   render(componentWillReceiveProps) {
 
     let email = null;
@@ -111,58 +88,18 @@ class Navbar extends Component {
             </div>
           </div>
         }
-       
         <AppBar
-        
           title={<img onClick={this.goHome} src="https://i.imgur.com/heRuT1H.png" alt="TClogo" style={{ margin: 'auto', maxWidth: '100%', height: '80px', marginLeft: '150px' }} />}
           style={{ backgroundColor: "#2196F3", }}
           showMenuIconButton={false}
           iconElementRight={this.props.logged ? <LoggedInButton userdata={this.props.userdata} logout={this.props.logoutFunction} /> : <LoginButton />}
         >
-        {/* <Drawer docked={false}
-          width={200} open={this.state.open} zDepth={1}>
-          <MenuItem><h1>Categories</h1></MenuItem><br/>
-          <MenuItem>Graphic Cards</MenuItem>
-          <MenuItem>Processors</MenuItem>
-          <MenuItem>Processors</MenuItem>
-          <MenuItem>Motherboards</MenuItem>
-          <MenuItem>RAM</MenuItem>
-          <MenuItem>Power Supply</MenuItem>
-          <MenuItem>Computer Cases</MenuItem>
-          <MenuItem>Gaming Peripherals </MenuItem>
-          <MenuItem>Laptops</MenuItem>
-        
-          <MenuItem>Game Consoles</MenuItem>
-        </Drawer> */}
-        
+
           <CartModal cartitem={this.props.cartitem} cartamount={this.props.cartamount} cartarray={this.props.cartarray}
             onClick={this.props.onClick} onDelete={this.props.onDelete}
           />
         </AppBar>
-        {/* <div className='drawer'>
-       
- 
-       <MobileTearSheet>
-          <List>
-          Categories
-          <ListItem primaryText="Categories" />
-          <Divider />
-            <ListItem primaryText="Graphic Cards" />
-      
-            <ListItem primaryText="Processors"  />
-            <ListItem primaryText="Hard Drives"  />
-            <ListItem primaryText="Motherboards"  />
-            <ListItem primaryText="RAM"  />
-            <ListItem primaryText="Power Supply" />
-            <ListItem primaryText="Computer Cases"  />
-            <ListItem primaryText="Gaming Peripherals Mice, Keyboards, Headsets"  />
-            <ListItem primaryText="Laptops"  />
-            <ListItem primaryText="Game Consoles"  />
-          </List>
-         
-         
-        </MobileTearSheet>
-              </div> */}
+
         {<SearchBar
           value={this.state.search}
           name='search'
@@ -177,6 +114,7 @@ class Navbar extends Component {
             color: 'black'
           }}
         />}
+        <CategoryBar/>
       </div>
     );
   }

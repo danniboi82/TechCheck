@@ -9,6 +9,8 @@ import Divider from 'material-ui/Divider';
 import { Row, Col } from 'react-grid-system';
 import Avatar from 'material-ui/Avatar/Avatar';
 import SvgIcon from 'material-ui/SvgIcon';
+import Snackbar from 'material-ui/Snackbar';
+
 
 const CancelIcon = (props) => (
     <SvgIcon {...props}>
@@ -27,7 +29,8 @@ const style = {
 class CartModal extends Component {
     state = {
         open: false,
-        loading: false
+        loading: false,
+        snackbarOpen: false,
     };
     componentDidMount = () => {
         if (this.props.cartarray.length > 1) {
@@ -37,9 +40,9 @@ class CartModal extends Component {
         } else {
             this.setState({
                 loading: false
-            })
-        }
-    }
+            });
+        };
+    };
     componentWillReceiveProps = () => {
         if (this.props.cartarray.length > 1) {
             this.setState({
@@ -48,17 +51,24 @@ class CartModal extends Component {
         } else {
             this.setState({
                 loading: false
-            })
-        }
-    }
+            });
+        };
+    };
     handleClick = (event) => {
         // This prevents ghost click.
         event.preventDefault();
-
-        this.setState({
-            open: true,
-            anchorEl: event.currentTarget,
-        });
+        if (!this.props.cartarray.length <= 0) {
+            this.setState({
+                open: true,
+                snackbarOpen: false,
+                anchorEl: event.currentTarget,
+            })
+        } else {
+            this.setState({
+                snackbarOpen: true,
+                open: false,
+            });
+        };
     };
 
     handleRequestClose = () => {
@@ -67,10 +77,17 @@ class CartModal extends Component {
         });
     };
 
+    snackbarHandleClose = () => {
+        this.setState({
+            snackbarOpen: false,
+        });
+    };
+
+
 
     handleCheckOut = () => {
         if (this.props.cartitem === 0) {
-         
+
             this.setState({ open: true });
         } else {
             this.setState({ open: false });
@@ -93,19 +110,19 @@ class CartModal extends Component {
     render() {
 
         const items = this.props.cartarray.map((step) => {
-         
+
             return (
                 <MenuItem key={step.productId} style={{ fontSize: '12px', textAlign: 'center' }}>
                     <Row>
-                        
+
                         <Col sm={4}>
-                            <Avatar  src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`} style={{ position: 'relative', top: '10px', right: '5px' }} />
+                            <Avatar src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${step.photos[0].img1}`} style={{ position: 'relative', top: '10px', right: '5px' }} />
                         </Col>
                         <Col sm={6}>
                             <div style={{ position: 'relative', top: '4px', right: '12px' }}>
-                                Price: {step.price}
+                                Price: $ {step.price}
                             </div>
-                        </Col>{ }
+                        </Col>{}
                         <Col sm={2} onClick={() => this.props.onDelete(step.price, this.state)}  >
                             <CancelIcon style={{ position: 'relative', top: '14px', right: '10px' }} />
                         </Col>
@@ -124,6 +141,15 @@ class CartModal extends Component {
                 />
             </Link>,
         ];
+        
+        const noItemsSnackbar = <Snackbar 
+                                    open={this.state.snackbarOpen}
+                                    message='Please add an item to cart!'
+                                    autoHideDuration={4000}
+                                    onRequestClose={this.snackbarHandleClose}
+                                    style={{fontWeight: 'bold', border: '1px solid black'}}
+                                    contentStyle={{color: 'red'}}
+                                />
 
         return (
             <div>
@@ -132,6 +158,7 @@ class CartModal extends Component {
                     <FlatButton {...this.props} title='cart' style={style} onClick={this.handleClick} >
                         <img src={logo} alt="shopping cart" /> <span style={{ position: 'relative', bottom: '11px', left: '-20.5px', color: 'white' }}> {this.props.cartitem}</span>
                     </FlatButton>
+                    {noItemsSnackbar}
                 </div>
                 <Row >
                     <Col sm={12} >

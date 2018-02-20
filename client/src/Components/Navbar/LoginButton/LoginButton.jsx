@@ -76,7 +76,11 @@ class Login extends Component {
         return (
             <div>
                 <div className='LogInSection'>
-                    <FlatButton {...this.props} label="Login" onClick={this.handleOpen} />
+                    <FlatButton {...this.props} 
+                        label="Login / Register" 
+                        onClick={this.handleOpen} 
+                        style={{color: 'white', fontWeight: 'bold', position: 'relative', top: '5px'}}
+                    />
                 </div>
                 <Container>
                     <Dialog
@@ -142,21 +146,19 @@ class Login extends Component {
                                 <div className='RegistrationDiv' style={{ paddingTop: '15px' }}>
                                     <Row>
                                         <Col sm={12}>
-                                            {/* <Link to='/registration'
+                                            <Link to='/registration'
                                                 onClick={this.handleClose}
-                                                style={{ maxWidth: '100%', marginRight: '10px'}}
-                                            > */}
-                                            <FlatButton href='/registration'  onClick={this.handleClose} style={{ backgroundColor: 'blue', width: '255px', maxWidth:'100%'  }}>
-                                                Registration</FlatButton>
-                                            {/* </Link> */}
+                                                style={{ maxWidth: '100%', marginRight: '40px', color: 'white'}}
+                                            >
+                                                Registration
+                                            </Link>
 
-                                            {/* <Link to='/acount/recovery'
+                                            <Link to='/acount/recovery'
                                                 onClick={this.handleClose}
-                                                style={{ maxWidth: '100%' }}
-                                            > */}
-                                            <FlatButton href='/acount/recovery'onClick={this.handleClose} style={{ backgroundColor: 'green', width: '255px', maxWidth:'100%'  }}>
-                                                Forgot Password</FlatButton>
-                                        
+                                                style={{ maxWidth: '100%', color: 'white' }}
+                                            >
+                                                Forgot Password?
+                                            </Link>
                                         </Col>
                                     </Row>
                                 </div>

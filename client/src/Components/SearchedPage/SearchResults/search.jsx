@@ -52,17 +52,13 @@ class ProductSearch extends Component {
     verified: "",
     status: "",
     createdAt: "",
-    theItem:'',
     autoHideDuration: 4000,
-      message: 'Item added to your cart',
-      open: false,
-      autoHideDuration2: 4000,
-      message2:'',
-      open2: false,
-   
+    message: 'Item added to your cart',
+    open: false,
+
   }
   componentDidMount = () => {
-   
+    console.log(this.props)
     axios({
       method: 'post',
       url: `/api/products/search`,
@@ -74,7 +70,7 @@ class ProductSearch extends Component {
       }
     })
       .then(products => {
-     
+        console.log(products)
         this.setState({
           products: products.data,
 
@@ -96,15 +92,15 @@ class ProductSearch extends Component {
 
       }
     }).then(next => {
-      
+      console.log(next)
       this.setState({
         products: next.data
-      }, )
+      }, console.log(this.state.products))
 
     })
   }
   productDetail = () => {
-    
+    console.log(this.state.productId)
     window.location = `/product_detail/${this.state.productId}`
   }
   getProductId = (e) => {
@@ -118,12 +114,8 @@ class ProductSearch extends Component {
     this.setState({
       productId: e.currentTarget.attributes.value.nodeValue,
       open: true,
-      priceDelete:e.currentTarget.attributes.price.nodeValue,
-     
-    
-      message2:'Item removed from your cart'
+      priceDelete: e.currentTarget.attributes.price.nodeValue
     }, this.getItemDate)
-
   }
 
 
@@ -133,14 +125,13 @@ class ProductSearch extends Component {
     console.log(this.state.productId);
     this.props.onClick(this.state.price, this.state);
     this.setState({
-     
+
     });
   }
 
   getItemDate = (e) => {
-   console.log(this.state.theItem)
     productsApi.Product(this.state.productId).then(data => {
-    
+      console.log(data)
       const photosImg = {
         img1: data.data.userUploadImage1,
 
@@ -168,7 +159,7 @@ class ProductSearch extends Component {
         verified: data.data.verified,
         status: data.data.status,
         createdAt: data.data.createdAt,
-        
+
       }, this.addToCart)
     })
     console.log(this.state.productId)
@@ -201,63 +192,30 @@ class ProductSearch extends Component {
       open: false,
     });
   };
-  getPrice=(e)=>{
-   
+  getPrice = (e) => {
+
   }
-  handleActionClick2 = () => {
-    this.setState({
-      open: false,
-    });
-    this.props.onClick(this.state.price, this.state);
-   
-  this.setState({
-    priceDelete:'',
-    open2:false,
-    open:false
-  })
-  //  alert('Item removed from your cart.');
-  };
   handleActionClick1 = () => {
     this.setState({
       open: false,
     });
     this.props.handleDelete(this.state.priceDelete)
-
-  this.setState({
-    priceDelete:'',
-    open2:true,
-    open:false
-  })
-  //  alert('Item removed from your cart.');
+    this.setState({
+      priceDelete: ''
+    })
+    //  alert('Item removed from your cart.');
   };
+
   handleChangeDuration = (event) => {
-
-    const value = event
-    console.log(value)
+    const value = event.target.value;
     this.setState({
-      autoHideDuration: 3000
-    });
-  }
-  handleChangeDuration2 = (event) => {
-
-   
-    this.setState({
-      autoHideDuration2: 3000
+      autoHideDuration: value.length > 0 ? parseInt(value) : 0,
     });
   }
   render() {
 
     return (
       <div style={styles.root}>
-        <Snackbar
-          open={this.state.open2}
-          message={this.state.message2}
-          action="undo"
-           autoHideDuration={this.state.autoHideDuration2}
-           
-           onActionClick={this.handleActionClick2}
-           onRequestClose={this.handleRequestClose}
-        />
         <p>Results per page:</p>
         <button onClick={this.limit} value={15}>15</button><button onClick={this.limit} value={30}>30</button>
         <GridList
@@ -268,22 +226,22 @@ class ProductSearch extends Component {
         >
 
           {this.state.products.map((tile) => (
-           
+
             <GridTile
               key={tile.id}
               title={tile.productName}
               style={{ border: '1px solid gray' }}
               price={tile.price}
-              subtitle={<span>Price <b>{tile.price}</b></span>}
-              actionIcon={<IconButton><CartIcon  price={tile.price}  value={tile.id} onClick={this.getProductId2} /></IconButton>}
+              subtitle={<span>Price <b>$ {tile.price}</b></span>}
+              actionIcon={<IconButton><CartIcon price={tile.price} value={tile.id} onClick={this.getProductId2} /></IconButton>}
             >
-        
+              {console.log(tile)}
               {/* <IconButton><StarBorder color="white" /></IconButton> */}
               <img value={tile.id}
                 onClick={this.getProductId} src={`https://s3-us-west-1.amazonaws.com/techcheckbucket/${tile.userUploadImage1}`} alt='Searched Products' />
             </GridTile>
           ))}
-         <br />
+          <br />
           <div className='pages'>
             <button onClick={this.pages} name='1' value={0} >1</button><button onClick={this.pages} name='2' value={15} >2</button> <button onClick={this.pages} name='3' value={30} >3</button> <button onClick={this.pages} value={45} >4</button> <button onClick={this.pages} value={60} >5</button>
           </div>
@@ -293,12 +251,11 @@ class ProductSearch extends Component {
           open={this.state.open}
           message={this.state.message}
           action="undo"
-           autoHideDuration={this.state.autoHideDuration}
-           
-           onActionClick={this.handleActionClick1}
-           onRequestClose={this.handleRequestClose}
+          autoHideDuration={this.state.autoHideDuration}
+
+          onActionClick={this.handleActionClick1}
+          onRequestClose={this.handleRequestClose}
         />
-         
       </div>
     )
   }
